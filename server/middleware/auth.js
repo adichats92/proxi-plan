@@ -1,4 +1,4 @@
-const jwt = require('jwt');
+const jwt = require('jsonwebtoken');
 const SECRET = process.env.JWT_SECRET;
 const authenticate = async (req, res, next) => {
 	try {

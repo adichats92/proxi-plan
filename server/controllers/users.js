@@ -17,7 +17,7 @@ const register = async (req, res) => {
 			.status(201)
 			.cookie('accessToken', userToken, {
 				httpOnly: true,
-				expires: new Date() + dayInMilliseconds,
+				expires: new Date(Date.now() + dayInMilliseconds),
 			})
 			.json({ message: 'user created!', user: userPayload });
 	} catch (error) {
@@ -54,9 +54,9 @@ const login = async (req, res) => {
 						.status(201)
 						.cookie('accessToken', userToken, {
 							httpOnly: true,
-							expires: new Date() + dayInMilliseconds,
+							expires: new Date(Date.now() + dayInMilliseconds),
 						})
-						.json({ message: 'user created!', user: userPayload });
+						.json({ message: 'user logged in!', user: userPayload });
 				}
 			}
 		}
@@ -71,7 +71,7 @@ const logout = (req, res) => {
 const getLoggedInUser = async (req, res) => {
 	try {
 		//req.user from auth middleware
-		const user = await User.findOne({ _id: req.user._id }).select(-password);
+		const user = await User.findOne({ _id: req.user._id }).select('-password');
 		res.json({ user });
 	} catch (error) {
 		res.status(400).json({ message: error.message });
