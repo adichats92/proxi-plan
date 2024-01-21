@@ -2,13 +2,17 @@ const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema(
 	{
-		userName: { type: String, required: [true, 'User name is required'] },
-		body: { type: String, required: [true, 'Post content is required'] },
-		comments: [{ body: String, date: Date }],
+		createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+		title: { type: String, required: [true, 'Title is required'] },
+		text: { type: String, required: [true, 'Content is required'] },
+		comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
 		date: { type: Date, default: Date.now },
 		hidden: Boolean,
 		meta: { likes: Number },
 	},
 	{ timestamps: true }
 );
+postSchema.virtual('url').get(function () {
+	return '/post/' + this._id;
+});
 module.exports = mongoose.model('Post', postSchema);

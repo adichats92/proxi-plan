@@ -2,7 +2,7 @@ const Post = require('../models/post');
 
 const createPost = async (req, res) => {
 	try {
-		const newPost = await Post.create(req.body);
+		const newPost = await Post.create({ ...req.body, createdBy: req.user._id });
 		res.status(201).json(newPost);
 	} catch (error) {
 		res.status(500).json({ message: error.message });
@@ -41,7 +41,7 @@ const updatePost = async (req, res) => {
 			new: true,
 		});
 		if (!updatedPost) {
-			res.status(404).json({ message: `Book with id ${id} Not Found` });
+			res.status(404).json({ message: `Post with id ${id} Not Found` });
 		} else {
 			res.json(updatedPost);
 		}
@@ -55,7 +55,7 @@ const deletePost = async (req, res) => {
 		// const deletedPost = await Post.findByIdAndDelete({_id,id});
 		const deletedPost = await Post.findOneAndDelete({ _id: id });
 		if (!deletedPost) {
-			res.status(404).json({ message: `Book with id ${id} Not Found` });
+			res.status(404).json({ message: `Post with id ${id} Not Found` });
 		} else {
 			res.json({ message: 'Post deleted' });
 		}
