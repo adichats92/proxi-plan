@@ -1,18 +1,33 @@
 const Comment = require('../models/comment');
+const Post = require('../models/post');
 
 const createComment = async (req, res) => {
-	const id = req.params.id;
+	console.log(req.params);
+	const { id } = req.params;
 	try {
 		const newComment = await Comment.create({
 			...req.body,
 			post: id,
 			commentedBy: req.user.userName,
+			userId: req.user._id,
 		});
-		res.status(201).json(newComment);
+		const updatedPost = await Post.findOneAndUpdate(
+			{ _id: id },
+			{ $push: { comments: newComment._id } },
+			{
+				new: true,
+			}
+		);
+		if (!updatedPost) {
+			res.status(404).json({ message: `Post with id ${id} Not Found` });
+		} else {
+			res.json(updatedPost);
+		}
 	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}
 };
+
 const getAllComments = async (req, res) => {
 	try {
 		const comments = await Comment.find(req.body);
@@ -26,7 +41,7 @@ const getCommentById = async (req, res) => {
 	const { id } = req.params;
 	try {
 		// const comment = await Comment.findById(id);
-		const comment = await Comment.find({ id: id });
+		const comment = await Comment.find({ _id: id });
 		if (comment.length === 0) {
 			res.status(404).json({ message: `Comment with id ${id} Not Found` });
 		} else {

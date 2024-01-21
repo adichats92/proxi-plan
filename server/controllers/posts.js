@@ -2,7 +2,11 @@ const Post = require('../models/post');
 
 const createPost = async (req, res) => {
 	try {
-		const newPost = await Post.create({ ...req.body, createdBy: req.user._id });
+		const newPost = await Post.create({
+			...req.body,
+			userId: req.user._id,
+			createdBy: req.user.userName,
+		});
 		res.status(201).json(newPost);
 	} catch (error) {
 		res.status(500).json({ message: error.message });

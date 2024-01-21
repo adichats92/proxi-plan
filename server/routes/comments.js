@@ -1,6 +1,6 @@
 const express = require('express');
 const authenticate = require('../middleware/auth');
-const commentsRouter = express.Router();
+const commentsRouter = express.Router({ mergeParams: true });
 const {
 	createComment,
 	getAllComments,
