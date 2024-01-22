@@ -2,7 +2,6 @@ const Comment = require('../models/comment');
 const Post = require('../models/post');
 
 const createComment = async (req, res) => {
-	console.log(req.params);
 	const { id } = req.params;
 	try {
 		const newComment = await Comment.create({
