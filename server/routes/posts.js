@@ -1,6 +1,6 @@
 const express = require('express');
 const authenticate = require('../middleware/auth');
-const postsRouter = express.Router();
+const postsRouter = express.Router({ mergeParams: true });
 const {
 	createPost,
 	getAllPosts,

@@ -1,6 +1,6 @@
 const express = require('express');
 const authenticate = require('../middleware/auth');
-const usersRouter = express.Router();
+const usersRouter = express.Router({ mergeParams: true });
 
 const {
 	register,

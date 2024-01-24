@@ -17,6 +17,10 @@ const userSchema = new mongoose.Schema(
 			required: [true, 'Password is required'],
 			minLength: [8, 'Password MUST be at least 8 characters'],
 		},
+		location: {
+			latitude: Number,
+			longitude: Number,
+		},
 	},
 	{ timestamps: true }
 );

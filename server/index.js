@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const connectDB = require('./config/db');
 const postsRouter = require('./routes/posts');
 const todosRouter = require('./routes/todos');
+const locationRouter = require('./routes/location');
 const commentsRouter = require('./routes/comments');
 const usersRouter = require('./routes/users');
 const PORT = process.env.PORT || 4000;
@@ -19,6 +20,7 @@ app.use('/api/posts', postsRouter);
 app.use('/api/todos', todosRouter);
 app.use('/users', usersRouter);
 app.use('/api/posts/:id/comments', commentsRouter);
+app.use('/api/location', locationRouter);
 
 //All main routes above this point
 if (process.env.NODE_ENV === 'production') {
