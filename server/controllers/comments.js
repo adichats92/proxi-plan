@@ -7,7 +7,6 @@ const createComment = async (req, res) => {
 		const newComment = await Comment.create({
 			...req.body,
 			post: id,
-			commentedBy: req.user.userName,
 			userId: req.user._id,
 		});
 		const updatedPost = await Post.findOneAndUpdate(
@@ -28,8 +27,9 @@ const createComment = async (req, res) => {
 };
 
 const getAllComments = async (req, res) => {
+	const { id } = req.params;
 	try {
-		const comments = await Comment.find(req.body);
+		const comments = await Comment.find({ post: id });
 		res.json(comments);
 	} catch (error) {
 		res.status(500).json({ message: error.message });
