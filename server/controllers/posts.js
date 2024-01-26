@@ -7,11 +7,15 @@ const createPost = async (req, res) => {
 		if (!user) {
 			return res.status(404).json({ message: 'User not found' });
 		}
+		const location = {
+			type: 'Point',
+			coordinates: [user.location.longitude, user.location.latitude],
+		};
 
 		const newPost = await Post.create({
 			...req.body,
 			userId: req.user._id,
-			location: user.location,
+			location: location,
 		});
 
 		res.status(201).json(newPost);
@@ -19,17 +23,33 @@ const createPost = async (req, res) => {
 		res.status(500).json({ message: error.message });
 	}
 };
+
 const getAllPosts = async (req, res) => {
+	const { latitude, longitude } = req.query;
+	const maxDistance = parseInt(req.query.maxDistance) || 5000; // Default 5000 meters
+
 	try {
-		const posts = await Post.find(req.body)
+		const posts = await Post.find({
+			location: {
+				$near: {
+					$geometry: {
+						type: 'Point',
+						coordinates: [parseFloat(longitude), parseFloat(latitude)],
+					},
+					$maxDistance: maxDistance,
+				},
+			},
+		})
 			.populate('comments')
 			.populate('userId', 'userName')
 			.exec();
+
 		res.json(posts);
 	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}
 };
+
 const getPostById = async (req, res) => {
 	const { id } = req.params;
 	try {

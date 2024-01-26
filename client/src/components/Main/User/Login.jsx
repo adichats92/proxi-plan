@@ -1,64 +1,53 @@
-import { useState } from 'react';
-import instance from '../../../axiosInstance';
-import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import { useState, useContext } from 'react';
+import { AuthContext } from '../../../context/Auth';
+import { Navigate } from 'react-router-dom';
 
-const Login = ({ setAuth }) => {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [error, setError] = useState('');
-	const navigate = useNavigate();
+function Login() {
+	const context = useContext(AuthContext);
 
-	const handleLogin = async (e) => {
+	const [user, setUser] = useState({
+		email: '',
+		password: '',
+	});
+
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setUser({ ...user, [name]: value });
+	};
+	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		try {
-			const response = await instance.post('/users/login', { email, password });
-			// Assuming the token is returned in the response.data.token
-			const token = response.data.token;
-			if (token) {
-				handleLoginSuccess(token);
-			} else {
-				// Handle the case where token is not returned
-				setError('Token not provided in response');
-			}
-		} catch (err) {
-			setError(err.response?.data?.message || 'An error occurred during login');
-		}
+		context.login(user);
 	};
+	if (!context.loading && context.user) {
+		return <Navigate to='/' />;
+	}
 
-	const handleLoginSuccess = (token) => {
-		Cookies.set('accessToken', token, { expires: 1 }); // Set the cookie to expire in 1 day, for example
-		setAuth(true);
-		navigate('/home');
-	};
-
-	return (
-		<div>
-			<form onSubmit={handleLogin}>
-				<div>
-					<label>Email:</label>
+	if (!context.loading && !context.user) {
+		return (
+			<>
+				{context.errors?.message}
+				<form onSubmit={handleSubmit}>
+					<label htmlFor=''>Email:</label>
 					<input
 						type='email'
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
+						name='email'
+						value={user.email}
+						onChange={handleChange}
 						required
 					/>
-				</div>
-				<div>
-					<label>Password:</label>
+					<label htmlFor=''>Password:</label>
 					<input
-						type='password'
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
+						type='text'
+						name='password'
+						value={user.password}
+						onChange={handleChange}
 						required
 					/>
-				</div>
-				<button type='submit'>Login</button>
-			</form>
-			{error && <p style={{ color: 'red' }}>{error}</p>}
-		</div>
-	);
-};
+					<button>Login</button>
+				</form>
+			</>
+		);
+	}
+}
 
 export default Login;

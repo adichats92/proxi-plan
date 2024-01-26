@@ -1,61 +1,40 @@
-import { useEffect, useState } from 'react';
-import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Login from './components/Main/User/Login';
 import Register from './components/Main/User/Register';
-import Cookies from 'js-cookie';
 import Main from './components/Main';
+import Community from './components/Main/Dynamic/Community';
+import Protected from './Protected';
+import Todos from './components/Main/Static/Todos';
 
 const App = () => {
-	const navigate = useNavigate();
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
-	const [isLoading, setIsLoading] = useState(true);
-
-	useEffect(() => {
-		const token = Cookies.get('accessToken');
-		if (token) {
-			setIsAuthenticated(true);
-		}
-		setIsLoading(false);
-	}, []);
-
-	useEffect(() => {
-		if (!isLoading) {
-			if (isAuthenticated) {
-				navigate('/home');
-			} else {
-				navigate('/login');
-			}
-		}
-	}, [isAuthenticated, isLoading, navigate]);
-
-	if (isLoading) {
-		return <div>Loading...</div>; // Or some loading spinner
-	}
-
 	return (
 		<Routes>
 			<Route
 				path='/login'
-				element={<Login setAuth={setIsAuthenticated} />}
+				element={<Login />}
 			/>
 			<Route
 				path='/register'
 				element={<Register />}
 			/>
 			<Route
-				path='/home'
-				element={<Main />}
-			/>
-			{/* Redirect to either login or home depending on authentication */}
-			<Route
 				path='/'
-				element={
-					<Navigate
-						replace
-						to={isAuthenticated ? '/home' : '/login'}
-					/>
-				}
-			/>
+				element={<Protected />}
+			>
+				<Route
+					path='/'
+					element={<Main />}
+				/>
+				<Route
+					path='/posts'
+					element={<Community />}
+				/>
+				<Route
+					path='/todos'
+					element={<Todos />}
+				/>
+			</Route>
+
 			{/* Add other routes here */}
 		</Routes>
 	);

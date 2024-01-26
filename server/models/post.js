@@ -7,8 +7,8 @@ const postSchema = new mongoose.Schema(
 		text: { type: String, required: [true, 'Content is required'] },
 		comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
 		location: {
-			latitude: Number,
-			longitude: Number,
+			type: { type: String, enum: ['Point'], required: true },
+			coordinates: { type: [Number], required: true }, // [longitude, latitude]
 		},
 		hidden: Boolean,
 		likes: { likes: Number },
