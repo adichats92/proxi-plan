@@ -5,7 +5,7 @@ function Register() {
 	const context = useContext(AuthContext);
 	const errors = context.errors;
 	const [user, setUser] = useState({
-		username: '',
+		userName: '',
 		email: '',
 		password: '',
 		confirmPassword: '',
@@ -19,9 +19,9 @@ function Register() {
 		e.preventDefault();
 		context.register(user);
 	};
-	// if user exist go to home
+
 	if (!context.loading && context.user) {
-		return <Navigate to='/' />;
+		return <Navigate to='/home' />;
 	}
 
 	if (!context.loading && !context.user) {
@@ -31,13 +31,13 @@ function Register() {
 				onSubmit={handleSubmit}
 			>
 				<label htmlFor=''>Username:</label>
-				{errors?.username && (
-					<p className='text-danger'>{errors?.username.message}</p>
+				{errors?.userName && (
+					<p className='text-danger'>{errors?.userName.message}</p>
 				)}
 				<input
 					type='text'
-					name='username'
-					value={user.username}
+					name='userName'
+					value={user.userName}
 					onChange={handleChange}
 					required
 				/>

@@ -29,10 +29,10 @@ function AuthProvider({ children }) {
 	const login = (user) => {
 		setLoading(true);
 		instance
-			.post('/users/login', user)
+			.post('/api/auth/login', user)
 			.then((res) => {
 				setState(res.data.user, false, null);
-				navigate('/');
+				navigate('/home');
 			})
 			.catch((err) => {
 				setState(null, false, err.response.data);
@@ -41,10 +41,10 @@ function AuthProvider({ children }) {
 	const register = (user) => {
 		setLoading(true);
 		instance
-			.post('/users/register', user)
+			.post('/api/auth/register', user)
 			.then((res) => {
 				setState(res.data.user, false, null);
-				navigate('/');
+				navigate('/home');
 			})
 			.catch((err) => {
 				setState(null, false, err.response.data.errors);

@@ -9,18 +9,24 @@ const todosRouter = require('./routes/todos');
 const locationRouter = require('./routes/location');
 const commentsRouter = require('./routes/comments');
 const usersRouter = require('./routes/users');
+const authRouter = require('./routes/auth');
 const PORT = process.env.PORT || 4000;
 const app = express();
 
 app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
+
+// const authenticateMiddleware = require('./middleware/auth');
+// app.use(authenticateMiddleware);
+
 //All main routes under here
+app.use('/api/auth', authRouter);
+app.use('/api/location', locationRouter);
 app.use('/api/posts', postsRouter);
 app.use('/api/todos', todosRouter);
 app.use('/users', usersRouter);
 app.use('/api/posts/:id/comments', commentsRouter);
-app.use('/api/location', locationRouter);
 
 //All main routes above this point
 if (process.env.NODE_ENV === 'production') {

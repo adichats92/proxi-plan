@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Location = require('../models/location');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.JWT_SECRET;
@@ -6,17 +7,21 @@ const dayInMilliseconds = 24 * 60 * 60 * 1000;
 
 const register = async (req, res) => {
 	try {
+		console.log('req.body');
 		const newUser = await User.create(req.body);
 		const userPayload = {
 			_id: newUser._id,
 			email: newUser.email,
 			userName: newUser.userName,
 		};
+
 		const userToken = jwt.sign(userPayload, SECRET);
 		res
 			.status(201)
 			.cookie('accessToken', userToken, {
 				httpOnly: true,
+				secure: process.env.NODE_ENV === 'production',
+				sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
 				expires: new Date(Date.now() + dayInMilliseconds),
 			})
 			.json({ message: 'user created!', user: userPayload });
@@ -30,7 +35,7 @@ const login = async (req, res) => {
 		if (!email || !password) {
 			res.status(400).json({ message: 'Email and Password are required' });
 		} else {
-			const userDoc = await User.findOne({ email });
+			const userDoc = await User.findOne({ email }).populate('location');
 			console.log('USER RECORD', userDoc.email, userDoc.password, password);
 			if (!userDoc) {
 				//email not found
@@ -71,7 +76,9 @@ const logout = (req, res) => {
 const getLoggedInUser = async (req, res) => {
 	try {
 		//req.user from auth middleware
-		const user = await User.findOne({ _id: req.user._id }).select('-password');
+		const user = await User.findOne({ _id: req.user._id })
+			.populate('location')
+			.select('-password');
 		res.json({ user });
 	} catch (error) {
 		res.status(400).json({ message: error.message });

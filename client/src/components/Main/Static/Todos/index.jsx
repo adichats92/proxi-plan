@@ -11,12 +11,13 @@ const Todos = () => {
 				setTodos(res.data);
 			})
 			.catch((err) => {
-				console.log(err.response.data);
+				console.log(err.res.data);
 			});
 	}, []);
 
 	return (
 		<div>
+			<h3>Todos</h3>
 			<ul>
 				{todos.map((todo) => (
 					<li key={todo._id}>

@@ -1,39 +1,54 @@
-import { useEffect, useContext } from 'react';
-import { getLocation } from '../../location';
+import Protected from '../../Protected';
+import Todos from './Static/Todos';
+import Map from './Dynamic/Map';
+import News from './Dynamic/News';
+import { Routes, Route } from 'react-router-dom';
 import Login from './User/Login';
 import Register from './User/Register';
-import Static from '../Main/Static';
-import Dynamic from '../Main/Dynamic';
-import Header from '../Header';
-import Footer from '../Footer';
-import { AuthContext } from '../../context/Auth';
-// import { LocationProvider } from '../../context/Location';
+import Community from './Dynamic/Community';
+import Static from './Static';
 
 function Main() {
-	useEffect(() => {
-		getLocation();
-	}, []);
-	const { user } = useContext(AuthContext);
-
 	return (
-		<>
-			{/* <LocationProvider> */}
-			<Header />
-			{!user ? (
-				<div>
-					<Login />
-					<Register />
-				</div>
-			) : (
-				<div>
-					<Static />
-					<Dynamic />
-				</div>
-			)}
-			<button onClick={getLocation}>Location</button>
-			<Footer />
-			{/* </LocationProvider> */}
-		</>
+		<Routes>
+			<Route
+				path='/login'
+				element={<Login />}
+			/>
+			<Route
+				path='/register'
+				element={<Register />}
+			/>
+			<Route
+				path='/'
+				element={<Protected />}
+			>
+				<Route
+					path='home'
+					element={<Static />}
+				/>
+				<Route
+					path='posts'
+					element={<Community />}
+				/>
+				<Route
+					path='todos'
+					element={<Todos />}
+				/>
+				<Route
+					path='map'
+					element={<Map />}
+				/>
+				<Route
+					path='news'
+					element={<News />}
+				/>
+			</Route>
+			{/* <Route
+					path='*'
+					element={<NotFound />}
+				/> */}
+		</Routes>
 	);
 }
 

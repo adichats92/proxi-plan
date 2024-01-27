@@ -7,15 +7,27 @@ const postSchema = new mongoose.Schema(
 		text: { type: String, required: [true, 'Content is required'] },
 		comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
 		location: {
-			type: { type: String, enum: ['Point'], required: true },
-			coordinates: { type: [Number], required: true }, // [longitude, latitude]
+			type: {
+				type: String,
+				enum: ['Point'],
+				required: true,
+			},
+			coordinates: {
+				type: [Number], // [longitude, latitude]
+				required: true,
+			},
 		},
 		hidden: Boolean,
 		likes: { likes: Number },
 	},
 	{ timestamps: true }
 );
+
 postSchema.virtual('url').get(function () {
 	return '/post/' + this._id;
 });
-module.exports = mongoose.model('Post', postSchema);
+
+postSchema.index({ location: '2dsphere' });
+
+const Post = mongoose.model('Post', postSchema);
+module.exports = Post;

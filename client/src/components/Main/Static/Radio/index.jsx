@@ -1,5 +1,5 @@
 const Radio = () => {
-	return <div>Radio</div>;
+	return <h4>Radio</h4>;
 };
 
 export default Radio;

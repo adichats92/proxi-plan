@@ -19,7 +19,7 @@ function Login() {
 		context.login(user);
 	};
 	if (!context.loading && context.user) {
-		return <Navigate to='/' />;
+		return <Navigate to='/home' />;
 	}
 
 	if (!context.loading && !context.user) {

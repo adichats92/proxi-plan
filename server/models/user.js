@@ -18,8 +18,8 @@ const userSchema = new mongoose.Schema(
 			minLength: [8, 'Password MUST be at least 8 characters'],
 		},
 		location: {
-			latitude: Number,
-			longitude: Number,
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Location',
 		},
 	},
 	{ timestamps: true }
@@ -57,6 +57,9 @@ userSchema.pre('save', async function (next) {
 		console.log('There is an error', error);
 	}
 });
+
+// userSchema.index({ location: '2dsphere' });
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

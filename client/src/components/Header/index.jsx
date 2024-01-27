@@ -14,7 +14,7 @@ function Header() {
 				<div>
 					<NavLink
 						className='nav-link'
-						to={'/'}
+						to={'/home'}
 					>
 						Home
 					</NavLink>
