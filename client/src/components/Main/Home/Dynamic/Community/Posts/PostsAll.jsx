@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
-import instance from '../../../../../axiosInstance';
-import { LocationContext } from '../../../../../context/Location';
+import instance from '../../../../../../axiosInstance';
+import { LocationContext } from '../../../../../../context/Location';
 
 const PostsAll = () => {
 	const [posts, setPosts] = useState([]);

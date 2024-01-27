@@ -1,4 +1,4 @@
-import Dynamic from '../Dynamic';
+import Dynamic from './Dynamic';
 import Radio from './Radio';
 import Todos from './Todos';
 
