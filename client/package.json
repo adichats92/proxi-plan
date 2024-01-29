@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "@windmill/react-ui": "^0.6.0",
     "axios": "^1.6.5",
     "flowbite-react": "^0.7.2",
     "js-cookie": "^3.0.5",

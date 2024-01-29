@@ -1,14 +1,15 @@
 import Protected from '../Protected';
-import Todos from './Main/Home/Todos';
-import Map from './Main/Home/Dynamic/Map';
-import News from './Main/Home/Dynamic/News';
+import Todos from './Main/Sidebar/Todos';
+import Map from './Main/Dynamic/Map';
+import News from './Main/Dynamic/News';
 import { Routes, Route } from 'react-router-dom';
 import Login from './Main/User/Login';
 import Register from './Main/User/Register';
-import Community from './Main/Home/Dynamic/Community';
-import Home from './Main';
+import Community from './Main/Dynamic/Community';
+import Main from './Main';
+import Radio from './Main/Sidebar/Radio';
 
-function Main() {
+function Routing() {
 	return (
 		<Routes>
 			<Route
@@ -24,8 +25,8 @@ function Main() {
 				element={<Protected />}
 			>
 				<Route
-					path='home'
-					element={<Home />}
+					path='home/*'
+					element={<Main />}
 				/>
 				<Route
 					path='posts'
@@ -43,6 +44,10 @@ function Main() {
 					path='news'
 					element={<News />}
 				/>
+				<Route
+					path='radio'
+					element={<Radio />}
+				/>
 			</Route>
 			{/* <Route
 					path='*'
@@ -52,4 +57,4 @@ function Main() {
 	);
 }
 
-export default Main;
+export default Routing;

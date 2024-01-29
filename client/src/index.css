@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* 
 :root {
 	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
@@ -28,18 +28,17 @@
 .header nav {
 	display: flex;
 	justify-content: space-between;
-}
+}*/
 
-.nav-link {
+/* .nav-link {
 	color: #fff;
 	text-decoration: none;
-}
+} */
 .active {
-	color: red;
+	color: rgb(179, 239, 255);
 	font-weight: bold;
 }
-
-.text-danger {
+/* .text-danger {
 	color: red;
 	padding: 10px;
-}
+} */

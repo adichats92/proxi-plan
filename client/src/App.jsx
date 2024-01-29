@@ -1,13 +1,15 @@
-import Main from './components/Main';
+import Routing from './components/Routing';
 import Header from './components/Header';
 import Footer from './components/Footer';
-
+import { Flowbite } from 'flowbite-react';
 const App = () => {
 	return (
 		<>
-			<Header />
-			<Main />
-			<Footer />
+			<Flowbite>
+				<Header />
+				<Routing />
+				<Footer />
+			</Flowbite>
 		</>
 	);
 };
