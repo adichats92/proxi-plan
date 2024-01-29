@@ -57,7 +57,7 @@ function Header() {
 										</li>
 										<li>
 											<NavLink
-												to={'/posts'}
+												to={'/community'}
 												className='py-1 mt-1'
 											>
 												Community

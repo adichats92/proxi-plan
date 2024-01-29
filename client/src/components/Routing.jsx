@@ -29,7 +29,7 @@ function Routing() {
 					element={<Main />}
 				/>
 				<Route
-					path='posts'
+					path='community'
 					element={<Community />}
 				/>
 				<Route
