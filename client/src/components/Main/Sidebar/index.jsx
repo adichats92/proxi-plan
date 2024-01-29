@@ -1,4 +1,3 @@
-import { Sidebar } from 'flowbite-react';
 import Radio from './Radio';
 import Todos from './Todos';
 

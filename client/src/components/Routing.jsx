@@ -5,9 +5,10 @@ import News from './Main/Dynamic/News';
 import { Routes, Route } from 'react-router-dom';
 import Login from './Main/User/Login';
 import Register from './Main/User/Register';
-import Community from './Main/Dynamic/Community';
 import Main from './Main';
 import Radio from './Main/Sidebar/Radio';
+import Community from './Main/Dynamic/Community';
+import PostsAll from './Main/Dynamic/Community/Posts/PostsAll';
 
 function Routing() {
 	return (
@@ -29,8 +30,12 @@ function Routing() {
 					element={<Main />}
 				/>
 				<Route
-					path='community'
+					path='community/*'
 					element={<Community />}
+				/>
+				<Route
+					path='posts'
+					element={<PostsAll />}
 				/>
 				<Route
 					path='todos'
