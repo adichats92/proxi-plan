@@ -1,4 +1,3 @@
-import Dynamic from './Dynamic';
 import Login from './User/Login';
 import Register from './User/Register';
 import { AuthContext } from '../../context/Auth';

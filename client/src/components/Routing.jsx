@@ -9,7 +9,7 @@ import Map from './Main/Dynamic/Map';
 import News from './Main/Dynamic/News';
 import Radio from './Main/Sidebar/Radio';
 import Community from './Main/Dynamic/Community';
-import PostsAll from './Main/Dynamic/Community/Posts/PostsAll';
+import PostsAll from './Main/Dynamic/Community/Posts/Posts';
 import Dynamic from './Main/Dynamic';
 
 function Routing() {

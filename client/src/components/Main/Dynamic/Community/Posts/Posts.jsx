@@ -10,13 +10,13 @@ const PostsAll = () => {
 			className='bg-neutral-100 dark:bg-gray-800 dark:text-neutral-300 overflow-auto p-6'
 			style={{ height: '93vh' }}
 		>
-			<h6 className='text-center font-bold text-2xl text-cyan-300 p-6'>
+			<h6 className='text-center font-bold text-2xl text-cyan-500 p-6 mb-6'>
 				Discover Local Stories
 			</h6>
 			{posts.map((post) => (
 				<Card
 					key={post._id}
-					className='ms-2 mb-4 bg-sky-100 dark:bg-zinc-700'
+					className='ms-2 mb-14 bg-sky-100 dark:bg-gray-700'
 				>
 					<h3 className='text-xl font-semibold'>{post.title}</h3>
 					<p className='font-light text-xs'>

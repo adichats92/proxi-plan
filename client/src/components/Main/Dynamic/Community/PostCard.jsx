@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Card } from 'flowbite-react';
 import { Link } from 'react-router-dom';
 
