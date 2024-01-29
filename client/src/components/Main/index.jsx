@@ -1,10 +1,10 @@
 import Dynamic from './Dynamic';
-import Radio from './Sidebar/Radio';
-import Todos from './Sidebar/Todos';
+
 import Login from './User/Login';
 import Register from './User/Register';
 import { AuthContext } from '../../context/Auth';
 import { useContext } from 'react';
+import SideBar from './Sidebar';
 
 const Main = () => {
 	const { user } = useContext(AuthContext);
@@ -14,9 +14,8 @@ const Main = () => {
 			style={{ height: '90vh' }}
 		>
 			{user ? (
-				<div>
-					<Radio />
-					<Todos />
+				<div className='grid grid-cols-6 dark:bg-zinc-700'>
+					<SideBar />
 					<Dynamic />
 				</div>
 			) : (

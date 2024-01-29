@@ -12,7 +12,7 @@ function Header() {
 				<NavLink to={'/home'}>
 					<img
 						src='/PPNoBg.png'
-						className='mr-1 h-6 sm:h-9'
+						className='h-6 sm:h-9'
 						alt='Logo'
 					/>
 				</NavLink>
