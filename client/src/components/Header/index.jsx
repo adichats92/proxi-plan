@@ -49,7 +49,7 @@ function Header() {
 										</li>
 										<li>
 											<NavLink
-												to={'/todos'}
+												to={'home/todos'}
 												className='py-3 mt-3'
 											>
 												Todos
@@ -57,7 +57,7 @@ function Header() {
 										</li>
 										<li>
 											<NavLink
-												to={'/community'}
+												to={'home/community'}
 												className='py-1 mt-1'
 											>
 												Community
@@ -65,7 +65,7 @@ function Header() {
 										</li>
 										<li>
 											<NavLink
-												to={'/map'}
+												to={'home/map'}
 												className='py-1'
 											>
 												Map
@@ -73,7 +73,7 @@ function Header() {
 										</li>
 										<li>
 											<NavLink
-												to={'/news'}
+												to={'home/news'}
 												className='pt-1'
 											>
 												News

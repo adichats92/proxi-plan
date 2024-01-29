@@ -1,13 +1,6 @@
 import PostsAll from './Posts/PostsAll';
-
 const Community = () => {
-	return (
-		<>
-			<div>Community</div>
-
-			<PostsAll />
-		</>
-	);
+	return <PostsAll />;
 };
 
 export default Community;

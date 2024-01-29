@@ -1,14 +1,16 @@
-import Protected from '../Protected';
-import Todos from './Main/Sidebar/Todos';
-import Map from './Main/Dynamic/Map';
-import News from './Main/Dynamic/News';
+// Routing.js
 import { Routes, Route } from 'react-router-dom';
+import Protected from '../Protected';
 import Login from './Main/User/Login';
 import Register from './Main/User/Register';
 import Main from './Main';
+import Todos from './Main/Sidebar/Todos';
+import Map from './Main/Dynamic/Map';
+import News from './Main/Dynamic/News';
 import Radio from './Main/Sidebar/Radio';
-import Community from './Main/Dynamic/Community';
+import Community from './Main/Dynamic/Community/index';
 import PostsAll from './Main/Dynamic/Community/Posts/PostsAll';
+import Dynamic from './Main/Dynamic';
 
 function Routing() {
 	return (
@@ -28,36 +30,38 @@ function Routing() {
 				<Route
 					path='home/*'
 					element={<Main />}
-				/>
-				<Route
-					path='community/*'
-					element={<Community />}
-				/>
-				<Route
-					path='posts'
-					element={<PostsAll />}
-				/>
-				<Route
-					path='todos'
-					element={<Todos />}
-				/>
-				<Route
-					path='map'
-					element={<Map />}
-				/>
-				<Route
-					path='news'
-					element={<News />}
-				/>
-				<Route
-					path='radio'
-					element={<Radio />}
-				/>
+				>
+					<Route
+						index
+						element={<Dynamic />}
+					/>
+					<Route
+						path='community'
+						element={<Community />}
+					/>
+					<Route
+						path='posts'
+						element={<PostsAll />}
+					/>
+					<Route
+						path='todos'
+						element={<Todos />}
+					/>
+					<Route
+						path='map'
+						element={<Map />}
+					/>
+					<Route
+						path='news'
+						element={<News />}
+					/>
+					<Route
+						path='radio'
+						element={<Radio />}
+					/>
+				</Route>
 			</Route>
-			{/* <Route
-					path='*'
-					element={<NotFound />}
-				/> */}
+			{/* <Route path='*' element={<NotFound />} /> */}
 		</Routes>
 	);
 }
