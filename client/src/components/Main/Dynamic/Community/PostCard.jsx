@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const PostCard = ({ post }) => {
 	return (
-		<Card className='mb-4 dark:bg-zinc-400'>
+		<Card className='mb-4 dark:bg-gray-600'>
 			<h3 className='text-lg font-semibold'>{post.title}</h3>
 			<p>Posted by: {post.userId.userName}</p>
 			<p>{post.text}</p>

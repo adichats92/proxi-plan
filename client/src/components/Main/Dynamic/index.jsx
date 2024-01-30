@@ -19,13 +19,10 @@ const Dynamic = () => {
 	}, [posts, postChangeInterval]);
 
 	return (
-		<div
-			className='container md:flex sm:flex-col flex-grow justify-around flex-wrap items-center dark:bg-gray-800 dark:text-neutral-200 drop-shadow-none rounded-none overflow-auto'
-			style={{ height: '93vh' }}
-		>
+		<div className=' md:flex sm:flex-col justify-around flex-wrap items-center dark:bg-gray-800 dark:text-neutral-200 drop-shadow-none rounded-none overflow-auto h-full'>
 			<Card className='md:w-full rounded-none drop-shadow-none'>
 				<Link to={'community'}>
-					<h2 className='text-center text-orange-300 text-bold'>
+					<h2 className='text-center text-lg text-teal-400 text-bold'>
 						Neighborhood Narratives
 					</h2>
 				</Link>

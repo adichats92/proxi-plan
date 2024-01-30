@@ -4,10 +4,7 @@ import Todos from './Todos';
 const SideBar = () => {
 	return (
 		<>
-			<div
-				className='col-span-2 bg-cyan-100 dark:bg-[#030712] dark:text-neutral-200 p-3 md:p-7'
-				style={{ height: '93vh' }}
-			>
+			<div className='md:col-span-2 bg-cyan-100 dark:bg-[#030712] dark:text-neutral-200 px-1 h-full'>
 				<div>
 					<Radio />
 					<Todos />

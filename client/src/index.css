@@ -34,11 +34,8 @@
 	color: #fff;
 	text-decoration: none;
 } */
+
 .active {
 	color: rgb(179, 239, 255);
 	font-weight: bold;
 }
-/* .text-danger {
-	color: red;
-	padding: 10px;
-} */

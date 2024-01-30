@@ -36,4 +36,23 @@ const saveUserLocation = async (req, res) => {
 	}
 };
 
-module.exports = { saveUserLocation };
+const getUserLocation = async (req, res) => {
+	const userId = req.user._id;
+
+	try {
+		const userLocation = await Location.findOne({ userId: userId });
+
+		if (!userLocation) {
+			return res.status(404).json({ message: 'User location not found' });
+		}
+
+		res.status(200).json({
+			message: 'Location retrieved successfully',
+			location: userLocation.location,
+		});
+	} catch (error) {
+		res.status(500).json({ message: error.message });
+	}
+};
+
+module.exports = { saveUserLocation, getUserLocation };

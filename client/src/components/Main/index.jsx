@@ -9,16 +9,19 @@ const Main = () => {
 	const { user } = useContext(AuthContext);
 	return (
 		<div
-			className=' lg:mx-auto dark:bg-zinc-700'
-			style={{ height: '92vh' }}
+			className={
+				user
+					? 'md:grid md:grid-cols-6 dark:bg-zinc-700 flex-grow'
+					: 'dark:bg-zinc-700'
+			}
 		>
 			{user ? (
-				<div className='grid grid-cols-6 dark:bg-zinc-700'>
+				<>
 					<SideBar />
-					<div className='col-span-4'>
+					<div className='md:col-span-4'>
 						<Outlet />
 					</div>
-				</div>
+				</>
 			) : (
 				<div>
 					<Login />

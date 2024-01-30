@@ -4,13 +4,15 @@ import Footer from './components/Footer';
 import { Flowbite } from 'flowbite-react';
 const App = () => {
 	return (
-		<>
+		<div className='flex flex-col min-h-screen'>
 			<Flowbite>
 				<Header />
-				<Routing />
+				<div className='flex-grow'>
+					<Routing />
+				</div>
 				<Footer />
 			</Flowbite>
-		</>
+		</div>
 	);
 };
 
