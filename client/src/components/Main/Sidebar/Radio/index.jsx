@@ -7,26 +7,13 @@ import defaultImage from '/logoS.png';
 import { Card } from 'flowbite-react';
 import instance from '../../../../axiosInstance';
 
-function calculateDistance(lat1, lon1, lat2, lon2) {
-	// Haversine formula
-	const R = 6371; // Earth radius in kilometers
-	const dLat = ((lat2 - lat1) * Math.PI) / 180;
-	const dLon = ((lon2 - lon1) * Math.PI) / 180;
-	const a =
-		Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-		Math.cos((lat1 * Math.PI) / 180) *
-			Math.cos((lat2 * Math.PI) / 180) *
-			Math.sin(dLon / 2) *
-			Math.sin(dLon / 2);
-	const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-	return R * c;
-}
-
 export default function Radio() {
 	const [stations, setStations] = useState([]);
 	const [currentStationIndex, setCurrentStationIndex] = useState(0);
 	const [userLocation, setUserLocation] = useState(null);
+	const [isAutoPlayEnabled, setIsAutoPlayEnabled] = useState(false);
 	console.log(stations);
+
 	useEffect(() => {
 		instance
 			.get('/api/location/getlocation')
@@ -43,37 +30,42 @@ export default function Radio() {
 
 	useEffect(() => {
 		if (stations.length > 0 && currentStationIndex >= stations.length) {
-			setCurrentStationIndex(0); // Reset to first station if index goes out of bounds
+			setCurrentStationIndex(0);
 		}
 	}, [stations, currentStationIndex]);
 
 	const fetchStations = async (location) => {
 		const api = new RadioBrowserApi(fetch.bind(window), 'My Radio App');
-		const allStations = await api.searchStations({ limit: 25000 });
-		console.log(allStations);
-		const localStations = allStations.filter(
-			(station) =>
-				calculateDistance(
-					location[1],
-					location[0],
-					station.geoLat,
-					station.geoLong
-				) <= 50
-		);
+		const allStations = await api.searchStations({ limit: 50000 });
+
+		const latRange = 0.9;
+		const lonRange = 0.9;
+		const localStations = allStations.filter((station) => {
+			const latDiff = Math.abs(station.geoLat - location[1]);
+			const lonDiff = Math.abs(station.geoLong - location[0]);
+			return latDiff <= latRange && lonDiff <= lonRange;
+		});
+		console.log('StationNames', localStations.name);
 		setStations(localStations);
 	};
 
-	const handlePrevious = () => {
-		setCurrentStationIndex((prevIndex) =>
-			prevIndex === 0 ? stations.length - 1 : prevIndex - 1
-		);
+	const handlePlay = () => {
+		if (!isAutoPlayEnabled) {
+			setIsAutoPlayEnabled(true);
+		}
+	};
+	const handleStationChange = (newIndex) => {
+		setCurrentStationIndex(newIndex);
 	};
 
-	const handleNext = () => {
-		setCurrentStationIndex((prevIndex) =>
-			prevIndex === stations.length - 1 ? 0 : prevIndex + 1
+	const handlePrevious = () =>
+		handleStationChange(
+			currentStationIndex === 0 ? stations.length - 1 : currentStationIndex - 1
 		);
-	};
+	const handleNext = () =>
+		handleStationChange(
+			currentStationIndex === stations.length - 1 ? 0 : currentStationIndex + 1
+		);
 
 	const setDefaultSrc = (event) => {
 		event.target.src = defaultImage;
@@ -82,7 +74,7 @@ export default function Radio() {
 	const currentStation = stations[currentStationIndex];
 
 	return (
-		<Card className='rounded-none'>
+		<Card className='rounded-none m-2 text-sky-400 dark:text-gray-200'>
 			<div className='flex items-center gap-4 mb-4'>
 				<img
 					src={currentStation?.favicon || defaultImage}
@@ -96,15 +88,16 @@ export default function Radio() {
 			</div>
 			<AudioPlayer
 				src={currentStation?.urlResolved || ''}
+				autoPlayAfterSrcChange={isAutoPlayEnabled}
 				customProgressBarSection={[]}
 				customControlsSection={['MAIN_CONTROLS', 'VOLUME_CONTROLS']}
-				autoPlayAfterSrcChange={false}
 				showJumpControls={false}
 				showSkipControls={true}
-				className='w-full min-w-lg dark:bg-teal-900 pt-1 flex flex-col'
-				onClickPrevious={() => handlePrevious()}
-				onClickNext={() => handleNext()}
+				onClickPrevious={handlePrevious}
+				onClickNext={handleNext}
+				onPlay={handlePlay}
 				layout='stacked'
+				className='pb-4 bg-emerald-100 dark:bg-emerald-800'
 			/>
 		</Card>
 	);

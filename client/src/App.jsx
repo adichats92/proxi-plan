@@ -4,7 +4,7 @@ import Footer from './components/Footer';
 import { Flowbite } from 'flowbite-react';
 const App = () => {
 	return (
-		<div className='flex flex-col min-h-screen'>
+		<div className='flex flex-col min-h-screen bg-white dark:bg-gray-800'>
 			<Flowbite>
 				<Header />
 				<div className='flex-grow'>

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
 
 export default {
@@ -16,5 +17,5 @@ export default {
 		},
 	},
 	// eslint-disable-next-line no-undef
-	plugins: [require('flowbite/plugin')],
+	plugins: [require('daisyui'), require('flowbite/plugin')],
 };
