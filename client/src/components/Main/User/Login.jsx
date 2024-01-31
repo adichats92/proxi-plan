@@ -25,10 +25,7 @@ function Login() {
 
 	if (!context.loading && !context.user) {
 		return (
-			<div
-				className='flex flex-col items-center lg:mx-auto py-64 justify-center dark:bg-[#030712]'
-				style={{ height: '93vh' }}
-			>
+			<div className='flex flex-col items-center lg:mx-auto my-32 justify-center dark:bg-gray-800'>
 				{context.errors?.message}
 				<form
 					onSubmit={handleSubmit}

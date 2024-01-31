@@ -6,23 +6,17 @@ import { useContext } from 'react';
 const PostsAll = () => {
 	const { posts } = useContext(PostsContext);
 	return (
-		<div
-			className='bg-neutral-100 dark:bg-gray-800 dark:text-neutral-300 overflow-auto p-6'
-			style={{ height: '93vh' }}
-		>
-			<h6 className='text-center font-bold text-2xl text-cyan-500 p-6 mb-6'>
-				Discover Local Stories
-			</h6>
+		<div className='bg-cyan-100 dark:bg-gray-800 dark:text-white text-gray-800 p-6'>
 			{posts.map((post) => (
 				<Card
 					key={post._id}
 					className='ms-2 mb-14 bg-sky-100 dark:bg-gray-700'
 				>
 					<h3 className='text-xl font-semibold'>{post.title}</h3>
+					<p>{post.text}</p>
 					<p className='font-light text-xs'>
 						Posted by: {post.userId.userName}
 					</p>
-					<p>{post.text}</p>
 					{post.comments.length > 0 && (
 						<div>
 							{post.comments.map((comment) => (

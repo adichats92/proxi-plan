@@ -8,7 +8,11 @@ const todoSchema = new mongoose.Schema(
 		hidden: Boolean,
 		start: Date,
 		end: Date,
-		likes: { likes: Number },
+		priority: {
+			type: String,
+			enum: ['high', 'medium', 'low'],
+			default: 'low',
+		},
 		allDay: {
 			type: Boolean,
 			default: false,

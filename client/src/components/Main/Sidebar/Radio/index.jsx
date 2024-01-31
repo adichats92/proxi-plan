@@ -35,7 +35,7 @@ export default function Radio() {
 	}, [stations, currentStationIndex]);
 
 	const fetchStations = async (location) => {
-		const api = new RadioBrowserApi(fetch.bind(window), 'My Radio App');
+		const api = new RadioBrowserApi(fetch.bind(window), 'ProxiPlan');
 		const allStations = await api.searchStations({ limit: 50000 });
 
 		const latRange = 0.9;
@@ -74,7 +74,7 @@ export default function Radio() {
 	const currentStation = stations[currentStationIndex];
 
 	return (
-		<Card className='rounded-none m-2 text-sky-400 dark:text-gray-200'>
+		<Card className='rounded-none shadow-none border-none m-2 text-sky-400 bg-cyan-100 dark:text-gray-200'>
 			<div className='flex items-center gap-4 mb-4'>
 				<img
 					src={currentStation?.favicon || defaultImage}
@@ -97,7 +97,7 @@ export default function Radio() {
 				onClickNext={handleNext}
 				onPlay={handlePlay}
 				layout='stacked'
-				className='pb-4 bg-emerald-100 dark:bg-emerald-800'
+				className='pb-4 rounded-lg bg-emerald-100 dark:bg-emerald-800'
 			/>
 		</Card>
 	);

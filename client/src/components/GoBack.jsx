@@ -2,13 +2,13 @@ import { useNavigate } from 'react-router-dom';
 
 const GoBack = () => {
 	const navigate = useNavigate();
-	const handleClick = () => {
+	const handleGoBackClick = () => {
 		navigate(-1);
 	};
 
 	return (
 		<div>
-			<button onClick={handleClick}></button>
+			<button onClick={handleGoBackClick}></button>
 		</div>
 	);
 };

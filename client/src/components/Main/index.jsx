@@ -11,8 +11,8 @@ const Main = () => {
 		<div
 			className={
 				user
-					? 'md:grid md:grid-cols-6 dark:bg-zinc-700 flex-grow'
-					: 'dark:bg-zinc-700'
+					? 'lg:grid lg:grid-cols-6 bg-cyan-100 dark:bg-gray-800 flex-grow'
+					: 'dark:bg-gray-800'
 			}
 		>
 			{user ? (

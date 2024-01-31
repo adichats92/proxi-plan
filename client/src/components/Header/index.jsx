@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../../context/Auth';
 import { Avatar, Button, Dropdown, Navbar, Tooltip } from 'flowbite-react';
 import { DarkThemeToggle } from 'flowbite-react';
+import MeetingRoomRoundedIcon from '@mui/icons-material/MeetingRoomRounded';
 function Header() {
 	const { user, logout } = useContext(AuthContext);
 
@@ -38,7 +39,7 @@ function Header() {
 										{user.email}
 									</span>
 									<hr />
-									<ul className='my-3 pe-2'>
+									<ul className='my-3 pe-2 gap-2'>
 										<li>
 											<NavLink
 												to={'/home'}
@@ -49,16 +50,8 @@ function Header() {
 										</li>
 										<li>
 											<NavLink
-												to={'home/todos'}
-												className='py-3 mt-3'
-											>
-												Todos
-											</NavLink>
-										</li>
-										<li>
-											<NavLink
 												to={'home/community'}
-												className='py-1 mt-1'
+												className='py-2 mt-1'
 											>
 												Community
 											</NavLink>
@@ -66,7 +59,7 @@ function Header() {
 										<li>
 											<NavLink
 												to={'home/map'}
-												className='py-1'
+												className='py-2'
 											>
 												Map
 											</NavLink>
@@ -74,7 +67,7 @@ function Header() {
 										<li>
 											<NavLink
 												to={'home/news'}
-												className='pt-1'
+												className='pt-2'
 											>
 												News
 											</NavLink>
@@ -85,6 +78,10 @@ function Header() {
 											onClick={logout}
 											className='mt-3 px-3'
 										>
+											<MeetingRoomRoundedIcon
+												fontSize='small'
+												className='me-1'
+											/>{' '}
 											Logout
 										</Button>
 									</Tooltip>

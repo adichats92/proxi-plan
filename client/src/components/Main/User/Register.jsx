@@ -28,10 +28,7 @@ function Register() {
 
 	if (!context.loading && !context.user) {
 		return (
-			<div
-				className='flex flex-col items-center lg:mx-auto py-48 justify-center dark:bg-[#030712]'
-				style={{ height: '90vh' }}
-			>
+			<div className='flex flex-col items-center lg:mx-auto my-32 justify-center dark:bg-gray-800'>
 				<form
 					className='flex flex-auto max-w-md flex-col gap-4 p-6 justify-auto md:min-w-96'
 					onSubmit={handleSubmit}
