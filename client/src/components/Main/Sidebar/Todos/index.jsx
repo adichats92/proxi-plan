@@ -8,6 +8,7 @@ import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import TaskAltRoundedIcon from '@mui/icons-material/TaskAltRounded';
 import PublishedWithChangesRoundedIcon from '@mui/icons-material/PublishedWithChangesRounded';
+import { Tooltip } from '@mui/material';
 
 const Todos = () => {
 	const [todos, setTodos] = useState([]);
@@ -115,9 +116,9 @@ const Todos = () => {
 	const getPriorityClassName = (priority) => {
 		switch (priority) {
 			case 'high':
-				return 'bg-red-400 dark:bg-red-700 text-neutral-100 ';
+				return 'bg-red-400 dark:bg-red-700 text-white ';
 			case 'medium':
-				return 'bg-yellow-400 dark:bg-yellow-700 text-neutral-100 ';
+				return 'bg-yellow-400 dark:bg-yellow-700 text-white ';
 			case 'low':
 			default:
 				return 'bg-emerald-300 dark:bg-emerald-700 text-white ';
@@ -166,7 +167,7 @@ const Todos = () => {
 					onChange={handleInputChange}
 				/>
 				<div className='mt-3 px-3 text-sm flex md:flex-nowrap xs:flex-col md:flex-row justify-center items-center w-full'>
-					<div className='flex w-full justify-start items-center'>
+					<div className='flex flex-shrink w-full justify-start items-center ms-3'>
 						{/* Start Date Input */}
 						<div className='flex my-2 mx-1 text-xs'>
 							<label
@@ -180,7 +181,7 @@ const Todos = () => {
 								onChange={(date) => handleDateTimeChange('start', date)}
 								showTimeSelect
 								dateFormat='Pp'
-								className='flex rounded dark:bg-gray-500 p-0 ps-2 ms-1 text-xs max-w-20 border-none'
+								className='shrink flex-grow  rounded dark:bg-gray-500 p-0 ps-2 ms-1 text-xs max-w-20 border-none'
 							/>
 						</div>
 
@@ -200,7 +201,7 @@ const Todos = () => {
 								className='flex rounded bg-white dark:bg-gray-500 p-0 ps-2 ms-1 text-xs max-w-20  border-none'
 							/>
 						</div>
-						<div className='my-2 text-xs flex flex-row justify-evenly items-center'>
+						<Tooltip title='All Day'>
 							<Checkbox
 								id='allDay'
 								name='allDay'
@@ -208,10 +209,7 @@ const Todos = () => {
 								onChange={handleCheckboxChange}
 								className='px-2 mx-2 rounded-full'
 							/>
-							<span className='text-nowrap align-baseline text-xs'>
-								All Day
-							</span>
-						</div>
+						</Tooltip>
 					</div>
 
 					{editingTodo ? (
@@ -237,23 +235,32 @@ const Todos = () => {
 					)}
 				</div>
 			</div>
-			<div className='mt-6 md:max-h-48 lg:max-h-80 overflow-auto flex flex-col'>
+			<div className='mt-1 md:max-h-48 lg:max-h-96 overflow-auto flex flex-col'>
 				{todos.map((todo) => (
 					<Card
 						key={todo._id}
 						className='my-2'
 					>
-						<div className='flex flex-row w-full justify-between items-center'>
-							<h5 className='text-lg text-bold'>{todo.title}</h5>
+						<div className='flex flex-row w-full justify-between items-center bg-white dark:bg-gray-800'>
 							<div
-								className={`badge ${getPriorityClassName(
-									todo.priority
-								)} border-none`}
+								tabIndex={0}
+								className='collapse collapse-arrow border border-base-300 bg-white dark:bg-gray-800 border-none focus:border-cyan-800'
 							>
-								{todo.priority.toUpperCase()}
+								<div className='collapse-title text-xl font-medium flex flex-row justify-between items-center'>
+									<h5 className='text-lg text-bold'>{todo.title}</h5>
+									<div
+										className={`badge ${getPriorityClassName(
+											todo.priority
+										)} border-none`}
+									>
+										{todo.priority.toUpperCase()}
+									</div>{' '}
+								</div>
+								<div className='collapse-content'>
+									<p>{todo.text}</p>
+								</div>
 							</div>
 						</div>
-						<p>{todo.text}</p>
 						<div className='flex flex-row justify-evenly items-center'>
 							<p className='text-gray-500 text-xs text-center'>
 								{formatDate(todo.start)}
@@ -261,16 +268,20 @@ const Todos = () => {
 							<p className='text-gray-500 text-xs text-center'>
 								{formatDate(todo.end)}
 							</p>
-							<EditNoteRoundedIcon
-								fontSize='small'
-								onClick={() => startEditing(todo)}
-								className='hover:text-sky-400 dark:hover:text-sky-700 hover:cursor-pointer'
-							/>
-							<DeleteOutlineRoundedIcon
-								fontSize='small'
-								onClick={() => deleteTodo(todo._id)}
-								className='hover:text-red-400 dark:hover:text-red-700 hover:cursor-pointer'
-							/>
+							<Tooltip title='Edit'>
+								<EditNoteRoundedIcon
+									fontSize='small'
+									onClick={() => startEditing(todo)}
+									className='hover:text-sky-400 dark:hover:text-sky-700 hover:cursor-pointer'
+								/>
+							</Tooltip>
+							<Tooltip title='Delete'>
+								<DeleteOutlineRoundedIcon
+									fontSize='small'
+									onClick={() => deleteTodo(todo._id)}
+									className='hover:text-red-400 dark:hover:text-red-700 hover:cursor-pointer'
+								/>
+							</Tooltip>
 						</div>
 					</Card>
 				))}

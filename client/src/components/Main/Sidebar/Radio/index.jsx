@@ -10,23 +10,19 @@ import instance from '../../../../axiosInstance';
 export default function Radio() {
 	const [stations, setStations] = useState([]);
 	const [currentStationIndex, setCurrentStationIndex] = useState(0);
-	const [userLocation, setUserLocation] = useState(null);
+	const [userState, setUserState] = useState('');
 	const [isAutoPlayEnabled, setIsAutoPlayEnabled] = useState(false);
-	console.log(stations);
-
+	console.log('userstate', userState);
+	console.log('Stations', stations);
 	useEffect(() => {
 		instance
-			.get('/api/location/getlocation')
+			.get('/api/apilocation/')
 			.then((response) => {
-				console.log(response);
-				if (response.data && response.data.location) {
-					const location = response.data.location.coordinates;
-					setUserLocation(location);
-					fetchStations(location);
-				}
+				console.log('response for radio  api', response);
+				setUserState(response.data.apiLocationInstance.state);
 			})
 			.catch((error) => console.error('Error fetching user location:', error));
-	}, []);
+	}, [userState]);
 
 	useEffect(() => {
 		if (stations.length > 0 && currentStationIndex >= stations.length) {
@@ -34,19 +30,24 @@ export default function Radio() {
 		}
 	}, [stations, currentStationIndex]);
 
-	const fetchStations = async (location) => {
-		const api = new RadioBrowserApi(fetch.bind(window), 'ProxiPlan');
-		const allStations = await api.searchStations({ limit: 50000 });
+	useEffect(() => {
+		if (userState) {
+			fetchStations();
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
-		const latRange = 0.9;
-		const lonRange = 0.9;
-		const localStations = allStations.filter((station) => {
-			const latDiff = Math.abs(station.geoLat - location[1]);
-			const lonDiff = Math.abs(station.geoLong - location[0]);
-			return latDiff <= latRange && lonDiff <= lonRange;
-		});
-		console.log('StationNames', localStations.name);
-		setStations(localStations);
+	const fetchStations = async () => {
+		const api = new RadioBrowserApi(fetch.bind(window), 'ProxiPlan');
+		try {
+			const allStations = await api.searchStations({
+				limit: 500,
+				state: userState,
+			});
+			setStations(allStations);
+		} catch (error) {
+			console.error('Error fetching stations:', error);
+		}
 	};
 
 	const handlePlay = () => {

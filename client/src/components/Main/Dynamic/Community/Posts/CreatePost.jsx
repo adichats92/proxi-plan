@@ -46,7 +46,7 @@ const CreatePost = () => {
 					value={postData.title}
 					onChange={handleChange}
 					required
-					className='input w-full mb-3'
+					className='input w-full mb-3 bg-white dark:bg-gray-700'
 				/>
 			</div>
 			<div>
@@ -57,7 +57,7 @@ const CreatePost = () => {
 					value={postData.text}
 					onChange={handleChange}
 					required
-					className='textarea w-full mb-3'
+					className='textarea w-full mb-3 bg-white dark:bg-gray-700'
 				/>
 			</div>
 			<PostAddRoundedIcon

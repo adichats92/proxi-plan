@@ -7,6 +7,7 @@ const connectDB = require('./config/db');
 const postsRouter = require('./routes/posts');
 const todosRouter = require('./routes/todos');
 const locationRouter = require('./routes/location');
+const apiLocationRouter = require('./routes/apiLocation');
 const commentsRouter = require('./routes/comments');
 const usersRouter = require('./routes/users');
 const authRouter = require('./routes/auth');
@@ -23,6 +24,7 @@ app.use(express.json());
 //All main routes under here
 app.use('/api/auth', authRouter);
 app.use('/api/location', locationRouter);
+app.use('/api/apilocation', apiLocationRouter);
 app.use('/api/posts', postsRouter);
 app.use('/api/todos', todosRouter);
 app.use('/users', usersRouter);

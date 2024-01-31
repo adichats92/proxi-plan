@@ -18,6 +18,11 @@ const locationSchema = new mongoose.Schema(
 				required: true,
 			},
 		},
+		name: String,
+		lat: Number,
+		lon: Number,
+		country: String,
+		state: String,
 	},
 	{ timestamps: true }
 );
