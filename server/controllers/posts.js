@@ -38,8 +38,8 @@ const getAllPosts = async (req, res) => {
 	const longitude = parseFloat(req.query.longitude);
 	const latitude = parseFloat(req.query.latitude);
 	const maxDistance = parseInt(req.query.maxDistance) || 5000; // Default 5000 meters
-	console.log('maxDistance:', maxDistance);
-	console.log('lon:', longitude, 'lat:', latitude);
+	// console.log('maxDistance:', maxDistance);
+	// console.log('lon:', longitude, 'lat:', latitude);
 
 	try {
 		const posts = await Post.find({
@@ -58,7 +58,7 @@ const getAllPosts = async (req, res) => {
 			.populate('comments')
 			.populate('userId', 'userName')
 			.exec();
-		console.log('GetPosts:', posts);
+		// console.log('GetPosts:', posts);
 
 		res.json(posts);
 	} catch (error) {

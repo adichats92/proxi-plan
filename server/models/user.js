@@ -56,6 +56,7 @@ userSchema.pre('save', async function (next) {
 	} catch (error) {
 		console.log('There is an error', error);
 	}
+	next();
 });
 
 // userSchema.index({ location: '2dsphere' });

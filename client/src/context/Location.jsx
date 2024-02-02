@@ -42,9 +42,9 @@ export const LocationProvider = ({ children }) => {
 	};
 
 	// Function to get the location
-	const getLocation = () => {
+	const getLocation = async () => {
 		// Check for logged-in user before getting location
-		instance
+		await instance
 			.get('/users/currentUser')
 			.then((res) => {
 				if (res.data.user) {

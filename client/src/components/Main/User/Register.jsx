@@ -19,6 +19,11 @@ function Register() {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		if (user.password !== user.confirmPassword) {
+			alert('Passwords do not match!');
+			console.error('Passwords do not match!');
+			return;
+		}
 		context.register(user);
 	};
 

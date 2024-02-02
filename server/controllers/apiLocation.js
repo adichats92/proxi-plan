@@ -22,10 +22,10 @@ const getStateFromCoordinates = async (req, res) => {
 		const response = await axios.get(
 			`http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${openweather}`
 		);
-		console.log('Response', response.data);
+		// console.log('Response', response.data);
 		const apiData = response.data[0];
 		// Extract state from response
-		console.log('STATE', apiData);
+		// console.log('STATE', apiData);
 		if (!apiData) {
 			return res
 				.status(404)

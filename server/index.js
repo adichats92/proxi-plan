@@ -7,6 +7,7 @@ const connectDB = require('./config/db');
 const postsRouter = require('./routes/posts');
 const todosRouter = require('./routes/todos');
 const locationRouter = require('./routes/location');
+const radioRouter = require('./routes/radio');
 const apiLocationRouter = require('./routes/apiLocation');
 const commentsRouter = require('./routes/comments');
 const usersRouter = require('./routes/users');
@@ -28,6 +29,7 @@ app.use('/api/apilocation', apiLocationRouter);
 app.use('/api/posts', postsRouter);
 app.use('/api/todos', todosRouter);
 app.use('/users', usersRouter);
+app.use('/api/radio', radioRouter);
 app.use('/api/posts/:id/comments', commentsRouter);
 
 //All main routes above this point

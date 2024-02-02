@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useState } from 'react';
-import { RadioBrowserApi } from 'radio-browser-api';
+import { useEffect, useState, useContext } from 'react';
+import { AuthContext } from '../../../../context/Auth';
+// import { RadioBrowserApi } from 'radio-browser-api';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import defaultImage from '/logoS.png';
@@ -11,15 +12,23 @@ export default function Radio() {
 	const [stations, setStations] = useState([]);
 	const [currentStationIndex, setCurrentStationIndex] = useState(0);
 	const [userState, setUserState] = useState('');
+	const [userCountryCode, setUserCountryCode] = useState('');
+
+	const { user } = useContext(AuthContext);
+
 	const [isAutoPlayEnabled, setIsAutoPlayEnabled] = useState(false);
-	console.log('userstate', userState);
+
+	console.log('USER STATE', userState);
 	console.log('Stations', stations);
+	console.log('COUNTRY', userCountryCode);
+
 	useEffect(() => {
 		instance
 			.get('/api/apilocation/')
 			.then((response) => {
 				console.log('response for radio  api', response);
 				setUserState(response.data.apiLocationInstance.state);
+				setUserCountryCode(response.date.apiLocationInstance.countrycode);
 			})
 			.catch((error) => console.error('Error fetching user location:', error));
 	}, []);
@@ -31,20 +40,20 @@ export default function Radio() {
 	}, [stations, currentStationIndex]);
 
 	useEffect(() => {
-		if (userState) {
+		if ((userState, userCountryCode)) {
 			fetchStations();
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [userState]);
+	}, [userState, userCountryCode]);
 
-	const fetchStations = async () => {
-		const api = new RadioBrowserApi(fetch.bind(window), 'ProxiPlan');
+	const fetchStations = async (state) => {
 		try {
-			const allStations = await api.searchStations({
-				limit: 100,
-				state: userState,
-			});
-			setStations(allStations);
+			const response = await instance.get(
+				`/api/radio?state=${encodeURIComponent(
+					state
+				)}?countrycode=${encodeURIComponent(userCountryCode)}`
+			);
+			setStations(response.data);
 		} catch (error) {
 			console.error('Error fetching stations:', error);
 		}

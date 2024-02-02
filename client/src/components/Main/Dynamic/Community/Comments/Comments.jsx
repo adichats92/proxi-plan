@@ -7,6 +7,8 @@ import TaskAltRoundedIcon from '@mui/icons-material/TaskAltRounded';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import instance from '../../../../../axiosInstance';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { formatDistanceToNow, parseISO } from 'date-fns';
+
 // eslint-disable-next-line react/prop-types
 const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 	const [comments, setComments] = useState([]);
@@ -95,6 +97,11 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 			new Date(a.createdAt || a.updatedAt)
 	);
 
+	const formatDateToNow = (dateString) => {
+		const date = parseISO(dateString);
+		return formatDistanceToNow(date, { addSuffix: true });
+	};
+
 	return (
 		<div>
 			<textarea
@@ -114,7 +121,13 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 					key={comment._id}
 					className='flex flex-row justify-between items-center mb-3 p-4 bg-cyan-100 dark:bg-gray-700 rounded'
 				>
-					<p>{comment.text}</p>
+					<div>
+						<p className='font-thin text-xs'>{comment.userId.userName}</p>
+						<p>{comment.text}</p>
+						<p className='font-thin text-xs'>
+							{formatDateToNow(comment.createdAt)}
+						</p>
+					</div>
 					{currentUser === comment.userId._id && (
 						<div>
 							<Tooltip title='Edit'>

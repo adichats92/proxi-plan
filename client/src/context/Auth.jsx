@@ -38,9 +38,9 @@ function AuthProvider({ children }) {
 				setState(null, false, err.response.data);
 			});
 	};
-	const register = (user) => {
+	const register = async (user) => {
 		setLoading(true);
-		instance
+		await instance
 			.post('/api/auth/register', user)
 			.then((res) => {
 				setState(res.data.user, false, null);

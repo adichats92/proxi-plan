@@ -10,6 +10,7 @@ import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import Comments from '../Comments/Comments';
 import CreatePost from './CreatePost';
 import PostAddIcon from '@mui/icons-material/PostAdd';
+import { formatDistanceToNow, parseISO } from 'date-fns';
 
 const PostsAll = () => {
 	const { posts, setPosts } = useContext(PostsContext);
@@ -31,6 +32,11 @@ const PostsAll = () => {
 			new Date(b.createdAt || b.updatedAt) -
 			new Date(a.createdAt || a.updatedAt)
 	);
+
+	const formatDateToNow = (dateString) => {
+		const date = parseISO(dateString);
+		return formatDistanceToNow(date, { addSuffix: true });
+	};
 
 	console.log('Edit Data', editPostData);
 
@@ -97,6 +103,17 @@ const PostsAll = () => {
 			});
 	}, []);
 
+	// const formatDate = (dateString) => {
+	// 	const options = {
+	// 		year: '2-digit',
+	// 		month: 'short',
+	// 		day: 'numeric',
+	// 		hour: '2-digit',
+	// 		minute: '2-digit',
+	// 	};
+	// 	return new Date(dateString).toLocaleString(undefined, options);
+	// };
+
 	return (
 		<div className='bg-cyan-100 dark:bg-gray-800 dark:text-white text-gray-800 p-6 mx-20'>
 			{sortedPosts.map((post) => (
@@ -129,9 +146,8 @@ const PostsAll = () => {
 						)}
 					</div>
 
-					<p className='font-light text-xs'>
-						Posted by: {post.userId.userName}
-					</p>
+					<p className='font-thin text-xs'>Posted by: {post.userId.userName}</p>
+					<p className='font-thin text-xs'>{formatDateToNow(post.createdAt)}</p>
 
 					<details
 						tabIndex={0}

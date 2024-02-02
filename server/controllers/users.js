@@ -7,7 +7,7 @@ const dayInMilliseconds = 24 * 60 * 60 * 1000;
 
 const register = async (req, res) => {
 	try {
-		console.log('req.body');
+		// console.log('req.body', req.body);
 		const newUser = await User.create(req.body);
 		const userPayload = {
 			_id: newUser._id,
@@ -36,7 +36,7 @@ const login = async (req, res) => {
 			res.status(400).json({ message: 'Email and Password are required' });
 		} else {
 			const userDoc = await User.findOne({ email }).populate('location');
-			console.log('USER RECORD', userDoc.email, userDoc.password, password);
+			// console.log('USER RECORD', userDoc.email, userDoc.password, password);
 			if (!userDoc) {
 				//email not found
 				res.status(400).json({ message: 'Email or Password is not correct' });
