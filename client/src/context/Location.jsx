@@ -1,10 +1,11 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
 import instance from '../axiosInstance';
-
+import { AuthContext } from './Auth';
 export const LocationContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 export const LocationProvider = ({ children }) => {
+	const { user } = useContext(AuthContext);
 	const [location, setLocation] = useState({
 		type: 'Point',
 		coordinates: [null, null], // [longitude, latitude]
@@ -68,7 +69,7 @@ export const LocationProvider = ({ children }) => {
 	useEffect(() => {
 		getLocation();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [user]);
 
 	return (
 		<LocationContext.Provider value={{ ...location, setLocation }}>
