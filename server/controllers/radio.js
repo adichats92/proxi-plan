@@ -4,14 +4,15 @@ const ApiLocation = require('../models/apiLocation');
 
 const getStationsByState = async (req, res) => {
 	try {
-		const { state, userCountryCode, limit = 150 } = req.query;
+		const { state, countrycode } = req.query;
+		const limit = req.query.limit || 150;
 
-		if (!state) {
-			return res.status(400).send('State is required');
+		if (!state || !countrycode) {
+			return res.status(400).send('State and country code are required');
 		}
 
 		const response = await axios.get(
-			`https://de1.api.radio-browser.info/json/stations/bycountrycodeexact/de?hidebroken=true&state=${encodeURIComponent(
+			`https://de1.api.radio-browser.info/json/stations/search?${countrycode}&hidebroken=true&state=${encodeURIComponent(
 				state
 			)}&limit=${limit}`
 		);

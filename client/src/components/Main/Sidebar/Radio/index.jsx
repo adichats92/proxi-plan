@@ -26,12 +26,12 @@ export default function Radio() {
 		instance
 			.get('/api/apilocation/')
 			.then((response) => {
-				console.log('response for radio  api', response);
+				console.log('response for radio  apilocation', response);
 				setUserState(response.data.apiLocationInstance.state);
-				setUserCountryCode(response.date.apiLocationInstance.countrycode);
+				setUserCountryCode(response.data.apiLocationInstance.country);
 			})
 			.catch((error) => console.error('Error fetching user location:', error));
-	}, []);
+	}, [user]);
 
 	useEffect(() => {
 		if (stations.length > 0 && currentStationIndex >= stations.length) {
@@ -46,13 +46,12 @@ export default function Radio() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [userState, userCountryCode]);
 
-	const fetchStations = async (state) => {
+	const fetchStations = async () => {
 		try {
-			const response = await instance.get(
-				`/api/radio?state=${encodeURIComponent(
-					state
-				)}?countrycode=${encodeURIComponent(userCountryCode)}`
-			);
+			const url = `/api/radio?state=${encodeURIComponent(
+				userState
+			)}&countrycode=${encodeURIComponent(userCountryCode.toLowerCase())}`;
+			const response = await instance.get(url);
 			setStations(response.data);
 		} catch (error) {
 			console.error('Error fetching stations:', error);
@@ -97,7 +96,7 @@ export default function Radio() {
 				</h2>
 			</div>
 			<AudioPlayer
-				src={currentStation?.urlResolved || ''}
+				src={currentStation?.url_resolved || ''}
 				autoPlayAfterSrcChange={isAutoPlayEnabled}
 				customProgressBarSection={[]}
 				customControlsSection={['MAIN_CONTROLS', 'VOLUME_CONTROLS']}
