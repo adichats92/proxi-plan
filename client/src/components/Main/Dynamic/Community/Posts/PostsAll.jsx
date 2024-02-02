@@ -110,7 +110,7 @@ const PostsAll = () => {
 							<p className='my-3'>{post.text}</p>
 						</div>
 						{currentUser === post.userId._id && (
-							<div>
+							<div className='flex flex-row nowrap'>
 								<Tooltip title='Update'>
 									<EditIcon
 										fontSize='medium'

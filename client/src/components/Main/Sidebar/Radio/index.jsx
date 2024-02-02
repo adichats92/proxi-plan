@@ -41,7 +41,7 @@ export default function Radio() {
 		const api = new RadioBrowserApi(fetch.bind(window), 'ProxiPlan');
 		try {
 			const allStations = await api.searchStations({
-				limit: 500,
+				limit: 100,
 				state: userState,
 			});
 			setStations(allStations);
