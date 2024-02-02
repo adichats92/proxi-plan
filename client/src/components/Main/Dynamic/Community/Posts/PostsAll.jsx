@@ -1,8 +1,6 @@
 import { Card } from 'flowbite-react';
 import { PostsContext } from '../../../../../context/Posts';
 import { useContext, useState, useEffect } from 'react';
-// import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-// import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Tooltip } from '@mui/material';
 import instance from '../../../../../axiosInstance';
 import EditIcon from '@mui/icons-material/Edit';
@@ -11,6 +9,7 @@ import TaskAltRoundedIcon from '@mui/icons-material/TaskAltRounded';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import Comments from '../Comments/Comments';
 import CreatePost from './CreatePost';
+import PostAddIcon from '@mui/icons-material/PostAdd';
 
 const PostsAll = () => {
 	const { posts, setPosts } = useContext(PostsContext);
@@ -99,15 +98,17 @@ const PostsAll = () => {
 	}, []);
 
 	return (
-		<div className='bg-cyan-100 dark:bg-gray-800 dark:text-white text-gray-800 p-6'>
+		<div className='bg-cyan-100 dark:bg-gray-800 dark:text-white text-gray-800 p-6 mx-20'>
 			{sortedPosts.map((post) => (
 				<Card
 					key={post._id}
 					className='ms-2 mb-14 bg-sky-100 dark:bg-gray-700'
 				>
-					<div>
-						<h3 className='text-xl font-semibold'>{post.title}</h3>
-						<p>{post.text}</p>
+					<div className='flex flex-row justify-between items-top'>
+						<div>
+							<h3 className='text-xl font-semibold my-3'>{post.title}</h3>
+							<p className='my-3'>{post.text}</p>
+						</div>
 						{currentUser === post.userId._id && (
 							<div>
 								<Tooltip title='Update'>
@@ -191,35 +192,27 @@ const PostsAll = () => {
 					</div>
 				</dialog>
 			)}
-			<button
-				className='fixed bottom-10 right-10 p-0 w-16 h-16 bg-blue-500 rounded-full hover:bg-blue-700 text-white focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80'
-				onClick={() => setIsModalTwoOpen(true)}
-			>
-				<svg
-					xmlns='http://www.w3.org/2000/svg'
-					fill='none'
-					viewBox='0 0 24 24'
-					stroke='currentColor'
-					className='w-8 h-8 mx-auto'
-				>
-					<path
-						strokeLinecap='round'
-						strokeLinejoin='round'
-						strokeWidth='2'
-						d='M12 4v16m8-8H4'
-					/>
-				</svg>
-			</button>
+			<Tooltip title='Create Post'>
+				<PostAddIcon
+					onClick={() => setIsModalTwoOpen(true)}
+					className='text-sky-500 hover:text-blue-700 z-50 hover:cursor-pointer w-full
+					fixed top-36 right-8'
+					fontSize='large'
+				/>
+			</Tooltip>
 			{isModalTwoOpen && (
-				<div className='modal modal-open'>
-					<div className='modal-box relative'>
-						<button
-							className='btn btn-sm btn-circle absolute right-2 top-2'
-							onClick={() => setIsModalTwoOpen(false)}
-						>
-							✕
-						</button>
-						<h3 className='text-lg font-bold'>Create New Post</h3>
+				<div className='modal modal-open bg-white dark:bg-gray-800'>
+					<div className='modal-box relative bg-sky-100 dark:bg-gray-800'>
+						<Tooltip title='Cancel'>
+							<ClearRoundedIcon
+								onClick={() => setIsModalTwoOpen(false)}
+								fontSize='medium'
+								className='text-orange-400 hover:text-yellow-400 dark:hover:text-yellow-700 hover:cursor-pointer absolute right-2 top-2'
+							/>
+						</Tooltip>
+						<h3 className='text-lg font-bold text-gray-800 dark:text-white'>
+							Create New Post
+						</h3>
 						<CreatePost onPostCreated={triggerCommentsRefresh} />
 					</div>
 				</div>

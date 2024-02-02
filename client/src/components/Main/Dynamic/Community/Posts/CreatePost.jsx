@@ -68,7 +68,8 @@ const CreatePost = () => {
 			<Tooltip title='Post'>
 				<PostAddRoundedIcon
 					onClick={handleSubmit}
-					className='text-large text-sky-400 hover:text-emerald-400 dark:hover:text-emerald-700 hover:cursor-pointer'
+					className='text-large text-sky-400 hover:text-emerald-400 dark:hover:text-emerald-700 hover:cursor-pointer w-full'
+					fontSize='large'
 				/>
 			</Tooltip>
 		</form>

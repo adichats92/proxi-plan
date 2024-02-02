@@ -15,7 +15,8 @@ const Community = () => {
 
 			<ArrowBackRoundedIcon
 				onClick={handleGoBackClick}
-				className='absolute left-50 top-16 text-large my-6 mx-4 text-sky-400 hover:text-emerald-400 dark:hover:text-emerald-700 hover:cursor-pointer'
+				className='absolute right-8 top-52 text-sky-400 hover:text-emerald-400 dark:hover:text-emerald-700 hover:cursor-pointer'
+				fontSize='large'
 			/>
 		</div>
 	);

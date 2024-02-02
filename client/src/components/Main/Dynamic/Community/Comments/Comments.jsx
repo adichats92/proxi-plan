@@ -16,6 +16,7 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 
 	useEffect(() => {
 		fetchComments();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [refresh, postId]);
 
 	const fetchComments = async () => {
@@ -88,23 +89,31 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 		event.stopPropagation();
 	};
 
+	const sortedComments = [...comments].sort(
+		(a, b) =>
+			new Date(b.createdAt || b.updatedAt) -
+			new Date(a.createdAt || a.updatedAt)
+	);
+
 	return (
 		<div>
-			{/* New comment input */}
 			<textarea
 				value={newCommentText}
 				onChange={(e) => setNewCommentText(e.target.value)}
-				className='bg-white dark:bg-gray-800 text-gray-800 dark:text-white rounded-md border-sm w-full flex my-2'
+				className='bg-white dark:bg-gray-800 text-gray-800 dark:text-white rounded-md border-sm w-full flex my-3'
 				placeholder='Write a comment...'
 			></textarea>
 			<AddCircleOutlineIcon
 				onClick={createComment}
-				className='text-emerald-400 dark:text-emerald-600 hover:cursor-pointer hover:text-emerald-500 dark:hover:text-emerald-700'
+				className='text-emerald-400 dark:text-emerald-600 hover:cursor-pointer hover:text-emerald-500 dark:hover:text-emerald-700 absolute top-3 right-12'
+				fontSize='large'
 			/>
 
-			{/* Existing comments */}
-			{comments.map((comment) => (
-				<div key={comment._id}>
+			{sortedComments.map((comment) => (
+				<div
+					key={comment._id}
+					className='flex flex-row justify-between items-center mb-3 p-4 bg-cyan-100 dark:bg-gray-700 rounded'
+				>
 					<p>{comment.text}</p>
 					{currentUser === comment.userId._id && (
 						<div>
@@ -115,14 +124,14 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 										setIsEditModalOpen(true);
 									}}
 									className='text-sky-400 hover:text-teal-500 dark:hover:text-teal-700
-                                dark:sky-600 hover:cursor-pointer'
+                                dark:sky-600 hover:cursor-pointer mx-2'
 								/>
 							</Tooltip>
 							<Tooltip title='Delete'>
 								<DeleteOutlineIcon
 									onClick={() => deleteComment(comment._id)}
 									className='text-red-400 hover:text-red-500 dark:hover:text-red-700
-                            dark:text-600 hover:cursor-pointer'
+                            dark:text-600 hover:cursor-pointer mx-2'
 								/>
 							</Tooltip>
 						</div>
@@ -130,12 +139,11 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 				</div>
 			))}
 
-			{/* Edit comment modal */}
 			{isEditModalOpen && (
 				<dialog
 					open
 					onClick={handleStopPropagation}
-					className='z-50 absolute top-0 flex items-center justify-center w-full'
+					className='z-50 absolute top-0 flex items-center justify-center w-full bg-transparent'
 				>
 					<div className='modal-box flex w-full'>
 						<textarea
@@ -145,18 +153,18 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 								setEditCommentData({ ...editCommentData, text: e.target.value })
 							}
 							onClick={handleStopPropagation}
-							className='bg-white dark:bg-gray-700 w-full me-3'
+							className='bg-white dark:bg-gray-700 w-full m-3 rounded'
 						></textarea>
 						<div className='modal-action'>
 							<TaskAltRoundedIcon
 								onClick={saveEdit}
 								className='text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-700
-                            dark:emerald-600 hover:cursor-pointer'
+                            dark:emerald-600 hover:cursor-pointer absolute mx-2 top-2 right-8'
 							/>
 							<ClearRoundedIcon
 								onClick={cancelEdit}
 								className='text-orange-400 hover:text-orange-500 dark:hover:text-orange-700
-                            dark:text-orange hover:cursor-pointer'
+                            dark:text-orange hover:cursor-pointer absolute mx-2 top-2 right-2'
 							/>
 						</div>
 					</div>

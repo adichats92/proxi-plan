@@ -75,7 +75,7 @@ export default function Radio() {
 	const currentStation = stations[currentStationIndex];
 
 	return (
-		<Card className='rounded-none shadow-none border-none m-2 text-sky-400 bg-cyan-100 dark:text-gray-200'>
+		<Card className='rounded-none shadow-none border-none m-2 mx-10 text-sky-400 bg-cyan-100 dark:text-gray-200'>
 			<div className='flex items-center gap-4 mb-4'>
 				<img
 					src={currentStation?.favicon || defaultImage}
@@ -98,7 +98,7 @@ export default function Radio() {
 				onClickNext={handleNext}
 				onPlay={handlePlay}
 				layout='stacked'
-				className='pb-4 rounded-lg bg-emerald-100 dark:bg-emerald-800'
+				className='pb-4 rounded-lg bg-gradient-to-r from-cyan-100 to-emerald-100 dark:bg-emerald-800 flex'
 			/>
 		</Card>
 	);
