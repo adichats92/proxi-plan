@@ -117,7 +117,7 @@ const Todos = () => {
 	};
 
 	const formatDate = (dateString) => {
-		if (!dateString) return '_';
+		if (!dateString) return ' 00  :  00  :  00 ';
 		const options = {
 			year: '2-digit',
 			month: 'short',
@@ -140,8 +140,8 @@ const Todos = () => {
 	};
 
 	return (
-		<div className='p-3 text-gray-800 dark:text-gray-200 lg:mx-12'>
-			<div className='mt-1 overflow-auto flex flex-col'>
+		<div className=' text-gray-800 dark:text-gray-200'>
+			<div className='mt-1 mx-10 md:mx-4 flex flex-col'>
 				{sortedTodos.map((todo) => (
 					<Card
 						key={todo._id}
@@ -167,34 +167,38 @@ const Todos = () => {
 								</div>
 							</div>
 						</div>
-						<div className='flex flex-row justify-evenly items-center'>
-							<p className='text-gray-500 text-xs text-center'>
-								{formatDate(todo.start)}
-							</p>
-							<p className='text-gray-500 text-xs text-center'>
-								{formatDate(todo.end)}
-							</p>
-							<Tooltip title='Edit'>
-								<EditNoteRoundedIcon
-									fontSize='small'
-									onClick={() => startEditing(todo)}
-									className='hover:text-sky-400 dark:hover:text-sky-700 hover:cursor-pointer'
-								/>
-							</Tooltip>
-							<Tooltip title='Delete'>
-								<DeleteOutlineRoundedIcon
-									fontSize='small'
-									onClick={() => deleteTodo(todo._id)}
-									className='hover:text-red-400 dark:hover:text-red-700 hover:cursor-pointer'
-								/>
-							</Tooltip>
+						<div className='flex flex-row justify-between items-center'>
+							<div className='flex flex-row'>
+								<p className='text-gray-500 text-xs text-center'>
+									{formatDate(todo.start)}
+								</p>
+								<p className='text-gray-500 text-xs text-center mx-3'>
+									{formatDate(todo.end)}
+								</p>
+							</div>
+							<div className='flex flex-row'>
+								<Tooltip title='Edit'>
+									<EditNoteRoundedIcon
+										fontSize='small'
+										onClick={() => startEditing(todo)}
+										className='hover:text-sky-400 dark:hover:text-sky-700 hover:cursor-pointer mx-2'
+									/>
+								</Tooltip>
+								<Tooltip title='Delete'>
+									<DeleteOutlineRoundedIcon
+										fontSize='small'
+										onClick={() => deleteTodo(todo._id)}
+										className='ms-0 hover:text-red-400 dark:hover:text-red-700 hover:cursor-pointer'
+									/>
+								</Tooltip>
+							</div>
 						</div>
 					</Card>
 				))}
 			</div>
 			<Tooltip title='Add Task'>
 				<AddTaskIcon
-					className='fixed top-20 right-8 text-sky-500 hover:text-blue-700 z-50 hover:cursor-pointer '
+					className='fixed top-72 right-8 text-sky-500 hover:text-blue-700 z-50 hover:cursor-pointer '
 					onClick={toggleModal}
 					fontSize='large'
 				></AddTaskIcon>

@@ -166,7 +166,7 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 								setEditCommentData({ ...editCommentData, text: e.target.value })
 							}
 							onClick={handleStopPropagation}
-							className='bg-white dark:bg-gray-700 w-full m-3 rounded'
+							className='bg-white dark:text-white text-gray-800 dark:bg-gray-700 w-full m-3 rounded'
 						></textarea>
 						<div className='modal-action'>
 							<TaskAltRoundedIcon
@@ -176,7 +176,7 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 							/>
 							<ClearRoundedIcon
 								onClick={cancelEdit}
-								className='text-orange-400 hover:text-orange-500 dark:hover:text-orange-700
+								className='text-orange-400 hover:text-yellow-400 dark:hover:text-orange-700
                             dark:text-orange hover:cursor-pointer absolute mx-2 top-2 right-2'
 							/>
 						</div>

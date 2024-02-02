@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { Card } from 'flowbite-react';
-import { Link } from 'react-router-dom';
 
 const PostCard = ({ post }) => {
 	return (
@@ -8,12 +7,6 @@ const PostCard = ({ post }) => {
 			<h3 className='text-lg font-semibold'>{post.title}</h3>
 			<p className='text-xs'>Posted by: {post.userId.userName}</p>
 			<p className='text-sm'>{post.text}</p>
-			<Link
-				to={`home/posts/${post._id}`}
-				className='text-blue-600 hover:underline text-sm'
-			>
-				View Post
-			</Link>
 		</Card>
 	);
 };

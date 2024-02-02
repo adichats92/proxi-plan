@@ -46,6 +46,7 @@ export const PostsProvider = ({ children }) => {
 				});
 		}
 		fetchPosts();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [latitude, longitude, maxDistance]);
 
 	return (

@@ -205,8 +205,8 @@ const PostsAll = () => {
 			<Tooltip title='Create Post'>
 				<PostAddIcon
 					onClick={() => setIsModalTwoOpen(true)}
-					className='text-sky-500 hover:text-blue-700 z-50 hover:cursor-pointer w-full
-					fixed top-36 right-8'
+					className='text-sky-500 hover:text-fuchsia-600 z-50 hover:cursor-pointer w-full
+					fixed top-96 right-8'
 					fontSize='large'
 				/>
 			</Tooltip>

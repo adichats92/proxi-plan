@@ -20,7 +20,7 @@ const Dynamic = () => {
 	}, [posts, postChangeInterval]);
 
 	return (
-		<div className=' md:flex sm:flex-col justify-around flex-wrap items-center dark:bg-gray-800 dark:text-neutral-200 drop-shadow-none rounded-none overflow-hidden h-full'>
+		<div className=' md:flex sm:flex-col justify-around flex-wrap items-center dark:bg-gray-800 dark:text-neutral-200 drop-shadow-none rounded-none overflow-hidden h-full mt-20'>
 			<Card className='md:w-full rounded-none shadow-none'>
 				<Link to={'community'}>
 					<h2 className='text-center text-lg text-teal-400 text-bold'>
