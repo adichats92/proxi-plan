@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import instance from '../../../../axiosInstance';
-import { Card, Button, TextInput, Checkbox } from 'flowbite-react';
+import { Card, TextInput, Checkbox } from 'flowbite-react';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
@@ -20,6 +20,11 @@ const Todos = () => {
 		allDay: false,
 		priority: 'low',
 	});
+
+	const sortedTodos = [...todos].sort(
+		(a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+	);
+
 	const [editingTodo, setEditingTodo] = useState(null);
 	console.log('todos', todos);
 	useEffect(() => {
@@ -213,30 +218,36 @@ const Todos = () => {
 					</div>
 
 					{editingTodo ? (
-						<PublishedWithChangesRoundedIcon
-							onClick={addOrUpdateTodo}
-							fontSize='medium'
-							className='text-sky-400 hover:text-teal-400 dark:hover:text-teal-700 hover:cursor-pointer mx-2'
-						/>
+						<Tooltip title='Update'>
+							<PublishedWithChangesRoundedIcon
+								onClick={addOrUpdateTodo}
+								fontSize='medium'
+								className='text-sky-400 hover:text-teal-400 dark:hover:text-teal-700 hover:cursor-pointer mx-2'
+							/>
+						</Tooltip>
 					) : (
-						<TaskAltRoundedIcon
-							onClick={addOrUpdateTodo}
-							fontSize='medium'
-							className='text-sky-400 hover:text-emerald-400 dark:hover:text-emerald-700 hover:cursor-pointer mx-2'
-						/>
+						<Tooltip title='Save'>
+							<TaskAltRoundedIcon
+								onClick={addOrUpdateTodo}
+								fontSize='medium'
+								className='text-sky-400 hover:text-emerald-400 dark:hover:text-emerald-700 hover:cursor-pointer mx-2'
+							/>
+						</Tooltip>
 					)}
 
 					{editingTodo && (
-						<ClearRoundedIcon
-							onClick={cancelEditing}
-							fontSize='medium'
-							className='text-orange-400 hover:text-yellow-400 dark:hover:text-yellow-700 hover:cursor-pointer'
-						/>
+						<Tooltip title='Cancel'>
+							<ClearRoundedIcon
+								onClick={cancelEditing}
+								fontSize='medium'
+								className='text-orange-400 hover:text-yellow-400 dark:hover:text-yellow-700 hover:cursor-pointer'
+							/>
+						</Tooltip>
 					)}
 				</div>
 			</div>
 			<div className='mt-1 md:max-h-48 lg:max-h-96 overflow-auto flex flex-col'>
-				{todos.map((todo) => (
+				{sortedTodos.map((todo) => (
 					<Card
 						key={todo._id}
 						className='my-2'

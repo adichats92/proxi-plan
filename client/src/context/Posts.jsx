@@ -12,6 +12,19 @@ export const PostsProvider = ({ children }) => {
 
 	console.log('PostLon:', longitude, 'PostLat:', latitude);
 
+	const fetchPosts = async () => {
+		if (coordinates[0] && coordinates[1] && maxDistance) {
+			try {
+				const response = await instance.get(
+					`/api/posts?longitude=${coordinates[0]}&latitude=${coordinates[1]}&maxDistance=${maxDistance}`
+				);
+				setPosts(response.data);
+			} catch (err) {
+				console.log(err.response?.data || 'An error occurred');
+			}
+		}
+	};
+
 	useEffect(() => {
 		if (latitude && longitude && maxDistance) {
 			console.log(
@@ -32,10 +45,11 @@ export const PostsProvider = ({ children }) => {
 					console.log(err.response?.data || 'An error occurred');
 				});
 		}
+		fetchPosts();
 	}, [latitude, longitude, maxDistance]);
 
 	return (
-		<PostsContext.Provider value={{ posts, setPosts }}>
+		<PostsContext.Provider value={{ posts, setPosts, fetchPosts }}>
 			{children}
 		</PostsContext.Provider>
 	);

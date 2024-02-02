@@ -1,5 +1,4 @@
-import PostsAll from './Posts/Posts';
-import CreatePost from './Posts/CreatePost';
+import PostsAll from './Posts/PostsAll';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 const Community = () => {
@@ -10,9 +9,8 @@ const Community = () => {
 	return (
 		<div className='dark:bg-gray-800'>
 			<h6 className='text-center font-bold text-2xl text-cyan-500 p-6 mb-6'>
-				Discover Local Stories
+				Local Community
 			</h6>
-			<CreatePost />
 			<PostsAll />
 
 			<ArrowBackRoundedIcon

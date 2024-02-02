@@ -22,7 +22,7 @@ export default function Radio() {
 				setUserState(response.data.apiLocationInstance.state);
 			})
 			.catch((error) => console.error('Error fetching user location:', error));
-	}, [userState]);
+	}, []);
 
 	useEffect(() => {
 		if (stations.length > 0 && currentStationIndex >= stations.length) {
@@ -35,7 +35,7 @@ export default function Radio() {
 			fetchStations();
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [userState]);
 
 	const fetchStations = async () => {
 		const api = new RadioBrowserApi(fetch.bind(window), 'ProxiPlan');

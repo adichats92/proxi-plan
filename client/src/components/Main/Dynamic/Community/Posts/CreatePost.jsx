@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import instance from '../../../../../axiosInstance';
 import PostAddRoundedIcon from '@mui/icons-material/PostAddRounded';
 import { useNavigate } from 'react-router-dom';
+import { Tooltip } from '@mui/material';
+import { PostsContext } from '../../../../../context/Posts';
 
 const CreatePost = () => {
 	const navigate = useNavigate();
@@ -9,6 +11,7 @@ const CreatePost = () => {
 		title: '',
 		text: '',
 	});
+	const { fetchPosts } = useContext(PostsContext);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -23,9 +26,11 @@ const CreatePost = () => {
 
 		try {
 			await instance.post('/api/posts', postData);
+
 			alert('Post created successfully!');
 			setPostData({ title: '', text: '' });
 			// Clear form after submission
+			await fetchPosts();
 			navigate('/home/community');
 		} catch (error) {
 			console.error('Error creating post:', error);
@@ -60,10 +65,12 @@ const CreatePost = () => {
 					className='textarea w-full mb-3 bg-white dark:bg-gray-700'
 				/>
 			</div>
-			<PostAddRoundedIcon
-				onClick={handleSubmit}
-				className='text-large text-sky-400 hover:text-emerald-400 dark:hover:text-emerald-700 hover:cursor-pointer'
-			/>
+			<Tooltip title='Post'>
+				<PostAddRoundedIcon
+					onClick={handleSubmit}
+					className='text-large text-sky-400 hover:text-emerald-400 dark:hover:text-emerald-700 hover:cursor-pointer'
+				/>
+			</Tooltip>
 		</form>
 	);
 };

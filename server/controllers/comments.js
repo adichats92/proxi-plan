@@ -29,7 +29,10 @@ const createComment = async (req, res) => {
 const getAllComments = async (req, res) => {
 	const { id } = req.params;
 	try {
-		const comments = await Comment.find({ post: id });
+		const comments = await Comment.find({ post: id }).populate(
+			'userId',
+			'userName'
+		);
 		res.json(comments);
 	} catch (error) {
 		res.status(500).json({ message: error.message });
@@ -40,7 +43,10 @@ const getCommentById = async (req, res) => {
 	const { id } = req.params;
 	try {
 		// const comment = await Comment.findById(id);
-		const comment = await Comment.find({ _id: id });
+		const comment = await Comment.find({ _id: id }).populate(
+			'userId',
+			'userName'
+		);
 		if (comment.length === 0) {
 			res.status(404).json({ message: `Comment with id ${id} Not Found` });
 		} else {
