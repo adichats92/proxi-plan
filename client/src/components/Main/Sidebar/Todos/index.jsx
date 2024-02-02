@@ -117,6 +117,7 @@ const Todos = () => {
 	};
 
 	const formatDate = (dateString) => {
+		if (!dateString) return '_';
 		const options = {
 			year: '2-digit',
 			month: 'short',

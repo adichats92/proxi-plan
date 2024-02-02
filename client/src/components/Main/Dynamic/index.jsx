@@ -5,6 +5,7 @@ import { useState, useEffect, useContext } from 'react';
 import { PostsContext } from '../../../context/Posts';
 import PostCard from './Community/PostCard';
 import { Card } from 'flowbite-react';
+import Weather from './Weather';
 
 const Dynamic = () => {
 	const [currentPostIndex, setCurrentPostIndex] = useState(0);
@@ -36,6 +37,9 @@ const Dynamic = () => {
 				</Card>
 				<Card className='md:w-full rounded-none drop-shadow-none items-center'>
 					<News />
+				</Card>
+				<Card className='md:w-full rounded-none drop-shadow-none items-center'>
+					<Weather />
 				</Card>
 			</div>
 		</div>

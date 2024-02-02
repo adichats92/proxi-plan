@@ -158,7 +158,7 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 					onClick={handleStopPropagation}
 					className='z-50 absolute top-0 flex items-center justify-center w-full bg-transparent'
 				>
-					<div className='modal-box flex w-full'>
+					<div className='modal-box flex w-full bg-white dark:bg-gray-800'>
 						<textarea
 							value={editCommentData.text}
 							name='text'

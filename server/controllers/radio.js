@@ -14,7 +14,7 @@ const getStationsByState = async (req, res) => {
 		const response = await axios.get(
 			`https://de1.api.radio-browser.info/json/stations/search?${countrycode}&hidebroken=true&state=${encodeURIComponent(
 				state
-			)}&limit=${limit}`
+			)}&limit=${limit}&is_https=true`
 		);
 		res.json(response.data);
 	} catch (error) {

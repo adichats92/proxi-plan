@@ -103,16 +103,10 @@ const PostsAll = () => {
 			});
 	}, []);
 
-	// const formatDate = (dateString) => {
-	// 	const options = {
-	// 		year: '2-digit',
-	// 		month: 'short',
-	// 		day: 'numeric',
-	// 		hour: '2-digit',
-	// 		minute: '2-digit',
-	// 	};
-	// 	return new Date(dateString).toLocaleString(undefined, options);
-	// };
+	const triggerCommentsRefreshAndCloseModal = () => {
+		triggerCommentsRefresh();
+		setIsModalTwoOpen(false);
+	};
 
 	return (
 		<div className='bg-cyan-100 dark:bg-gray-800 dark:text-white text-gray-800 p-6 mx-20'>
@@ -229,7 +223,7 @@ const PostsAll = () => {
 						<h3 className='text-lg font-bold text-gray-800 dark:text-white'>
 							Create New Post
 						</h3>
-						<CreatePost onPostCreated={triggerCommentsRefresh} />
+						<CreatePost onPostCreated={triggerCommentsRefreshAndCloseModal} />
 					</div>
 				</div>
 			)}

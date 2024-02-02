@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useContext } from 'react';
 import instance from '../../../../../axiosInstance';
 import PostAddRoundedIcon from '@mui/icons-material/PostAddRounded';
@@ -5,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
 import { PostsContext } from '../../../../../context/Posts';
 
-const CreatePost = () => {
+const CreatePost = ({ onPostCreated }) => {
 	const navigate = useNavigate();
 	const [postData, setPostData] = useState({
 		title: '',
@@ -29,9 +30,12 @@ const CreatePost = () => {
 
 			alert('Post created successfully!');
 			setPostData({ title: '', text: '' });
-			// Clear form after submission
 			await fetchPosts();
 			navigate('/home/community');
+
+			if (onPostCreated) {
+				onPostCreated();
+			}
 		} catch (error) {
 			console.error('Error creating post:', error);
 			alert('Failed to create post.');
