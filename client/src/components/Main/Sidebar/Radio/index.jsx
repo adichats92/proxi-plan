@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from '../../../../context/Auth';
-// import { RadioBrowserApi } from 'radio-browser-api';
+import { LocationContext } from '../../../../context/Location';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import defaultImage from '/logoS.png';
@@ -15,6 +15,7 @@ export default function Radio() {
 	const [userCountryCode, setUserCountryCode] = useState('');
 
 	const { user } = useContext(AuthContext);
+	const { location } = useContext(LocationContext);
 
 	const [isAutoPlayEnabled, setIsAutoPlayEnabled] = useState(false);
 
@@ -27,11 +28,14 @@ export default function Radio() {
 			.get('/api/apilocation/')
 			.then((response) => {
 				console.log('response for radio  apilocation', response);
-				setUserState(response.data.apiLocationInstance.state);
+				const locationState =
+					response.data.apiLocationInstance.state ||
+					response.data.apiLocationInstance.name;
+				setUserState(locationState);
 				setUserCountryCode(response.data.apiLocationInstance.country);
 			})
 			.catch((error) => console.error('Error fetching user location:', error));
-	}, [user]);
+	}, [user, location]);
 
 	useEffect(() => {
 		if (stations.length > 0 && currentStationIndex >= stations.length) {

@@ -29,14 +29,6 @@ function Header() {
 							>
 								<li>
 									<NavLink
-										to={'/home'}
-										className='py-3 mt-3'
-									>
-										Home
-									</NavLink>
-								</li>
-								<li>
-									<NavLink
 										to={'home/community'}
 										className='py-2 mt-1'
 									>
@@ -70,7 +62,6 @@ function Header() {
 							</ul>
 						</div>
 						<div className='flex-none gap-2'>
-							<DarkThemeToggle className='bg-neutral-200 dark:bg-gray-500 text-black dark:text-white rounded-full' />
 							<div className='dropdown dropdown-end'>
 								<div
 									tabIndex={0}
@@ -88,6 +79,7 @@ function Header() {
 									tabIndex={0}
 									className='mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52'
 								>
+									<DarkThemeToggle className='bg-neutral-200 dark:bg-gray-500 text-black dark:text-white rounded-xl' />
 									<li className='block text-sm pt-1 pe-2 my-2'>
 										Hello {user.userName}!
 									</li>

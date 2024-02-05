@@ -141,7 +141,7 @@ const Todos = () => {
 
 	return (
 		<div className=' text-gray-800 dark:text-gray-200'>
-			<div className='mt-1 mx-10 md:mx-4 flex flex-col'>
+			<div className='mt-1 mx-10 lg:mx-0 flex flex-col'>
 				{sortedTodos.map((todo) => (
 					<Card
 						key={todo._id}
@@ -198,7 +198,7 @@ const Todos = () => {
 			</div>
 			<Tooltip title='Add Task'>
 				<AddTaskIcon
-					className='fixed top-72 right-8 text-sky-500 hover:text-blue-700 z-50 hover:cursor-pointer '
+					className='fixed bottom-72 right-2 text-sky-500 hover:text-blue-700 z-50 hover:cursor-pointer '
 					onClick={toggleModal}
 					fontSize='large'
 				></AddTaskIcon>

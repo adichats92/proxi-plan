@@ -109,7 +109,7 @@ const PostsAll = () => {
 	};
 
 	return (
-		<div className='bg-cyan-100 dark:bg-gray-800 dark:text-white text-gray-800 p-6 mx-20'>
+		<div className='bg-cyan-100 dark:bg-gray-800 dark:text-white text-gray-800 p-6 mx-4 lg:mx-10'>
 			{sortedPosts.map((post) => (
 				<Card
 					key={post._id}
@@ -206,7 +206,7 @@ const PostsAll = () => {
 				<PostAddIcon
 					onClick={() => setIsModalTwoOpen(true)}
 					className='text-sky-500 hover:text-fuchsia-600 z-50 hover:cursor-pointer w-full
-					fixed top-96 right-8'
+					fixed bottom-96 right-2'
 					fontSize='large'
 				/>
 			</Tooltip>
