@@ -20,10 +20,10 @@ const Dynamic = () => {
 	}, [posts, postChangeInterval]);
 
 	return (
-		<div className=' md:flex sm:flex-col justify-around flex-wrap items-center dark:bg-gray-800 dark:text-neutral-200 drop-shadow-none rounded-none overflow-hidden h-full mt-20'>
+		<div className=' flex-col justify-center flex-wrap items-center dark:bg-gray-800 dark:text-neutral-200 drop-shadow-none rounded-none h-full p-16'>
 			<Card className='md:w-full rounded-none shadow-none'>
 				<Link to={'community'}>
-					<h2 className='text-center text-lg text-teal-400 text-bold'>
+					<h2 className='text-center text-lg text-gray-700 font-bold'>
 						Discover Local Stories
 					</h2>
 				</Link>
@@ -31,15 +31,15 @@ const Dynamic = () => {
 					{posts.length > 0 && <PostCard post={posts[currentPostIndex]} />}
 				</div>
 			</Card>
-			<div className='flex md:flex-row justify-evenly items-center'>
+			<div className='flex flex-col justify-center items-center'>
+				<Card className='w-full flex rounded-none drop-shadow-none items-center m-12 p-0'>
+					<Weather className='flex w-full' />
+				</Card>
 				<Card className='md:w-full rounded-none drop-shadow-none items-center m-12'>
 					<Map />
 				</Card>
-				<Card className='md:w-full rounded-none drop-shadow-none items-center'>
+				<Card className='md:w-full rounded-none drop-shadow-none items-center m-12'>
 					<News />
-				</Card>
-				<Card className='md:w-full rounded-none drop-shadow-none items-center'>
-					<Weather />
 				</Card>
 			</div>
 		</div>

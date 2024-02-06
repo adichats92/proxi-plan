@@ -11,6 +11,7 @@ import Radio from './Main/Sidebar/Radio';
 import Community from './Main/Dynamic/Community';
 import PostsAll from './Main/Dynamic/Community/Posts/PostsAll';
 import Dynamic from './Main/Dynamic';
+import Weather from './Main/Dynamic/Weather';
 
 function Routing() {
 	return (
@@ -58,6 +59,10 @@ function Routing() {
 					<Route
 						path='radio'
 						element={<Radio />}
+					/>
+					<Route
+						path='weather'
+						element={<Weather />}
 					/>
 				</Route>
 			</Route>
