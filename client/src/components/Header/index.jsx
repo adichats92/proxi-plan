@@ -12,7 +12,7 @@ function Header() {
 		<>
 			{user ? (
 				<>
-					<div className='navbar bg-cyan-700 dark:bg-black px-6'>
+					<div className='navbar bg-cyan-700 dark:bg-black px-6 fixed top-0 z-50'>
 						<div className='flex-1'>
 							<NavLink to={'/home'}>
 								<img
@@ -24,7 +24,7 @@ function Header() {
 						</div>
 						<div className='mx-5'>
 							<ul
-								className='list-none md:flex md:flex-row justify-center items-center gap-4'
+								className='list-none md:flex md:flex-row justify-center items-center gap-4 text-white'
 								hidden
 							>
 								<li>

@@ -4,22 +4,46 @@ import { AuthContext } from '../../context/Auth';
 import { useContext } from 'react';
 import SideBar from './Sidebar';
 import { Outlet } from 'react-router-dom';
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import { Tooltip } from '@mui/material';
 
 const Main = () => {
 	const { user } = useContext(AuthContext);
 	return (
 		<div
 			className={
-				user
-					? 'lg:grid lg:grid-cols-6 bg-cyan-100 dark:bg-gray-800 flex-grow'
-					: 'dark:bg-gray-800'
+				user ? ' bg-white dark:bg-gray-800 flex-grow' : 'dark:bg-gray-800'
 			}
 		>
 			{user ? (
 				<>
-					<SideBar />
-					<div className='md:col-span-4'>
-						<Outlet />
+					<div className='drawer'>
+						<input
+							id='my-drawer'
+							type='checkbox'
+							className='drawer-toggle'
+						/>
+						<div className='drawer-content'>
+							<div>
+								<Outlet />
+							</div>
+							<label
+								htmlFor='my-drawer'
+								className='btn bg-emerald-500 border-none drawer-button rounded-lg text-white fixed top-20 left-2'
+							>
+								<Tooltip title='Open Sidebar'>
+									<MenuOpenIcon />
+								</Tooltip>
+							</label>
+						</div>
+						<div className='drawer-side'>
+							<label
+								htmlFor='my-drawer'
+								aria-label='close sidebar'
+								className='drawer-overlay'
+							></label>
+							<SideBar />
+						</div>
 					</div>
 				</>
 			) : (

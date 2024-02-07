@@ -25,6 +25,14 @@ const Todos = () => {
 
 	const toggleModal = () => {
 		setIsModalOpen(!isModalOpen);
+		!editingTodo &
+			setNewTodo({
+				title: '',
+				text: '',
+				start: null,
+				end: null,
+				allDay: false,
+			});
 	};
 
 	const sortedTodos = [...todos].sort(
@@ -97,8 +105,8 @@ const Todos = () => {
 		setEditingTodo(todo);
 		setNewTodo({
 			...todo,
-			start: new Date(todo.start),
-			end: new Date(todo.end),
+			start: new Date(todo.start) || null,
+			end: new Date(todo.end) || null,
 		});
 	};
 
@@ -117,7 +125,7 @@ const Todos = () => {
 	};
 
 	const formatDate = (dateString) => {
-		if (!dateString) return ' 00  :  00  :  00 ';
+		if (!dateString) return '';
 		const options = {
 			year: '2-digit',
 			month: 'short',
@@ -140,8 +148,8 @@ const Todos = () => {
 	};
 
 	return (
-		<div className=' text-gray-800 dark:text-gray-200'>
-			<div className='mt-1 mx-10 lg:mx-0 flex flex-col'>
+		<div className=' text-gray-800 dark:text-gray-200 pb-24 h-dvh overflow-auto'>
+			<div className='mt-6 lg:mx-0 flex flex-col pb-96'>
 				{sortedTodos.map((todo) => (
 					<Card
 						key={todo._id}
@@ -150,20 +158,20 @@ const Todos = () => {
 						<div className='flex flex-row w-full justify-between items-center bg-white dark:bg-gray-800'>
 							<div
 								tabIndex={0}
-								className='collapse collapse-arrow border border-base-300 bg-white dark:bg-gray-800 border-none focus:border-cyan-800'
+								className='collapse collapse-arrow border border-none bg-orange-200 dark:bg-gray-800 border-none min-w-96'
 							>
-								<div className='collapse-title text-xl font-medium flex flex-row justify-between items-center'>
-									<h5 className='text-lg text-bold'>{todo.title}</h5>
+								<div className='collapse-title text-gray-800 dark:text-white font-small flex flex-row justify-between items-center'>
+									<h5 className='text-sm font-semibold'>{todo.title}</h5>
 									<div
 										className={`badge ${getPriorityClassName(
 											todo.priority
-										)} border-none`}
+										)} border-none text-xs`}
 									>
 										{todo.priority.toUpperCase()}
 									</div>{' '}
 								</div>
 								<div className='collapse-content'>
-									<p>{todo.text}</p>
+									<p className='text-xs font-light'>{todo.text}</p>
 								</div>
 							</div>
 						</div>
@@ -198,7 +206,7 @@ const Todos = () => {
 			</div>
 			<Tooltip title='Add Task'>
 				<AddTaskIcon
-					className='fixed bottom-72 right-2 text-sky-500 hover:text-blue-700 z-50 hover:cursor-pointer '
+					className='absolute top-52 right-8 text-violet-400 hover:text-blue-400 z-50 hover:cursor-pointer'
 					onClick={toggleModal}
 					fontSize='large'
 				></AddTaskIcon>

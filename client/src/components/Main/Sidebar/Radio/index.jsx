@@ -87,15 +87,15 @@ export default function Radio() {
 	const currentStation = stations[currentStationIndex];
 
 	return (
-		<Card className='rounded-none shadow-none border-none m-2 mx-10 text-sky-400 bg-cyan-100 dark:text-gray-200'>
-			<div className='flex items-center gap-4 mb-4'>
+		<Card className='rounded-none shadow-none border-none m-2 text-sky-400 bg-cyan-100 dark:text-gray-200'>
+			<div className='flex items-center gap-12 mb-4'>
 				<img
 					src={currentStation?.favicon || defaultImage}
 					alt='Station Logo'
 					className='w-12 h-12 rounded-full'
 					onError={setDefaultSrc}
 				/>
-				<h2 className='text-md  text- font-semibold'>
+				<h2 className='text-lg  text-violet-700 font-semibold'>
 					Now Playing: {currentStation?.name || 'Select a Station'}
 				</h2>
 			</div>
@@ -110,7 +110,7 @@ export default function Radio() {
 				onClickNext={handleNext}
 				onPlay={handlePlay}
 				layout='stacked'
-				className='pb-4 rounded-lg bg-gradient-to-r from-cyan-100 to-emerald-100 dark:bg-emerald-800 flex'
+				className='pb-4 me-6 mb-6 rounded-lg bg-gradient-to-r from-blue-100 to-emerald-100 border-non shadow-none dark:bg-emerald-800 flex'
 			/>
 		</Card>
 	);

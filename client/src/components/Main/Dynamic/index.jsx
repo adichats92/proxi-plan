@@ -23,7 +23,7 @@ const Dynamic = () => {
 		<div className=' flex-col justify-center flex-wrap items-center dark:bg-gray-800 dark:text-neutral-200 drop-shadow-none rounded-none h-full p-16'>
 			<Card className='md:w-full rounded-none shadow-none'>
 				<Link to={'community'}>
-					<h2 className='text-center text-lg text-gray-700 font-bold'>
+					<h2 className='text-center text-lg text-gray-700 dark:text-white font-bold'>
 						Discover Local Stories
 					</h2>
 				</Link>
@@ -31,14 +31,14 @@ const Dynamic = () => {
 					{posts.length > 0 && <PostCard post={posts[currentPostIndex]} />}
 				</div>
 			</Card>
-			<div className='flex flex-col justify-center items-center'>
-				<Card className='w-full flex rounded-none drop-shadow-none items-center m-12 p-0'>
-					<Weather className='flex w-full' />
+			<div className='flex flex-row flex-wrap justify-center items-center my-6'>
+				<Card className='rounded-none border-none shadow-none w-96 m-2'>
+					<Weather />
 				</Card>
-				<Card className='md:w-full rounded-none drop-shadow-none items-center m-12'>
+				<Card className='rounded-none border-none w-96 shadow-none m-2'>
 					<Map />
 				</Card>
-				<Card className='md:w-full rounded-none drop-shadow-none items-center m-12'>
+				<Card className='rounded-none shadow-none border-none w-96 m-2'>
 					<News />
 				</Card>
 			</div>

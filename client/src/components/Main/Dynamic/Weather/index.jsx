@@ -47,17 +47,19 @@ const Weather = () => {
 	};
 
 	return (
-		<div className='w-full flex justify-evenly items-center nowrap'>
-			<ReactWeather
-				theme={customStyles}
-				isLoading={isLoading}
-				errorMessage={errorMessage}
-				data={data}
-				lang='en'
-				locationLabel={location.place}
-				unitsLabels={{ temperature: '°C', windSpeed: 'Km/h' }}
-				showForecast
-			/>
+		<div>
+			{location && (
+				<ReactWeather
+					theme={customStyles}
+					isLoading={isLoading}
+					errorMessage={errorMessage}
+					data={data}
+					lang='en'
+					locationLabel={location.place}
+					unitsLabels={{ temperature: '°C', windSpeed: 'Km/h' }}
+					showForecast
+				/>
+			)}
 		</div>
 	);
 };

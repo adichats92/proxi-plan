@@ -11,10 +11,23 @@ export default {
 		container: {
 			center: true,
 		},
-		darkMode: 'class',
 		extend: {
-			colors: {},
+			keyframes: {
+				fadein: {
+					'0%': { opacity: '0' },
+					'100%': { opacity: '1' },
+				},
+				fadeout: {
+					'0%': { opacity: '1' },
+					'100%': { opacity: '0' },
+				},
+			},
+			animation: {
+				fadein: 'fadein 1s ease-in-out',
+				fadeout: 'fadeout 1s ease-in-out',
+			},
 		},
+		darkMode: 'class',
 	},
 	// eslint-disable-next-line no-undef
 	plugins: [require('daisyui'), require('flowbite/plugin')],
