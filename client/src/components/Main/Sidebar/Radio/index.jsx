@@ -95,8 +95,8 @@ export default function Radio() {
 					className='w-12 h-12 rounded-full'
 					onError={setDefaultSrc}
 				/>
-				<h2 className='text-lg  text-violet-700 font-semibold'>
-					Now Playing: {currentStation?.name || 'Select a Station'}
+				<h2 className='text-lg  text-emerald-700 font-semibold'>
+					{currentStation?.name || 'Select a Station'}
 				</h2>
 			</div>
 			<AudioPlayer

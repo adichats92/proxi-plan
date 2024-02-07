@@ -206,7 +206,7 @@ const Todos = () => {
 			</div>
 			<Tooltip title='Add Task'>
 				<AddTaskIcon
-					className='absolute top-52 right-8 text-violet-400 hover:text-blue-400 z-50 hover:cursor-pointer'
+					className='absolute top-52 right-8 text-emerald-400 hover:text-blue-600 z-50 hover:cursor-pointer'
 					onClick={toggleModal}
 					fontSize='large'
 				></AddTaskIcon>

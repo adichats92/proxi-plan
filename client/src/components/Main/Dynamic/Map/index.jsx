@@ -1,83 +1,54 @@
-import { useContext, useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import { useState, useEffect } from 'react';
+import {
+	GoogleMap,
+	LoadScript,
+	TrafficLayer,
+	TransitLayer,
+	Marker,
+} from '@react-google-maps/api';
 import instance from '../../../../axiosInstance';
-import { useMap } from 'react-leaflet';
-import { AuthContext } from '../../../../context/Auth';
+
+const mapContainerStyle = {
+	width: '100%',
+	height: '100%',
+};
+
+const defaultCenter = { lat: -34.397, lng: 150.644 };
 
 const Map = () => {
 	const [location, setLocation] = useState(null);
-
-	const { user } = useContext(AuthContext);
 
 	useEffect(() => {
 		const fetchLocation = async () => {
 			try {
 				const response = await instance.get('/api/location/getlocation');
-				setLocation(response.data.location);
+				if (response.data && response.data.location) {
+					setLocation({
+						lat: response.data.location.coordinates[1],
+						lng: response.data.location.coordinates[0],
+					});
+				}
 			} catch (error) {
 				console.error('Failed to fetch location:', error);
 			}
 		};
 		fetchLocation();
-	}, [user]);
+	}, []);
 
-	// eslint-disable-next-line react/prop-types
-	const ChangeView = ({ center, zoom }) => {
-		const map = useMap();
-
-		useEffect(() => {
-			map.setView(center, zoom);
-		}, [center, zoom, map]);
-
-		return null;
-	};
-
-	if (!location) {
-		return <div>Loading map...</div>;
-	}
+	const apiKey = 'AIzaSyB_P3BYqHt-ryAD_t3dYHCAcCE7fhg983I';
 
 	return (
-		<MapContainer
-			center={[51.505, -0.09]}
-			zoom={13}
-			style={{ height: '500px', width: '100%' }}
-			whenCreated={(map) => {
-				map.setView(
-					new L.LatLng(location.coordinates[1], location.coordinates[0]),
-					13
-				);
-			}}
-		>
-			<TileLayer
-				url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-			/>
-			{location && (
-				<>
-					<ChangeView
-						center={[location.coordinates[1], location.coordinates[0]]}
-						zoom={13}
-					/>
-					<Marker
-						position={[location.coordinates[1], location.coordinates[0]]}
-						icon={
-							new L.Icon({
-								iconUrl: './location.png',
-								iconSize: [25, 41],
-								iconAnchor: [12, 41],
-								popupAnchor: [1, -34],
-							})
-						}
-					>
-						<Popup>
-							A location <br /> More details if available.
-						</Popup>
-					</Marker>
-				</>
-			)}
-		</MapContainer>
+		<LoadScript googleMapsApiKey={apiKey}>
+			<GoogleMap
+				mapContainerStyle={mapContainerStyle}
+				center={location || defaultCenter}
+				zoom={13}
+			>
+				<TrafficLayer autoUpdate />
+				<TransitLayer />
+				{location && <Marker position={location} />}
+			</GoogleMap>
+		</LoadScript>
 	);
 };
 

@@ -3,7 +3,7 @@ import instance from '../../../../axiosInstance';
 import { AuthContext } from '../../../../context/Auth';
 import { LocationContext } from '../../../../context/Location';
 
-const NewsComponent = () => {
+const News = () => {
 	const [articles, setArticles] = useState([]);
 	const [country, setCountry] = useState('');
 	const [currentArticleIndex, setCurrentArticleIndex] = useState(0);
@@ -57,22 +57,22 @@ const NewsComponent = () => {
 	const currentArticle = articles[currentArticleIndex];
 
 	return (
-		<div>
-			<h1 className='text-center m-4 text-2xl font-bold text-emerald-600'>
-				Top Headlines
+		<div className='min-h-96 dark:bg-gray-800'>
+			<h1 className='text-center mb-12 text-2xl font-bold dark:text-emerald-400 text-emerald-600'>
+				Top News
 			</h1>
 			{currentArticle && (
 				<div
-					className={`transition-opacity duration-1000 ${
+					className={`dark:text-white transition-opacity duration-1000 ${
 						animate === 'fadein' ? 'opacity-100' : 'opacity-0'
 					}`}
 				>
-					<h2 className='mb-2 text-xl font-semibold text-cyan-700'>
+					<h2 className='mb-2 text-xl font-semibold text-cyan-700 dark:text-cyan-300'>
 						{currentArticle.title}
 					</h2>
-					<p className='mb-4'>{currentArticle.description}</p>
+					<p className='my-4'>{currentArticle.description}</p>
 					<a
-						className='inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition'
+						className='absolute bottom-8 inline-block bg-emerald-400 text-white py-2 px-4 rounded hover:bg-blue-600 transition'
 						href={currentArticle.link}
 						target='_blank'
 						rel='noopener noreferrer'
@@ -85,4 +85,4 @@ const NewsComponent = () => {
 	);
 };
 
-export default NewsComponent;
+export default News;

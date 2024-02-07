@@ -39,3 +39,15 @@
 	color: rgb(179, 239, 255);
 	font-weight: bold;
 }
+
+.weather-widget {
+	width: 96rem;
+	height: 96rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: scale(0.8);
+}
+.w-widget {
+	width: 100% !important;
+}

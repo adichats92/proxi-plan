@@ -1,46 +1,66 @@
-import Map from './Map';
-import News from './News';
-import { Link } from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { PostsContext } from '../../../context/Posts';
 import PostCard from './Community/PostCard';
-import { Card } from 'flowbite-react';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Weather from './Weather';
+import Map from './Map';
+import News from './News';
 
 const Dynamic = () => {
-	const [currentPostIndex, setCurrentPostIndex] = useState(0);
-	const postChangeInterval = 5000;
 	const { posts } = useContext(PostsContext);
-	useEffect(() => {
-		const interval = setInterval(() => {
-			setCurrentPostIndex((prevIndex) => (prevIndex + 1) % posts.length);
-		}, postChangeInterval);
+	const [weeklyPosts, setWeeklyPosts] = useState([]);
 
-		return () => clearInterval(interval);
-	}, [posts, postChangeInterval]);
+	useEffect(() => {
+		const lastWeekPosts = posts
+			.filter((post) => {
+				const postDate = new Date(post.createdAt);
+				const lastWeek = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+				return postDate > lastWeek;
+			})
+			.sort(() => 0.5 - Math.random());
+
+		setWeeklyPosts(lastWeekPosts);
+	}, [posts]);
 
 	return (
-		<div className=' flex-col justify-center flex-wrap items-center dark:bg-gray-800 dark:text-neutral-200 drop-shadow-none rounded-none h-full p-16'>
-			<Card className='md:w-full rounded-none shadow-none'>
-				<Link to={'community'}>
-					<h2 className='text-center text-lg text-gray-700 dark:text-white font-bold'>
-						Discover Local Stories
-					</h2>
-				</Link>
-				<div>
-					{posts.length > 0 && <PostCard post={posts[currentPostIndex]} />}
-				</div>
-			</Card>
-			<div className='flex flex-row flex-wrap justify-center items-center my-6'>
-				<Card className='rounded-none border-none shadow-none w-96 m-2'>
+		<div>
+			<div className='flex-col justify-center flex-wrap items-center dark:bg-gray-800 dark:white shadow-none rounded-none h-full p-2'>
+				{weeklyPosts.length > 0 ? (
+					<Carousel
+						autoPlay
+						infiniteLoop
+						showThumbs={false}
+						className='min-h-96 my-4 py-4'
+					>
+						{weeklyPosts.map((post, index) => (
+							<div
+								key={index}
+								className='min-h-96'
+							>
+								<PostCard
+									post={post}
+									className='min-h-96'
+								/>
+							</div>
+						))}
+					</Carousel>
+				) : (
+					<p className='text-gray-800 dark:text-white text-center'>
+						No posts from the last week.
+					</p>
+				)}
+			</div>
+			<div className='flex flex-row flex-wrap justify-around items-center my-6'>
+				<div className='rounded-none border-none shadow-none w-96 h-96 m-2'>
 					<Weather />
-				</Card>
-				<Card className='rounded-none border-none w-96 shadow-none m-2'>
+				</div>
+				<div className='rounded-none border-none w-96 h-96 shadow-none m-2'>
 					<Map />
-				</Card>
-				<Card className='rounded-none shadow-none border-none w-96 m-2'>
+				</div>
+				<div className='rounded-none shadow-none border-none w-96 h-96 m-2 p-2 dark:bg-gray-800'>
 					<News />
-				</Card>
+				</div>
 			</div>
 		</div>
 	);

@@ -47,7 +47,10 @@ const Weather = () => {
 	};
 
 	return (
-		<div>
+		<div
+			className='weather-widget'
+			style={{ width: '100%', height: '100%' }}
+		>
 			{location && (
 				<ReactWeather
 					theme={customStyles}
@@ -58,6 +61,7 @@ const Weather = () => {
 					locationLabel={location.place}
 					unitsLabels={{ temperature: '°C', windSpeed: 'Km/h' }}
 					showForecast
+					className='w-widget'
 				/>
 			)}
 		</div>
