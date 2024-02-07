@@ -109,11 +109,11 @@ const PostsAll = () => {
 	};
 
 	return (
-		<div className='bg-white dark:bg-gray-800 dark:text-white text-gray-800 p-6 mx-4 lg:mx-10'>
+		<div className='bg-white bg-opacity-0 backdrop-blur-xs dark:text-white text-gray-800 p-6 mx-4 lg:mx-10'>
 			{sortedPosts.map((post) => (
 				<Card
 					key={post._id}
-					className='ms-2 mb-14 bg-sky-100 dark:bg-gray-700'
+					className='ms-2 mb-14 bg-white bg-opacity-50 backdrop-blur-md'
 				>
 					<div className='flex flex-row justify-between items-top'>
 						<div>

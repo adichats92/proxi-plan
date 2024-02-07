@@ -25,23 +25,20 @@ const Dynamic = () => {
 
 	return (
 		<div>
-			<div className='flex-col justify-center flex-wrap items-center dark:bg-gray-800 dark:white shadow-none rounded-none h-full p-2'>
+			<div className='flex-col justify-center flex-wrap items-center shadow-none rounded-none h-full'>
 				{weeklyPosts.length > 0 ? (
 					<Carousel
 						autoPlay
 						infiniteLoop
 						showThumbs={false}
-						className='min-h-96 my-4 py-4'
+						className='min-h-80 mt-4 pt-4'
 					>
 						{weeklyPosts.map((post, index) => (
 							<div
 								key={index}
-								className='min-h-96'
+								className='min-h-80 bg-white bg-opacity-50 backdrop-blur-md flex w-full justify-center'
 							>
-								<PostCard
-									post={post}
-									className='min-h-96'
-								/>
+								<PostCard post={post} />
 							</div>
 						))}
 					</Carousel>
@@ -51,14 +48,14 @@ const Dynamic = () => {
 					</p>
 				)}
 			</div>
-			<div className='flex flex-row flex-wrap justify-around items-center my-6'>
+			<div className='flex pt-12 flex-row flex-wrap justify-around items-center my-6'>
 				<div className='rounded-none border-none shadow-none w-96 h-96 m-2'>
 					<Weather />
 				</div>
 				<div className='rounded-none border-none w-96 h-96 shadow-none m-2'>
 					<Map />
 				</div>
-				<div className='rounded-none shadow-none border-none w-96 h-96 m-2 p-2 dark:bg-gray-800'>
+				<div className='rounded-none shadow-none border-none w-96 h-96 m-2 p-4 bg-white bg-opacity-50 backdrop-blur-md'>
 					<News />
 				</div>
 			</div>

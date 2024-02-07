@@ -48,7 +48,7 @@ const News = () => {
 					prevIndex + 1 >= articles.length ? 0 : prevIndex + 1
 				);
 				setAnimate('fadein');
-			}, 1500);
+			}, 2000);
 		}, 5000);
 
 		return () => clearInterval(intervalId);
@@ -57,7 +57,7 @@ const News = () => {
 	const currentArticle = articles[currentArticleIndex];
 
 	return (
-		<div className='min-h-96 dark:bg-gray-800'>
+		<div className='min-h-96 bg-white bg-opacity-0'>
 			<h1 className='text-center mb-12 text-2xl font-bold dark:text-emerald-400 text-emerald-600'>
 				Top News
 			</h1>
@@ -67,10 +67,28 @@ const News = () => {
 						animate === 'fadein' ? 'opacity-100' : 'opacity-0'
 					}`}
 				>
-					<h2 className='mb-2 text-xl font-semibold text-cyan-700 dark:text-cyan-300'>
+					<h2
+						className='mb-2 text-xl font-semibold text-cyan-700 overflow-auto text-overflow-ellipsis'
+						style={{
+							display: '-webkit-box',
+							WebkitLineClamp: '3',
+							WebkitBoxOrient: 'vertical',
+							maxHeight: '8rem',
+						}}
+					>
 						{currentArticle.title}
 					</h2>
-					<p className='my-4'>{currentArticle.description}</p>
+					<p
+						className='my-4 text-gray-800 overflow-auto text-overflow-ellipsis'
+						style={{
+							display: '-webkit-box',
+							WebkitLineClamp: '5',
+							WebkitBoxOrient: 'vertical',
+							maxHeight: '12rem',
+						}}
+					>
+						{currentArticle.description}
+					</p>
 					<a
 						className='absolute bottom-8 inline-block bg-emerald-400 text-white py-2 px-4 rounded hover:bg-blue-600 transition'
 						href={currentArticle.link}

@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
 	GoogleMap,
-	LoadScript,
 	TrafficLayer,
 	TransitLayer,
 	Marker,
@@ -15,18 +14,23 @@ const mapContainerStyle = {
 
 const defaultCenter = { lat: -34.397, lng: 150.644 };
 
-const Map = () => {
+const MapComponent = () => {
 	const [location, setLocation] = useState(null);
+	const mapRef = useRef(null);
 
 	useEffect(() => {
 		const fetchLocation = async () => {
 			try {
 				const response = await instance.get('/api/location/getlocation');
 				if (response.data && response.data.location) {
-					setLocation({
+					const fetchedLocation = {
 						lat: response.data.location.coordinates[1],
 						lng: response.data.location.coordinates[0],
-					});
+					};
+					setLocation(fetchedLocation);
+					if (mapRef.current) {
+						mapRef.current.panTo(fetchedLocation);
+					}
 				}
 			} catch (error) {
 				console.error('Failed to fetch location:', error);
@@ -35,21 +39,42 @@ const Map = () => {
 		fetchLocation();
 	}, []);
 
-	const apiKey = 'AIzaSyB_P3BYqHt-ryAD_t3dYHCAcCE7fhg983I';
+	const handleLocationReset = () => {
+		if (mapRef.current && location) {
+			mapRef.current.panTo(location);
+			mapRef.current.setZoom(13);
+		}
+	};
 
 	return (
-		<LoadScript googleMapsApiKey={apiKey}>
+		<>
 			<GoogleMap
 				mapContainerStyle={mapContainerStyle}
 				center={location || defaultCenter}
 				zoom={13}
+				onLoad={(map) => (mapRef.current = map)}
 			>
 				<TrafficLayer autoUpdate />
-				<TransitLayer />
+				<TransitLayer autoUpdate />
 				{location && <Marker position={location} />}
 			</GoogleMap>
-		</LoadScript>
+			<button
+				onClick={handleLocationReset}
+				style={{
+					position: 'relative',
+					top: '-60px',
+					left: '15px',
+					zIndex: '1000',
+					background: 'white',
+					border: '1px solid white',
+					borderRadius: '2px',
+					padding: '5px',
+				}}
+			>
+				Reset
+			</button>
+		</>
 	);
 };
 
-export default Map;
+export default MapComponent;

@@ -12,7 +12,7 @@ function Header() {
 		<>
 			{user ? (
 				<>
-					<div className='navbar bg-cyan-700 dark:bg-black px-6 fixed top-0 z-50'>
+					<div className='navbar bg-black bg-opacity-60 backdrop-blur-lg px-6 fixed top-0 z-50'>
 						<div className='flex-1'>
 							<NavLink to={'/home'}>
 								<img

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
 	return (
-		<footer className='bg-cyan-700 dark:bg-black bottom-0 right-0 left-0 p-7 w-full z-30'>
+		<footer className='bg-black bg-opacity-60 backdrop-blur-lg bottom-0 right-0 left-0 p-7 w-full z-30'>
 			<div className='w-full max-h-32 mx-auto max-w-screen-xl p-1 flex shrink items-center md:justify-between'>
 				<span className='text-sm text-white text-center mt-3 sm:mt-0 sm:text-center dark:text-gray-400'>
 					© 2024{' '}

@@ -148,17 +148,17 @@ const Todos = () => {
 	};
 
 	return (
-		<div className=' text-gray-800 dark:text-gray-200 pb-24 h-dvh overflow-auto'>
+		<div className=' text-gray-800 dark:text-white pb-24 h-dvh overflow-auto'>
 			<div className='mt-6 lg:mx-0 flex flex-col pb-96'>
 				{sortedTodos.map((todo) => (
 					<Card
 						key={todo._id}
-						className='my-2'
+						className='my-2 bg-white bg-opacity-10 backdrop-blur-xs'
 					>
-						<div className='flex flex-row w-full justify-between items-center bg-white dark:bg-gray-800'>
+						<div className='flex flex-row w-full justify-between items-center bg-opacity-0 dark:bg-gray-800'>
 							<div
 								tabIndex={0}
-								className='collapse collapse-arrow border border-none bg-orange-200 dark:bg-gray-800 border-none min-w-96'
+								className='collapse collapse-arrow border border-none bg-white dark:bg-gray-800 border-none min-w-96'
 							>
 								<div className='collapse-title text-gray-800 dark:text-white font-small flex flex-row justify-between items-center'>
 									<h5 className='text-sm font-semibold'>{todo.title}</h5>
