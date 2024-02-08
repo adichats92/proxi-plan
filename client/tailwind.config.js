@@ -27,7 +27,6 @@ export default {
 				fadeout: 'fadeout 1s ease-in-out',
 			},
 		},
-		darkMode: 'class',
 	},
 	// eslint-disable-next-line no-undef
 	plugins: [require('daisyui'), require('flowbite/plugin')],

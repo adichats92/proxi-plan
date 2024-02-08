@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../context/Auth';
-import { DarkThemeToggle } from 'flowbite-react';
 import MeetingRoomRoundedIcon from '@mui/icons-material/MeetingRoomRounded';
 import { Tooltip } from '@mui/material';
 
@@ -37,26 +36,10 @@ function Header() {
 								</li>
 								<li>
 									<NavLink
-										to={'home/map'}
-										className='py-2'
-									>
-										Map
-									</NavLink>
-								</li>
-								<li>
-									<NavLink
 										to={'home/news'}
 										className='pt-2'
 									>
 										News
-									</NavLink>
-								</li>
-								<li>
-									<NavLink
-										to={'home/weather'}
-										className='pt-2'
-									>
-										Weather
 									</NavLink>
 								</li>
 							</ul>
@@ -79,12 +62,14 @@ function Header() {
 									tabIndex={0}
 									className='mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52'
 								>
-									<DarkThemeToggle className='bg-neutral-200 dark:bg-gray-500 text-black dark:text-white rounded-xl' />
 									<li className='block text-sm pt-1 pe-2 my-2'>
 										Hello {user.userName}!
 									</li>
 									<li>
-										<Link className='justify-between'>
+										<Link
+											to='/home/profile'
+											className='justify-between'
+										>
 											Profile
 											<span className='badge'>New</span>
 										</Link>

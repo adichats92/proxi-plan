@@ -9,7 +9,6 @@ import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import TaskAltRoundedIcon from '@mui/icons-material/TaskAltRounded';
 import PublishedWithChangesRoundedIcon from '@mui/icons-material/PublishedWithChangesRounded';
 import { TextareaAutosize, Tooltip } from '@mui/material';
-import AddTaskIcon from '@mui/icons-material/AddTask';
 
 const Todos = () => {
 	const [todos, setTodos] = useState([]);
@@ -40,7 +39,6 @@ const Todos = () => {
 	);
 
 	const [editingTodo, setEditingTodo] = useState(null);
-	console.log('todos', todos);
 	useEffect(() => {
 		fetchTodos();
 	}, []);
@@ -148,19 +146,26 @@ const Todos = () => {
 	};
 
 	return (
-		<div className=' text-gray-800 dark:text-white pb-24 h-dvh overflow-auto'>
+		<div className=' text-gray-800 pb-24 h-dvh overflow-auto'>
 			<div className='mt-6 lg:mx-0 flex flex-col pb-96'>
+				<button
+					onClick={toggleModal}
+					className='bg-opacity-20 backdrop-blur-sm bg-emerald-400 hover:bg-blue-300 border-none rounded-lg absolute top-52 rounded-none w-full text-white px-28 py-3'
+				>
+					Add New Task
+				</button>
+
 				{sortedTodos.map((todo) => (
 					<Card
 						key={todo._id}
-						className='my-2 bg-white bg-opacity-10 backdrop-blur-xs'
+						className='my-2 border-none shadow-none bg-black bg-opacity-20 backdrop-blur-md mx-2'
 					>
 						<div className='flex flex-row w-full justify-between items-center bg-opacity-0 dark:bg-gray-800'>
 							<div
 								tabIndex={0}
-								className='collapse collapse-arrow border border-none bg-white dark:bg-gray-800 border-none min-w-96'
+								className='collapse collapse-arrow border border-none bg-white bg-opacity-50 backdrop-blur-xl dark:bg-gray-800 border-none min-w-96'
 							>
-								<div className='collapse-title text-gray-800 dark:text-white font-small flex flex-row justify-between items-center'>
+								<div className='collapse-title text-gray-800 font-small flex flex-row justify-between items-center'>
 									<h5 className='text-sm font-semibold'>{todo.title}</h5>
 									<div
 										className={`badge ${getPriorityClassName(
@@ -177,10 +182,10 @@ const Todos = () => {
 						</div>
 						<div className='flex flex-row justify-between items-center'>
 							<div className='flex flex-row'>
-								<p className='text-gray-500 text-xs text-center'>
+								<p className='text-white text-xs text-center'>
 									{formatDate(todo.start)}
 								</p>
-								<p className='text-gray-500 text-xs text-center mx-3'>
+								<p className='text-white text-xs text-center mx-3'>
 									{formatDate(todo.end)}
 								</p>
 							</div>
@@ -189,14 +194,14 @@ const Todos = () => {
 									<EditNoteRoundedIcon
 										fontSize='small'
 										onClick={() => startEditing(todo)}
-										className='hover:text-sky-400 dark:hover:text-sky-700 hover:cursor-pointer mx-2'
+										className='text-white hover:text-sky-400 dark:hover:text-sky-700 hover:cursor-pointer mx-2'
 									/>
 								</Tooltip>
 								<Tooltip title='Delete'>
 									<DeleteOutlineRoundedIcon
 										fontSize='small'
 										onClick={() => deleteTodo(todo._id)}
-										className='ms-0 hover:text-red-400 dark:hover:text-red-700 hover:cursor-pointer'
+										className='ms-0 text-white hover:text-red-400 dark:hover:text-red-700 hover:cursor-pointer'
 									/>
 								</Tooltip>
 							</div>
@@ -204,13 +209,7 @@ const Todos = () => {
 					</Card>
 				))}
 			</div>
-			<Tooltip title='Add Task'>
-				<AddTaskIcon
-					className='absolute top-52 right-8 text-emerald-400 hover:text-blue-600 z-50 hover:cursor-pointer'
-					onClick={toggleModal}
-					fontSize='large'
-				></AddTaskIcon>
-			</Tooltip>
+
 			{isModalOpen && (
 				<div className='fixed inset-0 bg-gray-600 bg-opacity-50 z-50 h-full w-full flex items-center justify-center'>
 					<div className='relative bg-white flex justify-around items-center rounded-lg shadow dark:bg-gray-700 p-8'>

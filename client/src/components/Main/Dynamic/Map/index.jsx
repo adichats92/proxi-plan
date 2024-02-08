@@ -28,6 +28,7 @@ const MapComponent = () => {
 						lng: response.data.location.coordinates[0],
 					};
 					setLocation(fetchedLocation);
+
 					if (mapRef.current) {
 						mapRef.current.panTo(fetchedLocation);
 					}
@@ -54,9 +55,13 @@ const MapComponent = () => {
 				zoom={13}
 				onLoad={(map) => (mapRef.current = map)}
 			>
-				<TrafficLayer autoUpdate />
-				<TransitLayer autoUpdate />
-				{location && <Marker position={location} />}
+				{location && (
+					<>
+						<TrafficLayer autoUpdate />
+						<TransitLayer autoUpdate />
+						<Marker position={location} />
+					</>
+				)}
 			</GoogleMap>
 			<button
 				onClick={handleLocationReset}

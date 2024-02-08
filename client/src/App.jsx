@@ -7,9 +7,9 @@ const App = () => {
 	return (
 		<div
 			className='flex flex-col min-h-screen bg-gradient-to-r 
-		from-emerald-400 
-		to-emerald-400 
-		via-blue-400'
+		from-emerald-300 
+		to-purple-300 
+		via-blue-300 animate-gradient'
 		>
 			<LoadScript
 				googleMapsApiKey='AIzaSyB_P3BYqHt-ryAD_t3dYHCAcCE7fhg983I'

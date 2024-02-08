@@ -1,6 +1,7 @@
 import PostsAll from './Posts/PostsAll';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
+
 const Community = () => {
 	const navigate = useNavigate();
 	const handleGoBackClick = () => {
@@ -12,12 +13,12 @@ const Community = () => {
 				Local Community
 			</h6>
 			<PostsAll />
-
-			<ArrowBackRoundedIcon
+			<button
+				className=' bg-emerald-400 hover:bg-blue-600 border-none rounded-lg text-white fixed top-72 left-2 px-4 py-3'
 				onClick={handleGoBackClick}
-				className='fixed right-2 bottom-48 text-sky-400 hover:text-emerald-400 dark:hover:text-emerald-700 hover:cursor-pointer'
-				fontSize='large'
-			/>
+			>
+				<ArrowBackRoundedIcon fontSize='medium' />
+			</button>
 		</div>
 	);
 };

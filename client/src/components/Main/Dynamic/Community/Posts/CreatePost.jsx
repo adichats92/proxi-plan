@@ -12,6 +12,7 @@ const CreatePost = ({ onPostCreated }) => {
 		title: '',
 		text: '',
 	});
+	const [image, setImage] = useState(null);
 	const { fetchPosts } = useContext(PostsContext);
 
 	const handleChange = (e) => {
@@ -22,14 +23,28 @@ const CreatePost = ({ onPostCreated }) => {
 		});
 	};
 
+	const handleImageChange = (e) => {
+		setImage(e.target.files[0]);
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
+		const formData = new FormData();
+		formData.append('title', postData.title);
+		formData.append('text', postData.text);
+		if (image) {
+			formData.append('image', image);
+		}
+
 		try {
-			await instance.post('/api/posts', postData);
+			const res = await instance.post('/api/posts', formData);
+
+			console.log('imagepostresponse', res.data);
 
 			alert('Post created successfully!');
 			setPostData({ title: '', text: '' });
+			setImage(null);
 			await fetchPosts();
 			navigate('/home/community');
 
@@ -69,6 +84,11 @@ const CreatePost = ({ onPostCreated }) => {
 					className='textarea w-full mb-3 bg-white dark:bg-gray-700'
 				/>
 			</div>
+			<input
+				type='file'
+				onChange={handleImageChange}
+				accept='image/*'
+			/>
 			<Tooltip title='Post'>
 				<PostAddRoundedIcon
 					onClick={handleSubmit}

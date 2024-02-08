@@ -36,8 +36,9 @@ const News = () => {
 				console.error('Error fetching news:', error);
 			}
 		};
-
-		fetchNews();
+		if (country) {
+			fetchNews();
+		}
 	}, [country, user, location]);
 
 	useEffect(() => {
@@ -49,7 +50,7 @@ const News = () => {
 				);
 				setAnimate('fadein');
 			}, 2000);
-		}, 5000);
+		}, 6000);
 
 		return () => clearInterval(intervalId);
 	}, [articles]);
@@ -63,7 +64,7 @@ const News = () => {
 			</h1>
 			{currentArticle && (
 				<div
-					className={`dark:text-white transition-opacity duration-1000 ${
+					className={`transition-opacity duration-1000 ${
 						animate === 'fadein' ? 'opacity-100' : 'opacity-0'
 					}`}
 				>
@@ -90,7 +91,7 @@ const News = () => {
 						{currentArticle.description}
 					</p>
 					<a
-						className='absolute bottom-8 inline-block bg-emerald-400 text-white py-2 px-4 rounded hover:bg-blue-600 transition'
+						className='absolute bottom-6 inline-block bg-emerald-400 text-white py-2 px-4 rounded hover:bg-blue-600 transition'
 						href={currentArticle.link}
 						target='_blank'
 						rel='noopener noreferrer'

@@ -1,15 +1,15 @@
 const Post = require('../models/post');
 const User = require('../models/user');
 const Location = require('../models/location');
+const uploadImage = require('./cloudinary').uploadImage;
+const cloudinary = require('../config/cloudinary');
 
 const createPost = async (req, res) => {
-	// console.log('User Info:', req.user);
 	const { id } = req.user;
+
 	try {
 		const user = await User.find({ _Id: id });
-		// console.log('User id match:', user);
 		const location = await Location.findOne({ userId: req.user._id });
-		// console.log('Location:', location);
 
 		if (!user) {
 			return res.status(404).json({ message: 'User not found' });
@@ -21,10 +21,18 @@ const createPost = async (req, res) => {
 				.json({ message: 'User location not set or invalid' });
 		}
 
+		let imageUrl = '';
+
+		if (req.file) {
+			console.log('img file', req.file.secure_url);
+			imageUrl = req.file.secure_url;
+		}
+
 		const newPost = await Post.create({
 			...req.body,
 			userId: req.user._id,
 			location: location.location,
+			imageUrl: imageUrl,
 		});
 
 		res.status(201).json(newPost);
@@ -37,21 +45,12 @@ const createPost = async (req, res) => {
 const getAllPosts = async (req, res) => {
 	const longitude = parseFloat(req.query.longitude);
 	const latitude = parseFloat(req.query.latitude);
-	const maxDistance = parseInt(req.query.maxDistance) || 5000; // Default 5000 meters
-	// console.log('maxDistance:', maxDistance);
-	// console.log('lon:', longitude, 'lat:', latitude);
 
 	try {
 		const posts = await Post.find({
 			location: {
 				$geoWithin: {
-					$centerSphere: [
-						// type: 'Point',
-						// coordinates:
-						[longitude, latitude],
-						25 / 6378.1,
-					],
-					// $maxDistance: maxDistance,
+					$centerSphere: [[longitude, latitude], 25 / 6378.1],
 				},
 			},
 		})

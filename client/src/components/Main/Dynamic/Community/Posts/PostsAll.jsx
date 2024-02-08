@@ -115,29 +115,40 @@ const PostsAll = () => {
 					key={post._id}
 					className='ms-2 mb-14 bg-white bg-opacity-50 backdrop-blur-md'
 				>
-					<div className='flex flex-row justify-between items-top'>
-						<div>
-							<h3 className='text-xl font-semibold my-3'>{post.title}</h3>
-							<p className='my-3'>{post.text}</p>
-						</div>
+					<div>
 						{currentUser === post.userId._id && (
 							<div className='flex flex-row nowrap'>
 								<Tooltip title='Update'>
 									<EditIcon
 										fontSize='medium'
-										className='text-sky-400 hover:text-teal-400 dark:hover:text-teal-700 hover:cursor-pointer mx-2'
+										className='text-sky-400 hover:text-teal-400 hover:cursor-pointer absolute right-14 mx-2'
 										onClick={() => openEditModal(post)}
 									/>
 								</Tooltip>
 								<Tooltip title='Remove'>
 									<DeleteOutlineIcon
 										fontSize='medium'
-										className='text-red-400 hover:text-red-600 dark:hover:text-red-800 hover:cursor-pointer mx-2 '
+										className='text-red-400 hover:text-red-600 absolute right-4 hover:cursor-pointer mx-2 '
 										onClick={() => deletePost(post._id)}
 									/>
 								</Tooltip>
 							</div>
 						)}
+						<div className='flex flex-col md:flex-row justify-center md:justify-around items-center'>
+							<div>
+								<h3 className='text-xl font-semibold my-3 text-left'>
+									{post.title}
+								</h3>
+								<p className='my-3 text-left'>{post.text}</p>
+							</div>
+							{post.imageUrl && (
+								<img
+									src={post.imageUrl}
+									alt='image'
+									className='h-96 w-96 p-2 m-4'
+								/>
+							)}
+						</div>
 					</div>
 
 					<p className='font-thin text-xs'>Posted by: {post.userId.userName}</p>
@@ -203,12 +214,12 @@ const PostsAll = () => {
 				</dialog>
 			)}
 			<Tooltip title='Create Post'>
-				<PostAddIcon
+				<button
+					className=' bg-emerald-400 hover:bg-blue-600 border-none rounded-lg text-white fixed top-48 left-2 px-4 py-3'
 					onClick={() => setIsModalTwoOpen(true)}
-					className='text-sky-500 hover:text-fuchsia-600 z-50 hover:cursor-pointer w-full
-					fixed bottom-96 right-2'
-					fontSize='large'
-				/>
+				>
+					<PostAddIcon fontSize='medium' />
+				</button>
 			</Tooltip>
 			{isModalTwoOpen && (
 				<div className='modal modal-open bg-white dark:bg-gray-800'>

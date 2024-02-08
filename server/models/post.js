@@ -6,6 +6,10 @@ const postSchema = new mongoose.Schema(
 		title: { type: String, required: [true, 'Title is required'] },
 		text: { type: String, required: [true, 'Content is required'] },
 		comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
+		imageUrl: {
+			type: String,
+			required: false,
+		},
 		location: {
 			type: {
 				type: String,

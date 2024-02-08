@@ -95,7 +95,7 @@ export default function Radio() {
 					className='w-12 h-12 rounded-full'
 					onError={setDefaultSrc}
 				/>
-				<h2 className='text-lg text-emerald-700 font-semibold'>
+				<h2 className='text-lg text-purple-100 font-semibold'>
 					{currentStation?.name || 'Select a Station'}
 				</h2>
 			</div>
@@ -110,7 +110,7 @@ export default function Radio() {
 				onClickNext={handleNext}
 				onPlay={handlePlay}
 				layout='stacked'
-				className='pb-4 me-6 mb-6 rounded-lg bg-opacity-10 backdrop-blur-xs bg-gradient-to-r from-red-100 to-blue-100 via-violet-100 border-non shadow-none flex'
+				className='pb-4 me-6 mb-16 rounded-lg bg-opacity-10 backdrop-blur-xs bg-gradient-to-r from-red-100 to-blue-100 via-violet-100 border-non shadow-none flex'
 			/>
 		</Card>
 	);

@@ -10,7 +10,7 @@ const getStateFromCoordinates = async (req, res) => {
 		console.log(userId);
 		// Retrieve location from the database
 		const location = await Location.findOne({ userId: userId });
-		console.log(location);
+
 		if (!location) {
 			return res.status(404).send('Location not found for the user.');
 		}
@@ -43,7 +43,7 @@ const getStateFromCoordinates = async (req, res) => {
 
 		// Save the instance
 		await apiLocationInstance.save();
-		console.log('apiinstance', apiLocationInstance);
+		// console.log('apiinstance', apiLocationInstance);
 		res.status(200).json({ apiLocationInstance });
 	} catch (error) {
 		console.error(error);

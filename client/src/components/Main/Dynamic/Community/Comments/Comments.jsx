@@ -30,8 +30,8 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 		}
 	};
 
-	console.log('Comments', comments);
-	console.log('Updated Comments'), setComments;
+	// console.log('Comments', comments);
+	// console.log('Updated Comments'), setComments;
 	// Add a new comment
 	const createComment = async () => {
 		if (!newCommentText.trim()) return;
