@@ -31,7 +31,7 @@ const Dynamic = () => {
 						autoPlay
 						infiniteLoop
 						showThumbs={false}
-						className='min-h-80 mt-4 pt-4'
+						className='min-h-80 mt-4'
 					>
 						{weeklyPosts.map((post, index) => (
 							<div

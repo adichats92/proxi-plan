@@ -70,11 +70,10 @@ const MapComponent = () => {
 					top: '-60px',
 					left: '15px',
 					zIndex: '1000',
-					background: 'white',
-					border: '1px solid white',
 					borderRadius: '2px',
 					padding: '5px',
 				}}
+				className='text-gray-800 border-none bg-white hover:bg-neutral-200'
 			>
 				Reset
 			</button>

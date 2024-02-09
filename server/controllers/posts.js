@@ -2,7 +2,7 @@ const Post = require('../models/post');
 const User = require('../models/user');
 const Location = require('../models/location');
 const uploadImage = require('./cloudinary').uploadImage;
-const cloudinary = require('../config/cloudinary');
+// const cloudinary = require('../config/cloudinary');
 
 const createPost = async (req, res) => {
 	const { id } = req.user;
@@ -24,15 +24,21 @@ const createPost = async (req, res) => {
 		let imageUrl = '';
 
 		if (req.file) {
-			console.log('img file', req.file.secure_url);
-			imageUrl = req.file.secure_url;
+			try {
+				imageUrl = await uploadImage(req.file);
+				console.log(imageUrl);
+			} catch (error) {
+				return res
+					.status(500)
+					.json({ message: 'Image upload failed', error: error.message });
+			}
 		}
 
 		const newPost = await Post.create({
 			...req.body,
 			userId: req.user._id,
 			location: location.location,
-			imageUrl: imageUrl,
+			imageUrl,
 		});
 
 		res.status(201).json(newPost);

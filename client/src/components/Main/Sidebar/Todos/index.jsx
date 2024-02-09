@@ -21,6 +21,7 @@ const Todos = () => {
 		priority: 'low',
 	});
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [sortOrder, setSortOrder] = useState('createdAt');
 
 	const toggleModal = () => {
 		setIsModalOpen(!isModalOpen);
@@ -34,9 +35,27 @@ const Todos = () => {
 			});
 	};
 
-	const sortedTodos = [...todos].sort(
-		(a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-	);
+	// const sortedTodos = [...todos].sort(
+	// 	(a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+	// );
+
+	const getSortedTodos = (todos, sortOrder) => {
+		switch (sortOrder) {
+			case 'priority':
+				return [...todos].sort((a, b) => {
+					// Assuming 'high', 'medium', 'low' as priority values
+					const priorityValues = { high: 3, medium: 2, low: 1 };
+					return priorityValues[b.priority] - priorityValues[a.priority];
+				});
+			case 'createdAt':
+			default:
+				return [...todos].sort(
+					(a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+				);
+		}
+	};
+
+	const sortedTodos = getSortedTodos(todos, sortOrder);
 
 	const [editingTodo, setEditingTodo] = useState(null);
 	useEffect(() => {
@@ -154,16 +173,26 @@ const Todos = () => {
 				>
 					Add New Task
 				</button>
+				<div className='bg-opacity-0 border-none justify-center items-center rounded-lg rounded-none w-full py-3 mx-3'>
+					<select
+						value={sortOrder}
+						onChange={(e) => setSortOrder(e.target.value)}
+						className='bg-white bg-opacity-80 backdrop-blur-lg border border-none text-gray-800 text-sm rounded-lg block p-2.5 '
+					>
+						<option value='createdAt'>Sort by Date</option>
+						<option value='priority'>Sort by Priority</option>
+					</select>
+				</div>
 
 				{sortedTodos.map((todo) => (
 					<Card
 						key={todo._id}
-						className='my-2 border-none shadow-none bg-black bg-opacity-20 backdrop-blur-md mx-2'
+						className='my-2 border-none shadow-none bg-emerald-200 bg-opacity-20 backdrop-blur-md mx-2'
 					>
-						<div className='flex flex-row w-full justify-between items-center bg-opacity-0 dark:bg-gray-800'>
+						<div className='flex flex-row w-full justify-between items-center bg-opacity-0'>
 							<div
 								tabIndex={0}
-								className='collapse collapse-arrow border border-none bg-white bg-opacity-50 backdrop-blur-xl dark:bg-gray-800 border-none min-w-96'
+								className='collapse collapse-arrow border border-none bg-white bg-opacity-80 backdrop-blur-lg border-none min-w-96'
 							>
 								<div className='collapse-title text-gray-800 font-small flex flex-row justify-between items-center'>
 									<h5 className='text-sm font-semibold'>{todo.title}</h5>

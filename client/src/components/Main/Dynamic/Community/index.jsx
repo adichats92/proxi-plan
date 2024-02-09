@@ -8,7 +8,7 @@ const Community = () => {
 		navigate(-1);
 	};
 	return (
-		<div className='dark:bg-gray-800'>
+		<div className=''>
 			<h6 className='text-center font-bold text-2xl text-cyan-500 dark:text-white p-6 mb-6'>
 				Local Community
 			</h6>

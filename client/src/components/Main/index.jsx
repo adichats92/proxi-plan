@@ -8,7 +8,16 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { Tooltip } from '@mui/material';
 
 const Main = () => {
-	const { user } = useContext(AuthContext);
+	const { user, loading } = useContext(AuthContext);
+
+	if (loading) {
+		return (
+			<div className='flex justify-center items-center h-screen'>
+				<span className='loading loading-ring loading-lg'></span>
+			</div>
+		);
+	}
+
 	return (
 		<div className={user ? 'bg-opacity-0 flex-grow' : 'bg-opacity-0'}>
 			{user ? (

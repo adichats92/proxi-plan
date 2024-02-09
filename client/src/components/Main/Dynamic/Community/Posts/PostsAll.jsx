@@ -109,7 +109,7 @@ const PostsAll = () => {
 	};
 
 	return (
-		<div className='bg-white bg-opacity-0 backdrop-blur-xs dark:text-white text-gray-800 p-6 mx-4 lg:mx-10'>
+		<div className='bg-white bg-opacity-0 backdrop-blur-xs dark:text-white text-gray-800 p-6 mx-6 lg:mx-12'>
 			{sortedPosts.map((post) => (
 				<Card
 					key={post._id}

@@ -52,8 +52,14 @@ const CreatePost = ({ onPostCreated }) => {
 				onPostCreated();
 			}
 		} catch (error) {
-			console.error('Error creating post:', error);
-			alert('Failed to create post.');
+			console.error(
+				'Error creating post:',
+				error.response ? error.response.data : error
+			);
+			alert(
+				'Failed to create post: ' +
+					(error.response ? error.response.data.message : 'Unknown error')
+			);
 		}
 	};
 	return (

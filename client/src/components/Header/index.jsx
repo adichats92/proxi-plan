@@ -3,6 +3,8 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../context/Auth';
 import MeetingRoomRoundedIcon from '@mui/icons-material/MeetingRoomRounded';
 import { Tooltip } from '@mui/material';
+import SettingsIcon from '@mui/icons-material/Settings';
+import PersonIcon from '@mui/icons-material/Person';
 
 function Header() {
 	const { user, logout } = useContext(AuthContext);
@@ -60,10 +62,10 @@ function Header() {
 								</div>
 								<ul
 									tabIndex={0}
-									className='mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52'
+									className='mt-3 z-[1] text-white p-2 shadow menu menu-sm dropdown-content bg-black bg-opacity-60 backdrop-blur-lg rounded-box w-52'
 								>
-									<li className='block text-sm pt-1 pe-2 my-2'>
-										Hello {user.userName}!
+									<li className='text-center m-2 block text-sm pt-1 pe-2 my-2'>
+										Hello {user.userName}!{' '}
 									</li>
 									<li>
 										<Link
@@ -71,15 +73,27 @@ function Header() {
 											className='justify-between'
 										>
 											Profile
-											<span className='badge'>New</span>
+											<PersonIcon
+												fontSize='small'
+												className='me-1'
+											/>
 										</Link>
 									</li>
 									<li>
-										<Link>Settings</Link>
+										<Link className='justify-between'>
+											Settings{' '}
+											<SettingsIcon
+												fontSize='small'
+												className='me-1'
+											/>
+										</Link>
 									</li>
 									<li>
 										<Tooltip title='See you soon!'>
-											<Link onClick={logout}>
+											<Link
+												onClick={logout}
+												className='justify-between'
+											>
 												Signout{' '}
 												<MeetingRoomRoundedIcon
 													fontSize='small'
@@ -94,16 +108,23 @@ function Header() {
 					</div>
 				</>
 			) : (
-				<div className='flex-row justify-between text-emerald-50 sm:pe-44'>
+				<div className='navbar bg-black bg-opacity-60 backdrop-blur-lg px-6 fixed top-0 z-50'>
+					<div className='flex-1'>
+						<img
+							src='/PPNoBg.png'
+							className='h-6 sm:h-9'
+							alt='Logo'
+						/>
+					</div>
 					<NavLink
 						to={'/login'}
-						className='m-2 text-cyan-600 hover:underline dark:text-cyan-500'
+						className='m-2 text-white hover:underline dark:text-cyan-500'
 					>
 						Login
 					</NavLink>
 					<NavLink
 						to={'/register'}
-						className='m-2  text-cyan-600 hover:underline dark:text-cyan-500'
+						className='m-2  text-white hover:underline dark:text-cyan-500'
 					>
 						Register
 					</NavLink>
