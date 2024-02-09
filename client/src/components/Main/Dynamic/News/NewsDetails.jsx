@@ -44,7 +44,7 @@ const NewsDetails = () => {
 	};
 
 	return (
-		<div className='mt-24 px-12'>
+		<div className='mt-24 p-6 mx-20 lg:mx-72 xl:mx-96'>
 			{news.length > 0 ? (
 				news.map((article, index) => (
 					<div

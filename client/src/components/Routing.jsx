@@ -4,7 +4,6 @@ import Protected from '../Protected';
 import Login from './Main/User/Login';
 import Register from './Main/User/Register';
 import Main from './Main';
-import Todos from './Main/Sidebar/Todos';
 import Radio from './Main/Sidebar/Radio';
 import Community from './Main/Dynamic/Community';
 import PostsAll from './Main/Dynamic/Community/Posts/PostsAll';
@@ -12,6 +11,7 @@ import Dynamic from './Main/Dynamic';
 import Weather from './Main/Dynamic/Weather';
 import Profile from './Main/Dynamic/Profile';
 import NewsDetails from './Main/Dynamic/News/NewsDetails';
+import UserSettings from './Main/Dynamic/UserSettings';
 
 function Routing() {
 	return (
@@ -45,8 +45,8 @@ function Routing() {
 						element={<PostsAll />}
 					/>
 					<Route
-						path='todos'
-						element={<Todos />}
+						path='user'
+						element={<UserSettings />}
 					/>
 					<Route
 						path='profile'

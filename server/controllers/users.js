@@ -85,9 +85,41 @@ const getLoggedInUser = async (req, res) => {
 	}
 };
 
+const updateUser = async (req, res) => {
+	try {
+		const { _id } = req.user;
+		let update = { ...req.body };
+
+		if (req.file) {
+			try {
+				const avatarUrl = await uploadImage(req.file);
+				update.avatarUrl = avatarUrl;
+				console.log('AVATAR', avatarUrl);
+			} catch (error) {
+				return res
+					.status(500)
+					.json({ message: 'Avatar upload failed', error: error.message });
+			}
+		}
+
+		const updatedUser = await User.findByIdAndUpdate(_id, update, {
+			new: true,
+		}).select('-password');
+
+		if (!updatedUser) {
+			return res.status(404).json({ message: 'User not found' });
+		} else {
+			res.json({ message: 'User updated successfully', user: updatedUser });
+		}
+	} catch (error) {
+		res.status(400).json({ message: error.message });
+	}
+};
+
 module.exports = {
 	register,
 	login,
 	logout,
 	getLoggedInUser,
+	updateUser,
 };

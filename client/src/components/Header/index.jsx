@@ -56,7 +56,7 @@ function Header() {
 									<div className='w-10 rounded-full'>
 										<img
 											alt='Tailwind CSS Navbar component'
-											src='https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'
+											src={user.avatarUrl}
 										/>
 									</div>
 								</div>
@@ -80,7 +80,10 @@ function Header() {
 										</Link>
 									</li>
 									<li>
-										<Link className='justify-between'>
+										<Link
+											to='/home/user'
+											className='justify-between'
+										>
 											Settings{' '}
 											<SettingsIcon
 												fontSize='small'

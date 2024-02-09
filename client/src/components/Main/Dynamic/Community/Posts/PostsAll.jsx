@@ -38,11 +38,6 @@ const PostsAll = () => {
 		return formatDistanceToNow(date, { addSuffix: true });
 	};
 
-	console.log('Edit Data', editPostData);
-
-	console.log('current user', currentUser);
-	console.log('edited data', editPostData);
-
 	const openEditModal = (post) => {
 		setEditPostData({ _id: post._id, title: post.title, text: post.text });
 		setIsModalOpen(true);
@@ -109,7 +104,7 @@ const PostsAll = () => {
 	};
 
 	return (
-		<div className='bg-white bg-opacity-0 backdrop-blur-xs dark:text-white text-gray-800 p-6 mx-6 lg:mx-12'>
+		<div className='bg-white bg-opacity-0 backdrop-blur-xs text-gray-800 p-6 mx-20 lg:mx-72 xl:mx-96'>
 			{sortedPosts.map((post) => (
 				<Card
 					key={post._id}
@@ -134,7 +129,7 @@ const PostsAll = () => {
 								</Tooltip>
 							</div>
 						)}
-						<div className='flex flex-col md:flex-row justify-center md:justify-around items-center'>
+						<div className='flex flex-col justify-center md:justify-around items-center'>
 							<div>
 								<h3 className='text-xl font-semibold my-3 text-left'>
 									{post.title}
@@ -156,7 +151,7 @@ const PostsAll = () => {
 
 					<details
 						tabIndex={0}
-						className={`collapse collapse-arrow border border-none bg-white dark:bg-gray-800 text-gray-800 dark:text-white gap-4`}
+						className={`collapse collapse-arrow border border-none bg-white text-gray-800 gap-4`}
 					>
 						<summary className='collapse-title text-xl font-medium'>
 							Comments
