@@ -87,8 +87,8 @@ export default function Radio() {
 	const currentStation = stations[currentStationIndex];
 
 	return (
-		<Card className='rounded-none shadow-none border-none m-2 text-sky-400 bg-white bg-opacity-0 backdrop-blur-xs dark:text-gray-200'>
-			<div className='flex items-center gap-12 mb-4'>
+		<Card className='rounded-none justify-center text-center shadow-none border-none m-2 text-sky-400 bg-white bg-opacity-0 backdrop-blur-xs dark:text-gray-200'>
+			<div className='flex items-center gap-6 mb-4'>
 				<img
 					src={currentStation?.favicon || defaultImage}
 					alt='Station Logo'

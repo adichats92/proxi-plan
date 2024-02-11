@@ -4,6 +4,7 @@ import instance from '../../../../axiosInstance';
 
 const Weather = () => {
 	const [location, setLocation] = useState({});
+	const [apiKey, setApiKey] = useState('');
 
 	useEffect(() => {
 		instance
@@ -18,8 +19,22 @@ const Weather = () => {
 			.catch((error) => console.error('Failed to fetch location:', error));
 	}, []);
 
+	useEffect(() => {
+		const fetchApiKey = async () => {
+			try {
+				const response = await instance.get('/api/keys');
+				const keys = await response.data;
+				setApiKey(keys.weather);
+			} catch (error) {
+				console.error('Error fetching API key:', error);
+			}
+		};
+
+		fetchApiKey();
+	}, []);
+
 	const { data, isLoading, errorMessage } = useWeatherBit({
-		key: '9b3c40c6f7b44fae94299ac20a1d229e',
+		key: apiKey,
 		lat: location.lat,
 		lon: location.lon,
 		lang: 'en',

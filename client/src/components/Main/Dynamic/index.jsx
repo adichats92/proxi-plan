@@ -26,7 +26,9 @@ const Dynamic = () => {
 	return (
 		<div>
 			<div className='flex-col justify-center flex-wrap items-center shadow-none rounded-none h-full'>
-				{weeklyPosts.length > 0 ? (
+				{!weeklyPosts ? (
+					<span className='loading loading-ring loading-lg h-60 mt-32'></span>
+				) : weeklyPosts.length > 0 ? (
 					<Carousel
 						autoPlay
 						infiniteLoop

@@ -55,8 +55,8 @@ function Header() {
 								>
 									<div className='w-10 rounded-full'>
 										<img
-											alt='Tailwind CSS Navbar component'
-											src={user.avatarUrl}
+											alt='Profile picture'
+											src={user.image ? user.image : '/dpdef.jpg'}
 										/>
 									</div>
 								</div>

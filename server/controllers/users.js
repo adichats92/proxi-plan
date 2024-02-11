@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.JWT_SECRET;
 const dayInMilliseconds = 24 * 60 * 60 * 1000;
+const uploadImage = require('./cloudinary').uploadImage;
 
 const register = async (req, res) => {
 	try {
@@ -88,31 +89,29 @@ const getLoggedInUser = async (req, res) => {
 const updateUser = async (req, res) => {
 	try {
 		const { _id } = req.user;
-		let update = { ...req.body };
+		let updateData = { ...req.body };
 
 		if (req.file) {
-			try {
-				const avatarUrl = await uploadImage(req.file);
-				update.avatarUrl = avatarUrl;
-				console.log('AVATAR', avatarUrl);
-			} catch (error) {
-				return res
-					.status(500)
-					.json({ message: 'Avatar upload failed', error: error.message });
-			}
+			const imageUrl = await uploadImage(req.file);
+			updateData.image = imageUrl;
 		}
 
-		const updatedUser = await User.findByIdAndUpdate(_id, update, {
+		if (updateData.password) {
+			updateData.password = await bcrypt.hash(updateData.password, 10);
+		} else {
+			delete updateData.password;
+		}
+
+		const updatedUser = await User.findByIdAndUpdate(_id, updateData, {
 			new: true,
 		}).select('-password');
-
 		if (!updatedUser) {
 			return res.status(404).json({ message: 'User not found' });
-		} else {
-			res.json({ message: 'User updated successfully', user: updatedUser });
 		}
+		res.json({ message: 'User updated successfully', user: updatedUser });
 	} catch (error) {
-		res.status(400).json({ message: error.message });
+		console.error('Update User Error:', error);
+		res.status(500).json({ message: 'Failed to update user' });
 	}
 };
 

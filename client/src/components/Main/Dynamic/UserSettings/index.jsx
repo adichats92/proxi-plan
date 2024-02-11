@@ -24,20 +24,16 @@ const UserSettings = () => {
 		e.preventDefault();
 
 		const formData = new FormData();
-		formData.append('username', username);
+		formData.append('userName', username);
 		formData.append('password', password);
 		if (image) {
 			formData.append('image', image);
+			console.log('image', image);
 		}
 
 		try {
-			const response = await instance.put('/users/updateUser', formData, {
-				headers: {
-					'Content-Type': 'multipart/form-data',
-				},
-			});
+			const response = await instance.put('/users/updateUser', formData);
 			console.log(response.data);
-			// Handle response or update UI accordingly
 			alert('Profile updated successfully!');
 		} catch (error) {
 			console.error('Error updating profile:', error);
@@ -46,10 +42,10 @@ const UserSettings = () => {
 	};
 
 	return (
-		<div className='flex justify-center items-center h-screen'>
+		<div className='flex justify-center items-center h-full mt-80'>
 			<form
 				onSubmit={handleSubmit}
-				className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4'
+				className='bg-white bg-opacity-50 backdrop-blur-md rounded px-12 pt-8 pb-12'
 			>
 				<div className='mb-4'>
 					<label
@@ -63,7 +59,7 @@ const UserSettings = () => {
 						type='text'
 						value={username}
 						onChange={handleUsernameChange}
-						className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+						className='appearance-none border-none bg-white bg-opacity-70 backdrop-blur-lg rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
 					/>
 				</div>
 				<div className='mb-4'>
@@ -78,26 +74,27 @@ const UserSettings = () => {
 						type='password'
 						value={password}
 						onChange={handlePasswordChange}
-						className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+						className='appearance-none border-none bg-white bg-opacity-70 backdrop-blur-lg rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
 					/>
 				</div>
 				<div className='mb-4'>
 					<label
 						className='block text-gray-700 text-sm font-bold mb-2'
-						htmlFor='avatar'
+						htmlFor='image'
 					>
 						Avatar
 					</label>
 					<input
+						name='image'
 						accept='image/*'
 						type='file'
 						onChange={handleAvatarChange}
-						className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+						className='appearance-none bg-opacity-50 backdrop-blur-lg border-none rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
 					/>
 				</div>
 				<div className='flex items-center justify-between'>
 					<button
-						className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+						className='bg-emerald-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
 						type='submit'
 					>
 						Save Changes

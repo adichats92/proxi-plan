@@ -63,7 +63,6 @@ const getAllPosts = async (req, res) => {
 			.populate('comments')
 			.populate('userId', 'userName')
 			.exec();
-		// console.log('GetPosts:', posts);
 
 		res.json(posts);
 	} catch (error) {
@@ -74,7 +73,6 @@ const getAllPosts = async (req, res) => {
 const getPostById = async (req, res) => {
 	const { id } = req.params;
 	try {
-		// const post = await Post.findById(id);
 		const post = await Post.find({ _id: id })
 			.populate('comments')
 			.populate('userId', 'userName')
@@ -92,9 +90,6 @@ const getPostById = async (req, res) => {
 const updatePost = async (req, res) => {
 	const { id } = req.params;
 	try {
-		// const updatedPost = await Post.findByIdAndUpdate({_id,id}, req.body, {
-		// 	new: true,
-		// });
 		const updatedPost = await Post.findOneAndUpdate({ _id: id }, req.body, {
 			new: true,
 		});
@@ -110,7 +105,6 @@ const updatePost = async (req, res) => {
 const deletePost = async (req, res) => {
 	const { id } = req.params;
 	try {
-		// const deletedPost = await Post.findByIdAndDelete({_id,id});
 		const deletedPost = await Post.findOneAndDelete({ _id: id });
 		if (!deletedPost) {
 			res.status(404).json({ message: `Post with id ${id} Not Found` });

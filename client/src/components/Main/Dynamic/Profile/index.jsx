@@ -90,15 +90,21 @@ const Profile = () => {
 
 	return (
 		<div className='bg-opacity-0 mt-32'>
-			<div className='text-center mb-6'>
+			<div className='text-center flex flex-col mb-6 items-center justify-center'>
+				<div className='w-24 rounded-full overflow-hidden'>
+					<img
+						alt='Profile picture'
+						src={user.image ? user.image : '/dpdef.jpg'}
+					/>
+				</div>
 				<h2 className='text-2xl text-center font-bold text-purple-600 mb-4'>
 					{user.userName}
 				</h2>
-				<p className='flex text-gray-600 font-semibold flex-row justify-center'>
+				<div className='flex text-gray-600 font-semibold flex-row justify-center'>
 					<p className='me-1'>Now in</p>{' '}
 					{location.state && <span> {location.state}, </span>}
 					{location.name && <span>{location.name}</span>}
-				</p>
+				</div>
 			</div>
 			<div className=''>
 				{userPosts.length > 0 ? (

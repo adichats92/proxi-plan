@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Location',
 		},
-		avatarUrl: {
+		image: {
 			type: String,
 			required: false,
 		},
@@ -62,8 +62,6 @@ userSchema.pre('save', async function (next) {
 	}
 	next();
 });
-
-// userSchema.index({ location: '2dsphere' });
 
 const User = mongoose.model('User', userSchema);
 

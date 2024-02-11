@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+	html {
+		font-family: 'Proxima Nova', system-ui, sans-serif;
+	}
+}
+
 .active {
 	color: rgb(0, 255, 183);
 	font-weight: bold;

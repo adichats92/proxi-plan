@@ -1,9 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useContext } from 'react';
 import instance from '../../../../../axiosInstance';
-import PostAddRoundedIcon from '@mui/icons-material/PostAddRounded';
 import { useNavigate } from 'react-router-dom';
-import { Tooltip } from '@mui/material';
 import { PostsContext } from '../../../../../context/Posts';
 
 const CreatePost = ({ onPostCreated }) => {
@@ -65,7 +63,7 @@ const CreatePost = ({ onPostCreated }) => {
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className='flex-col w-full p-4 flex-wrap items-center justify-center text-center'
+			className='flex-col w-full bg-opacity-0 p-4 flex-wrap items-center justify-center text-center'
 		>
 			<div>
 				<input
@@ -95,13 +93,10 @@ const CreatePost = ({ onPostCreated }) => {
 				onChange={handleImageChange}
 				accept='image/*'
 			/>
-			<Tooltip title='Post'>
-				<PostAddRoundedIcon
-					onClick={handleSubmit}
-					className='text-large text-sky-400 hover:text-emerald-400 dark:hover:text-emerald-700 hover:cursor-pointer w-full'
-					fontSize='large'
-				/>
-			</Tooltip>
+			<button className='text-white text-lg font-medium bg-emerald-400 hover:bg-blue-600 py-2 px-4 rounded-lg mt-6 mb-2'>
+				{' '}
+				Create New Post
+			</button>
 		</form>
 	);
 };

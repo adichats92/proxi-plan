@@ -18,7 +18,7 @@ usersRouter.get('/currentUser', authenticate, getLoggedInUser);
 usersRouter.put(
 	'/updateUser',
 	authenticate,
-	upload.fields([{ name: 'avatar', maxCount: 1 }]),
+	upload.single('image'),
 	updateUser
 );
 

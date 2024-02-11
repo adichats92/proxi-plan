@@ -173,35 +173,35 @@ const PostsAll = () => {
 					className='modal'
 					open
 				>
-					<div className='modal-box bg-white dark:bg-gray-700 flex flex-col  p-6'>
+					<div className='modal-box bg-white bg-opacity-50 backdrop-blur-md flex flex-col  p-6'>
 						<input
 							type='text'
 							name='title'
 							placeholder='Title'
 							value={editPostData.title}
 							onChange={handleEditChange}
-							className='text-gray-800 dark:text-white bg-white dark:bg-gray-800 rounded-lg my-2'
+							className='text-gray-800 bg-white bg-opacity-70 backdrop-blur-lg rounded-lg mt-6'
 						/>
 						<textarea
 							name='text'
 							value={editPostData.text}
 							placeholder='Details'
 							onChange={handleEditChange}
-							className='text-gray-800 dark:text-white bg-white dark:bg-gray-800 rounded-lg  my-2'
+							className='text-gray-800 bg-white bg-opacity-70 backdrop-blur-lg rounded-lg  mt-6 mb-4'
 						/>
 						<div className='modal-action'>
 							<Tooltip title='Save'>
 								<TaskAltRoundedIcon
 									onClick={saveEdit}
-									fontSize='medium'
-									className='text-sky-400 hover:text-emerald-400 dark:hover:text-emerald-700 hover:cursor-pointer absolute right-6 mx-3 top-1'
+									fontSize='large'
+									className='text-emerald-400 hover:text-blue-600 hover:cursor-pointer absolute right-8 mx-3 top-1'
 								/>
 							</Tooltip>
 							<Tooltip title='Cancel'>
 								<ClearRoundedIcon
 									onClick={cancelEdit}
-									fontSize='medium'
-									className='text-orange-400 hover:text-yellow-400 dark:hover:text-yellow-700 hover:cursor-pointer absolute mx-3 right-1 top-1'
+									fontSize='large'
+									className='text-red-500 hover:text-orange-400 dark:hover:text-yellow-700 hover:cursor-pointer absolute mx-3 right-2 top-1'
 								/>
 							</Tooltip>
 						</div>
@@ -217,18 +217,15 @@ const PostsAll = () => {
 				</button>
 			</Tooltip>
 			{isModalTwoOpen && (
-				<div className='modal modal-open bg-white dark:bg-gray-800'>
-					<div className='modal-box relative bg-sky-100 dark:bg-gray-800'>
+				<div className='modal modal-open bg-black bg-opacity-30 backdrop-blur-sm'>
+					<div className='modal-box relative bg-white bg-opacity-50 backdrop-blur-md'>
 						<Tooltip title='Cancel'>
 							<ClearRoundedIcon
 								onClick={() => setIsModalTwoOpen(false)}
-								fontSize='medium'
-								className='text-orange-400 hover:text-yellow-400 dark:hover:text-yellow-700 hover:cursor-pointer absolute right-2 top-2'
+								fontSize='large'
+								className='text-red-500 hover:text-orange-400 dark:hover:text-yellow-700 hover:cursor-pointer absolute right-2 top-2'
 							/>
 						</Tooltip>
-						<h3 className='text-lg font-bold text-gray-800 dark:text-white'>
-							Create New Post
-						</h3>
 						<CreatePost onPostCreated={triggerCommentsRefreshAndCloseModal} />
 					</div>
 				</div>

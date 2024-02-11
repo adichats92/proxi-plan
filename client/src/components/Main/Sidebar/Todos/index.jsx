@@ -173,16 +173,18 @@ const Todos = () => {
 				>
 					Add New Task
 				</button>
-				<div className='bg-opacity-0 border-none justify-center items-center rounded-lg rounded-none w-full py-3 mx-3'>
-					<select
-						value={sortOrder}
-						onChange={(e) => setSortOrder(e.target.value)}
-						className='bg-white bg-opacity-80 backdrop-blur-lg border border-none text-gray-800 text-sm rounded-lg block p-2.5 '
-					>
-						<option value='createdAt'>Sort by Date</option>
-						<option value='priority'>Sort by Priority</option>
-					</select>
-				</div>
+				{todos.length > 0 && (
+					<div className='bg-opacity-0 border-none justify-center items-center rounded-lg rounded-none w-full py-3 mx-3'>
+						<select
+							value={sortOrder}
+							onChange={(e) => setSortOrder(e.target.value)}
+							className='bg-white bg-opacity-70 backdrop-blur-lg border border-none text-gray-800 text-sm rounded-lg block p-3'
+						>
+							<option value='createdAt'>Sort by Date</option>
+							<option value='priority'>Sort by Priority</option>
+						</select>
+					</div>
+				)}
 
 				{sortedTodos.map((todo) => (
 					<Card
@@ -240,17 +242,17 @@ const Todos = () => {
 			</div>
 
 			{isModalOpen && (
-				<div className='fixed inset-0 bg-gray-600 bg-opacity-50 z-50 h-full w-full flex items-center justify-center'>
-					<div className='relative bg-white flex justify-around items-center rounded-lg shadow dark:bg-gray-700 p-8'>
-						<h3 className='text-xl font-medium text-gray-900 dark:text-white absolute top-3 left-4'>
+				<div className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-50 h-full w-full flex items-center justify-center'>
+					<div className='relative bg-white backdrop-blur-md bg-opacity-50 flex justify-around items-center rounded-lg p-8'>
+						<h3 className='text-md font-medium text-gray-900 dark:text-white absolute top-3 left-4'>
 							{editingTodo ? 'Editing Now...' : 'Add New Task'}
 						</h3>
 
 						<Tooltip title='Cancel'>
 							<ClearRoundedIcon
 								onClick={toggleModal}
-								fontSize='medium'
-								className='text-orange-400 hover:text-yellow-400 dark:hover:text-yellow-700 hover:cursor-pointer absolute mx-3 right-3 top-3'
+								fontSize='large'
+								className='text-red-500 hover:text-orange-400 hover:cursor-pointer absolute mx-3 right-2 top-3'
 							/>
 						</Tooltip>
 
@@ -262,7 +264,7 @@ const Todos = () => {
 									type='text'
 									name='title'
 									placeholder='Title'
-									className='mt-2 w-full dark:bg-gray-700 text-gray-600 dark:text-gray-200 border-gray-300 dark:border-gray-600 rounded-lg focus:ring-cyan-500 focus:border-cyan-500'
+									className='mt-2 w-full text-gray-800 rounded-lg bg-white bg-opacity-70 backdrop-blur-lg'
 									value={newTodo.title}
 									onChange={handleInputChange}
 								/>
@@ -272,7 +274,7 @@ const Todos = () => {
 										name='priority'
 										value={newTodo.priority}
 										onChange={handlePriorityInputChange}
-										className='dark:bg-gray-700 text-gray-600 dark:text-gray-200 border-gray-300 dark:border-gray-600 border-sm text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5'
+										className='text-sm rounded-lg block w-full p-2.5 text-gray-800 rounded-lg bg-white bg-opacity-70 backdrop-blur-lg'
 									>
 										<option
 											value='low'
@@ -290,11 +292,11 @@ const Todos = () => {
 								type='text'
 								name='text'
 								placeholder='Description'
-								className='dark:bg-gray-700 text-gray-600 dark:text-gray-200 border-gray-300 dark:border-gray-600 border-sm text-sm rounded-lg focus:ring-cyan-500 focus:border-cyan-500 block w-full p-2.5'
+								className='text-sm rounded-lg block w-full p-2.5 text-gray-800 rounded-lg bg-white bg-opacity-70 backdrop-blur-lg'
 								value={newTodo.text}
 								onChange={handleInputChange}
 							/>
-							<div className='mt-3 text-sm flex md:flex-nowrap xs:flex-col md:flex-row justify-center items-center w-full'>
+							<div className='mt-3 text-sm flex md:flex-nowrap xs:flex-col md:flex-row justify-center items-center w-full text-gray-800 rounded-lg'>
 								<div className='flex w-full justify-between items-center ms-3'>
 									{/* Start Date */}
 									<div className='flex my-2 mx-1 text-xs'>
@@ -309,7 +311,7 @@ const Todos = () => {
 											onChange={(date) => handleDateTimeChange('start', date)}
 											showTimeSelect
 											dateFormat='Pp'
-											className='shrink flex-grow bg-gray-100 rounded dark:bg-gray-500 p-0 ps-2 ms-1 text-xs max-w-20 border-none'
+											className='shrink flex-grow rounded p-0 ps-2 ms-1 text-xs max-w-20 border-none text-gray-800 rounded-lg bg-white bg-opacity-70 backdrop-blur-lg'
 										/>
 									</div>
 
@@ -326,7 +328,7 @@ const Todos = () => {
 											onChange={(date) => handleDateTimeChange('end', date)}
 											showTimeSelect
 											dateFormat='Pp'
-											className='flex rounded bg-gray-100 dark:bg-gray-500 p-0 ps-2 ms-1 text-xs max-w-20  border-none'
+											className='flex rounded text-gray-800 rounded-lg bg-white bg-opacity-70 backdrop-blur-lg p-0 ps-2 ms-1 text-xs max-w-20  border-none'
 										/>
 									</div>
 									<Tooltip title='All Day'>
@@ -344,16 +346,16 @@ const Todos = () => {
 									<Tooltip title='Update'>
 										<PublishedWithChangesRoundedIcon
 											onClick={addOrUpdateTodo}
-											fontSize='medium'
-											className='text-sky-400 hover:text-teal-400 dark:hover:text-teal-700 hover:cursor-pointer mx-2'
+											fontSize='large'
+											className='text-emerald-400 hover:text-blue-600 hover:cursor-pointer mx-4'
 										/>
 									</Tooltip>
 								) : (
 									<Tooltip title='Save'>
 										<TaskAltRoundedIcon
 											onClick={addOrUpdateTodo}
-											fontSize='medium'
-											className='text-sky-400 hover:text-emerald-400 dark:hover:text-emerald-700 hover:cursor-pointer mx-2'
+											fontSize='large'
+											className='text-emerald-400 hover:text-blue-600 hover:cursor-pointer mx-4'
 										/>
 									</Tooltip>
 								)}
@@ -362,8 +364,8 @@ const Todos = () => {
 									<Tooltip title='Cancel'>
 										<ClearRoundedIcon
 											onClick={cancelEditing}
-											fontSize='medium'
-											className='text-orange-400 hover:text-yellow-400 dark:hover:text-yellow-700 hover:cursor-pointer'
+											fontSize='large'
+											className='text-red-500 hover:text-orange-400 hover:cursor-pointer'
 										/>
 									</Tooltip>
 								)}
