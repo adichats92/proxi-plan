@@ -6,6 +6,8 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import Weather from './Weather';
 import Map from './Map';
 import News from './News';
+import { Tooltip } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const Dynamic = () => {
 	const { posts } = useContext(PostsContext);
@@ -24,7 +26,7 @@ const Dynamic = () => {
 	}, [posts]);
 
 	return (
-		<div>
+		<div className='mt-2'>
 			<div className='flex-col justify-center flex-wrap items-center shadow-none rounded-none h-full'>
 				{!weeklyPosts ? (
 					<span className='loading loading-ring loading-lg h-60 mt-32'></span>
@@ -33,7 +35,7 @@ const Dynamic = () => {
 						autoPlay
 						infiniteLoop
 						showThumbs={false}
-						className='min-h-80 mt-4'
+						className='h-80 mt-4'
 					>
 						{weeklyPosts.map((post, index) => (
 							<div
@@ -46,20 +48,29 @@ const Dynamic = () => {
 					</Carousel>
 				) : (
 					<p className='text-gray-800 dark:text-white text-center'>
-						No posts from the last week.
+						No posts from the last week in the area.
 					</p>
 				)}
 			</div>
-			<div className='flex pt-12 flex-row flex-wrap justify-around items-center my-6'>
-				<div className='rounded-none border-none shadow-none w-96 h-96 m-2'>
+			<div className='flex flex flex-wrap justify-around items-center mt-12'>
+				<div className='md:ms-5 my-8 md:my-2'>
 					<Weather />
 				</div>
-				<div className='rounded-none border-none w-96 h-96 shadow-none m-2'>
+
+				<div className='rounded-none border-none h-96 w-96 shadow-none my-8 md:my-2 md:me-6'>
 					<Map />
 				</div>
-				<div className='rounded-none shadow-none border-none w-96 h-96 m-2 p-4 bg-white bg-opacity-50 backdrop-blur-md'>
+				<div className='rounded-none shadow-none border-none w-96 h-96 my-8 md:m-6 p-4 bg-white bg-opacity-50 backdrop-blur-md'>
 					<News />
 				</div>
+				<Tooltip title='Local Posts'>
+					<Link
+						to='/home/community'
+						className=' bg-emerald-400 text-lg font-light hover:bg-blue-600 hover:ps-12 transition-all duration-900 ease-in-out border-none rounded-none text-white fixed top-20 left-0 px-4 py-3'
+					>
+						Community
+					</Link>
+				</Tooltip>
 			</div>
 		</div>
 	);

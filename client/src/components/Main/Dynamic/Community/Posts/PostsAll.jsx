@@ -63,13 +63,11 @@ const PostsAll = () => {
 				editPostData
 			);
 
-			console.log('Updated Post RES', response.data);
-
 			const updatedPost = response.data;
 			const updatedPosts = posts.map((post) =>
 				post._id === editPostData._id ? updatedPost : post
 			);
-			console.log('updatedpostres', updatedPosts);
+
 			setPosts(updatedPosts);
 			setIsModalOpen(false);
 			setEditPostData({
@@ -89,7 +87,6 @@ const PostsAll = () => {
 		instance
 			.get('/users/currentUser')
 			.then((res) => {
-				console.log('Api get user data response:', res.data);
 				setCurrentUser(res.data.user._id);
 			})
 			.catch((err) => {
@@ -103,26 +100,26 @@ const PostsAll = () => {
 	};
 
 	return (
-		<div className='bg-white bg-opacity-0 backdrop-blur-xs text-gray-800 p-6 mx-4 md:mx-20 lg:mx-72 xl:mx-96'>
+		<div className='bg-white bg-opacity-0 backdrop-blur-xs text-gray-800 lg:p-12 mx-4 md:mx-20 lg:mx-72 xl:mx-96'>
 			{sortedPosts.map((post) => (
 				<Card
 					key={post._id}
-					className='ms-2 mb-14 bg-white bg-opacity-50 backdrop-blur-md'
+					className='ms-2 mb-14 bg-white bg-opacity-50 backdrop-blur-md md:px-12 md:py-4'
 				>
 					<div>
 						{currentUser === post.userId._id && (
 							<div className='flex flex-row nowrap'>
 								<Tooltip title='Update'>
 									<EditIcon
-										fontSize='medium'
-										className='text-sky-400 hover:text-teal-400 hover:cursor-pointer absolute right-14 mx-2'
+										fontSize='large'
+										className='text-sky-500 hover:text-emerald-400 transition-all duration-900 ease-in-out hover:cursor-pointer absolute top-4 right-14 mx-2'
 										onClick={() => openEditModal(post)}
 									/>
 								</Tooltip>
 								<Tooltip title='Remove'>
 									<DeleteOutlineIcon
-										fontSize='medium'
-										className='text-red-400 hover:text-red-600 absolute right-4 hover:cursor-pointer mx-2 '
+										fontSize='large'
+										className='text-red-500 hover:text-orange-400 transition-all duration-900 ease-in-out absolute top-4 right-4 hover:cursor-pointer mx-2 '
 										onClick={() => deletePost(post._id)}
 									/>
 								</Tooltip>
@@ -136,7 +133,7 @@ const PostsAll = () => {
 								<p className='my-3 text-left'>{post.text}</p>
 							</div>
 							{post.imageUrl && (
-								<div className='h-96 md:m-2 flex items-center justify-center overflow-hidden'>
+								<div className='h-96 md:m-2 w-full bg-white bg-opacity-0  flex items-center justify-center overflow-hidden'>
 									<img
 										src={post.imageUrl}
 										alt='image'
@@ -211,10 +208,9 @@ const PostsAll = () => {
 			)}
 			<Tooltip title='Create Post'>
 				<button
-					className=' bg-emerald-400 hover:bg-blue-600 border-none rounded-none hover:ps-12 transition-all duration-900 ease-in-out text-white fixed top-48 left-0 px-4 py-3'
+					className=' bg-emerald-400 hover:bg-blue-600 border-none rounded-none hover:ps-12 transition-all duration-900 ease-in-out text-white fixed top-60 left-0 px-4 py-3'
 					onClick={() => setIsModalTwoOpen(true)}
 				>
-					{/* <PostAddIcon fontSize='medium' /> */}
 					New
 				</button>
 			</Tooltip>

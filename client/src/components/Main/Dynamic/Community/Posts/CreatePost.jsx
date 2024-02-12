@@ -36,9 +36,7 @@ const CreatePost = ({ onPostCreated }) => {
 		}
 
 		try {
-			const res = await instance.post('/api/posts', formData);
-
-			console.log('imagepostresponse', res.data);
+			await instance.post('/api/posts', formData);
 
 			alert('Post created successfully!');
 			setPostData({ title: '', text: '' });

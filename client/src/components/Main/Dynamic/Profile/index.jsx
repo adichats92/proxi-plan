@@ -82,7 +82,6 @@ const Profile = () => {
 		instance
 			.get('/api/apilocation/')
 			.then((response) => {
-				console.log('response profile location', response);
 				setLocation(response.data.apiLocationInstance);
 			})
 			.catch((error) => console.error('Error fetching user location:', error));
@@ -122,21 +121,21 @@ const Profile = () => {
 								{user._id === post.userId._id && (
 									<Card
 										key={post._id}
-										className='mb-14 bg-white bg-opacity-50 backdrop-blur-md'
+										className='mb-14 bg-white bg-opacity-50 backdrop-blur-md md:px-12 md:py-4'
 									>
 										<div>
 											<div className='flex flex-row nowrap'>
 												<Tooltip title='Update'>
 													<EditIcon
-														fontSize='medium'
-														className='text-sky-400 hover:text-teal-400 hover:cursor-pointer absolute right-14 mx-2'
+														fontSize='large'
+														className='text-sky-500 hover:text-emerald-400 transition-all duration-900 ease-in-out hover:cursor-pointer absolute top-4 right-14 mx-2'
 														onClick={() => openEditModal(post)}
 													/>
 												</Tooltip>
 												<Tooltip title='Remove'>
 													<DeleteOutlineIcon
-														fontSize='medium'
-														className='text-red-400 hover:text-red-600 absolute right-4 hover:cursor-pointer mx-2 '
+														fontSize='large'
+														className='text-red-500 hover:text-orange-400 transition-all duration-900 ease-in-out absolute top-4 right-4 hover:cursor-pointer mx-2 '
 														onClick={() => deletePost(post._id)}
 													/>
 												</Tooltip>
@@ -150,11 +149,11 @@ const Profile = () => {
 													<p className='my-3 text-left'>{post.text}</p>
 												</div>
 												{post.imageUrl && (
-													<div className='justify-center rounded-md overflow-hidden'>
+													<div className='h-96 md:m-2 w-full bg-white bg-opacity-0  flex items-center justify-center overflow-hidden'>
 														<img
 															src={post.imageUrl}
 															alt='image'
-															className='md:h-96 h-60 w-60 md:w-96 p-2 m-4'
+															className='object-contain max-w-full max-h-full w-full h-full'
 														/>
 													</div>
 												)}

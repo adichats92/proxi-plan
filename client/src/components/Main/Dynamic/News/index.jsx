@@ -31,7 +31,6 @@ const News = () => {
 		instance
 			.get('/api/apilocation/')
 			.then((response) => {
-				console.log('response for news apilocation', response);
 				setCountry(response.data.apiLocationInstance.country.toLowerCase());
 			})
 			.catch((error) => console.error('Error fetching user location:', error));

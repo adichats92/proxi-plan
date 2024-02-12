@@ -1,13 +1,30 @@
 import Login from './User/Login';
 import Register from './User/Register';
 import { AuthContext } from '../../context/Auth';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import SideBar from './Sidebar';
 import { Outlet } from 'react-router-dom';
 import { Tooltip } from '@mui/material';
+import { LoadScript } from '@react-google-maps/api';
+import instance from '../../axiosInstance';
 
 const Main = () => {
 	const { user, loading } = useContext(AuthContext);
+	const [apiKey, setApiKey] = useState('');
+
+	useEffect(() => {
+		const fetchApiKey = async () => {
+			try {
+				const response = await instance.get('/api/keys');
+				const keys = await response.data;
+				setApiKey(keys.googleMap);
+			} catch (error) {
+				console.error('Error fetching API key:', error);
+			}
+		};
+
+		fetchApiKey();
+	}, []);
 
 	if (loading) {
 		return (
@@ -28,16 +45,22 @@ const Main = () => {
 							className='drawer-toggle'
 						/>
 						<div className='drawer-content'>
-							<div>
-								<Outlet />
-							</div>
+							{apiKey && (
+								<LoadScript
+									googleMapsApiKey={apiKey}
+									key='google-map-script'
+								>
+									<div>
+										<Outlet />
+									</div>
+								</LoadScript>
+							)}
 							<Tooltip title='Open Sidebar'>
 								<label
 									htmlFor='my-drawer'
-									className='btn text-lg font-light bg-emerald-400 hover:bg-blue-600 hover:ps-12 border-none drawer-button rounded-none text-white fixed top-96 left-0 transition-all duration-900 ease-in-out'
+									className='btn text-lg font-light bg-emerald-400 hover:bg-blue-600 hover:ps-12 border-none drawer-button rounded-none text-white fixed top-40 left-0 transition-all duration-900 ease-in-out'
 								>
-									{/* <MenuOpenIcon /> */}
-									Side
+									Tasks
 								</label>
 							</Tooltip>
 						</div>

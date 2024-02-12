@@ -69,7 +69,7 @@ const MapComponent = () => {
 					position: 'relative',
 					top: '-60px',
 					left: '15px',
-					zIndex: '1000',
+					zIndex: '40',
 					borderRadius: '2px',
 					padding: '5px',
 				}}

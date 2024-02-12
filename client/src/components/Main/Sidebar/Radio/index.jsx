@@ -19,15 +19,10 @@ export default function Radio() {
 
 	const [isAutoPlayEnabled, setIsAutoPlayEnabled] = useState(false);
 
-	console.log('USER STATE', userState);
-	console.log('Stations', stations);
-	console.log('COUNTRY', userCountryCode);
-
 	useEffect(() => {
 		instance
 			.get('/api/apilocation/')
 			.then((response) => {
-				console.log('response for radio  apilocation', response);
 				const locationState =
 					response.data.apiLocationInstance.state ||
 					response.data.apiLocationInstance.name;

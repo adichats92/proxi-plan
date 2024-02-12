@@ -15,7 +15,6 @@ const NewsDetails = () => {
 		instance
 			.get('/api/apilocation/')
 			.then((response) => {
-				console.log('response for news apilocation', response);
 				setCountry(response.data.apiLocationInstance.country.toLowerCase());
 			})
 			.catch((error) => console.error('Error fetching user location:', error));
@@ -28,7 +27,6 @@ const NewsDetails = () => {
 			try {
 				const res = await fetch(apiUrl);
 				const data = await res.json();
-				console.log(data);
 				setNews(data.results || []);
 			} catch (error) {
 				console.error('Error fetching news:', error);

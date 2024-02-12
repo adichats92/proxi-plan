@@ -36,7 +36,7 @@ function Header() {
 								<li>
 									<NavLink
 										to={'home/community'}
-										className='py-2 mt-1'
+										className='py-2 mt-1 hover:text-purple-400 transition-all duration-900 ease-in-out'
 									>
 										Community
 									</NavLink>
@@ -44,7 +44,7 @@ function Header() {
 								<li>
 									<NavLink
 										to={'home/news'}
-										className='pt-2'
+										className='pt-2 hover:text-purple-400 transition-all duration-900 ease-in-out'
 									>
 										News
 									</NavLink>

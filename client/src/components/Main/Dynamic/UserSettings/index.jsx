@@ -28,12 +28,10 @@ const UserSettings = () => {
 		formData.append('password', password);
 		if (image) {
 			formData.append('image', image);
-			console.log('image', image);
 		}
 
 		try {
-			const response = await instance.put('/users/updateUser', formData);
-			console.log(response.data);
+			await instance.put('/users/updateUser', formData);
 			alert('Profile updated successfully!');
 		} catch (error) {
 			console.error('Error updating profile:', error);

@@ -10,8 +10,6 @@ export const PostsProvider = ({ children }) => {
 	const longitude = coordinates[0];
 	const latitude = coordinates[1];
 
-	console.log('PostLon:', longitude, 'PostLat:', latitude);
-
 	const fetchPosts = async () => {
 		if (coordinates[0] && coordinates[1] && maxDistance) {
 			try {
@@ -27,18 +25,11 @@ export const PostsProvider = ({ children }) => {
 
 	useEffect(() => {
 		if (latitude && longitude && maxDistance) {
-			console.log(
-				latitude,
-				longitude,
-				maxDistance,
-				'before doing instance.get'
-			);
 			instance
 				.get(
 					`/api/posts?longitude=${longitude}&latitude=${latitude}&maxDistance=${maxDistance}`
 				)
 				.then((response) => {
-					console.log('Api post response:', response.data);
 					setPosts(response.data);
 				})
 				.catch((err) => {

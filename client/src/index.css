@@ -14,8 +14,8 @@
 }
 
 .weather-widget {
-	width: 96rem;
-	height: 96rem;
+	width: 24rem;
+	height: 24rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
