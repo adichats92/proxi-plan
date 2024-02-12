@@ -100,11 +100,11 @@ const PostsAll = () => {
 	};
 
 	return (
-		<div className='bg-white bg-opacity-0 backdrop-blur-xs text-gray-800 lg:p-12 mx-4 md:mx-20 lg:mx-72 xl:mx-96'>
+		<div className='bg-white bg-opacity-0 backdrop-blur-xs text-gray-800 mx-4 md:mx-20 lg:mx-56 xl:mx-72 2xl:mx-96'>
 			{sortedPosts.map((post) => (
 				<Card
 					key={post._id}
-					className='ms-2 mb-14 bg-white bg-opacity-50 backdrop-blur-md md:px-12 md:py-4'
+					className='ms-2 mb-14 bg-white bg-opacity-50 backdrop-blur-md xl:px-12 md:py-4'
 				>
 					<div>
 						{currentUser === post.userId._id && (

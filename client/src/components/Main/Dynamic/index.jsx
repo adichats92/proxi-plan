@@ -66,7 +66,7 @@ const Dynamic = () => {
 				<Tooltip title='Local Posts'>
 					<Link
 						to='/home/community'
-						className=' bg-emerald-400 text-lg font-light hover:bg-blue-600 hover:ps-12 transition-all duration-900 ease-in-out border-none rounded-none text-white fixed top-20 left-0 px-4 py-3'
+						className=' bg-emerald-400 text-lg font-light hover:bg-blue-600 hover:ps-20 transition-all duration-900 ease-in-out border-none rounded-none text-white fixed top-20 left-0 px-4 py-3'
 					>
 						Community
 					</Link>
