@@ -106,7 +106,7 @@ const News = () => {
 						{currentArticle.description}
 					</p>
 					<a
-						className='absolute bottom-6 inline-block bg-emerald-400 text-white py-2 px-4 rounded hover:bg-blue-600 transition'
+						className='absolute bottom-6 inline-block bg-emerald-400 text-white py-2 px-4 rounded hover:bg-blue-600 transition-all duration-900 ease-in-out'
 						href={currentArticle.link}
 						target='_blank'
 						rel='noopener noreferrer'

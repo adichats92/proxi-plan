@@ -6,7 +6,6 @@ const uploadImage = async (file) => {
 		const filePath = file.path;
 		const result = await cloudinary.uploader.upload(filePath);
 		file = result;
-		console.log('CL UP RES', result);
 		fs.unlinkSync(filePath);
 		return result.secure_url;
 	} catch (error) {

@@ -93,7 +93,7 @@ const CreatePost = ({ onPostCreated }) => {
 				onChange={handleImageChange}
 				accept='image/*'
 			/>
-			<button className='text-white text-lg font-medium bg-emerald-400 hover:bg-blue-600 py-2 px-4 rounded-lg mt-6 mb-2'>
+			<button className='text-white text-lg transition-all duration-900 ease-in-out font-medium bg-emerald-400 hover:bg-blue-600 py-2 px-4 rounded-lg mt-6 mb-2'>
 				{' '}
 				Create New Post
 			</button>

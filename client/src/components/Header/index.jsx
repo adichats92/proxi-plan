@@ -9,6 +9,11 @@ import PersonIcon from '@mui/icons-material/Person';
 function Header() {
 	const { user, logout } = useContext(AuthContext);
 
+	const capitalizeFirstLetter = (string) => {
+		if (!string) return '';
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	};
+
 	return (
 		<>
 			{user ? (
@@ -65,7 +70,7 @@ function Header() {
 									className='mt-3 z-[1] text-white p-2 shadow menu menu-sm dropdown-content bg-black bg-opacity-60 backdrop-blur-lg rounded-box w-52'
 								>
 									<li className='text-center m-2 block text-sm pt-1 pe-2 my-2'>
-										Hello {user.userName}!{' '}
+										Hello {capitalizeFirstLetter(user.userName)}!{' '}
 									</li>
 									<li>
 										<Link

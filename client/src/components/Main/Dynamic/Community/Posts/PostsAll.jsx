@@ -211,7 +211,7 @@ const PostsAll = () => {
 			)}
 			<Tooltip title='Create Post'>
 				<button
-					className=' bg-emerald-400 hover:bg-blue-600 border-none rounded-lg text-white fixed top-48 left-2 px-4 py-3'
+					className=' bg-emerald-400 hover:bg-blue-600 border-none rounded-none hover:ps-12 transition-all duration-900 ease-in-out text-white fixed top-48 left-0 px-4 py-3'
 					onClick={() => setIsModalTwoOpen(true)}
 				>
 					{/* <PostAddIcon fontSize='medium' /> */}

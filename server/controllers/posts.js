@@ -2,7 +2,6 @@ const Post = require('../models/post');
 const User = require('../models/user');
 const Location = require('../models/location');
 const uploadImage = require('./cloudinary').uploadImage;
-// const cloudinary = require('../config/cloudinary');
 
 const createPost = async (req, res) => {
 	const { id } = req.user;

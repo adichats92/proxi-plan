@@ -167,7 +167,7 @@ const Todos = () => {
 			<div className='mt-6 lg:mx-0 flex flex-col pb-96'>
 				<button
 					onClick={toggleModal}
-					className='bg-opacity-20 backdrop-blur-sm bg-emerald-400 hover:bg-blue-300 border-none rounded-lg absolute top-52 rounded-none w-full text-white px-28 py-3'
+					className='bg-opacity-20 backdrop-blur-sm bg-emerald-400 transition-all duration-900 ease-in-out hover:bg-blue-300 border-none rounded-lg absolute top-52 rounded-none w-full text-white px-28 py-3'
 				>
 					Add New Task
 				</button>
@@ -223,14 +223,14 @@ const Todos = () => {
 									<EditNoteRoundedIcon
 										fontSize='small'
 										onClick={() => startEditing(todo)}
-										className='text-white hover:text-sky-400 dark:hover:text-sky-700 hover:cursor-pointer mx-2'
+										className='text-white transition-all duration-900 ease-in-out hover:text-sky-400 dark:hover:text-sky-700 hover:cursor-pointer mx-2'
 									/>
 								</Tooltip>
 								<Tooltip title='Delete'>
 									<DeleteOutlineRoundedIcon
 										fontSize='small'
 										onClick={() => deleteTodo(todo._id)}
-										className='ms-0 text-white hover:text-red-400 dark:hover:text-red-700 hover:cursor-pointer'
+										className='ms-0 transition-all duration-900 ease-in-out text-white hover:text-red-400 dark:hover:text-red-700 hover:cursor-pointer'
 									/>
 								</Tooltip>
 							</div>

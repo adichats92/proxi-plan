@@ -4,7 +4,6 @@ import { AuthContext } from '../../context/Auth';
 import { useContext } from 'react';
 import SideBar from './Sidebar';
 import { Outlet } from 'react-router-dom';
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import { Tooltip } from '@mui/material';
 
 const Main = () => {
@@ -35,7 +34,7 @@ const Main = () => {
 							<Tooltip title='Open Sidebar'>
 								<label
 									htmlFor='my-drawer'
-									className='btn text-lg font-light bg-emerald-400 hover:bg-blue-600 border-none drawer-button rounded-lg text-white fixed top-96 left-2'
+									className='btn text-lg font-light bg-emerald-400 hover:bg-blue-600 hover:ps-12 border-none drawer-button rounded-none text-white fixed top-96 left-0 transition-all duration-900 ease-in-out'
 								>
 									{/* <MenuOpenIcon /> */}
 									Side

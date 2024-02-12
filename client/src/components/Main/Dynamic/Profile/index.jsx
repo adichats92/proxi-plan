@@ -88,6 +88,11 @@ const Profile = () => {
 			.catch((error) => console.error('Error fetching user location:', error));
 	}, []);
 
+	const capitalizeFirstLetter = (string) => {
+		if (!string) return '';
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	};
+
 	return (
 		<div className='bg-opacity-0 mt-32'>
 			<div className='text-center flex flex-col mb-6 items-center justify-center'>
@@ -98,7 +103,7 @@ const Profile = () => {
 					/>
 				</div>
 				<h2 className='text-2xl text-center font-bold text-purple-600 mb-4'>
-					{user.userName}
+					{capitalizeFirstLetter(user.userName)}
 				</h2>
 				<div className='flex text-gray-600 font-semibold flex-row justify-center'>
 					<p className='me-1'>Now in</p>{' '}

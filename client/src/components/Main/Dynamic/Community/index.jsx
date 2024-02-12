@@ -1,6 +1,5 @@
 import PostsAll from './Posts/PostsAll';
 import { useNavigate } from 'react-router-dom';
-import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import { Tooltip } from '@mui/material';
 
 const Community = () => {
@@ -16,7 +15,7 @@ const Community = () => {
 			<PostsAll />
 			<Tooltip title='Previous'>
 				<button
-					className=' bg-emerald-400 hover:bg-blue-600 border-none rounded-lg text-white fixed top-72 left-2 px-4 py-3'
+					className=' bg-emerald-400 hover:bg-blue-600 hover:ps-12 transition-all duration-900 ease-in-out border-none rounded-none text-white fixed top-72 left-0 px-4 py-3'
 					onClick={handleGoBackClick}
 				>
 					{/* <ArrowBackRoundedIcon fontSize='medium' /> */}

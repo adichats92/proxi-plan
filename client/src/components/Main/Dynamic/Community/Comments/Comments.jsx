@@ -30,9 +30,6 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 		}
 	};
 
-	// console.log('Comments', comments);
-	// console.log('Updated Comments'), setComments;
-	// Add a new comment
 	const createComment = async () => {
 		if (!newCommentText.trim()) return;
 		try {
@@ -47,7 +44,6 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 		}
 	};
 
-	// Update a comment
 	const saveEdit = async () => {
 		try {
 			await instance.put(
@@ -68,7 +64,6 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 		}
 	};
 
-	// Delete a comment
 	const deleteComment = async (commentId) => {
 		try {
 			await instance.delete(`/api/posts/${postId}/comments/${commentId}`);
@@ -82,7 +77,6 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 		}
 	};
 
-	// Cancel edit
 	const cancelEdit = () => {
 		setIsEditModalOpen(false);
 		setEditCommentData({ text: '' });
@@ -112,7 +106,7 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 			></textarea>
 			<SendIcon
 				onClick={createComment}
-				className='text-emerald-400 dark:text-emerald-400 hover:cursor-pointer hover:text-blue-600 dark:hover:text-emerald-700 absolute top-24 right-8 pb-2'
+				className='text-emerald-400 transition-all duration-900 ease-in-out hover:cursor-pointer hover:text-blue-600 dark:hover:text-emerald-700 absolute top-24 right-8 pb-2'
 				fontSize='large'
 			/>
 

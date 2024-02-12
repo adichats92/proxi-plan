@@ -36,9 +36,6 @@ const getTodoById = async (req, res) => {
 const updateTodo = async (req, res) => {
 	const { id } = req.params;
 	try {
-		// const updatedTodo = await Todo.findByIdAndUpdate({_id,id}, req.body, {
-		// 	new: true,
-		// });
 		const updatedTodo = await Todo.findOneAndUpdate({ _id: id }, req.body, {
 			new: true,
 		});
@@ -54,7 +51,6 @@ const updateTodo = async (req, res) => {
 const deleteTodo = async (req, res) => {
 	const { id } = req.params;
 	try {
-		// const deletedTodo = await Todo.findByIdAndDelete({_id,id});
 		const deletedTodo = await Todo.findOneAndDelete({ _id: id });
 		if (!deletedTodo) {
 			res.status(404).json({ message: `Todo with id ${id} Not Found` });

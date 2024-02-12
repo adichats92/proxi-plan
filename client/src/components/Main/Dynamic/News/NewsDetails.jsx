@@ -2,8 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 import instance from '../../../../axiosInstance';
 import { AuthContext } from '../../../../context/Auth';
 import { LocationContext } from '../../../../context/Location';
-import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded';
 import { useNavigate } from 'react-router-dom';
+import { Tooltip } from '@mui/material';
 
 const NewsDetails = () => {
 	const [country, setCountry] = useState('');
@@ -66,12 +66,15 @@ const NewsDetails = () => {
 						<p className='text-sm text-gray-600 mt-2'>
 							Published at: {article.pubDate}
 						</p>
-						<button
-							className=' bg-emerald-400 hover:bg-blue-600 border-none rounded-lg text-white fixed top-72 left-2 px-4 py-3'
-							onClick={handleGoBackClick}
-						>
-							<ArrowBackRoundedIcon fontSize='medium' />
-						</button>
+						<Tooltip title='Previous'>
+							<button
+								className=' bg-emerald-400 hover:bg-blue-600 hover:ps-12 transition-all duration-900 ease-in-out border-none rounded-none text-white fixed top-72 left-0 px-4 py-3'
+								onClick={handleGoBackClick}
+							>
+								{/* <ArrowBackRoundedIcon fontSize='medium' /> */}
+								Back
+							</button>
+						</Tooltip>
 					</div>
 				))
 			) : (
@@ -79,12 +82,15 @@ const NewsDetails = () => {
 					<p className='text-center text-gray-800 p-2 m-2'>
 						No news available for {country}.
 					</p>
-					<button
-						className=' bg-emerald-400 hover:bg-blue-600 border-none rounded-lg text-white fixed top-72 left-2 px-4 py-3'
-						onClick={handleGoBackClick}
-					>
-						<ArrowBackRoundedIcon fontSize='medium' />
-					</button>
+					<Tooltip title='Previous'>
+						<button
+							className=' bg-emerald-400 hover:bg-blue-600 hover:ps-12 transition-all duration-900 ease-in-out border-none rounded-none text-white fixed top-72 left-0 px-4 py-3'
+							onClick={handleGoBackClick}
+						>
+							{/* <ArrowBackRoundedIcon fontSize='medium' /> */}
+							Back
+						</button>
+					</Tooltip>
 				</>
 			)}
 		</div>

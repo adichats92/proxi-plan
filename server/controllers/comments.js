@@ -42,7 +42,6 @@ const getAllComments = async (req, res) => {
 const getCommentById = async (req, res) => {
 	const { id } = req.params;
 	try {
-		// const comment = await Comment.findById(id);
 		const comment = await Comment.find({ _id: id }).populate(
 			'userId',
 			'userName'
@@ -59,9 +58,6 @@ const getCommentById = async (req, res) => {
 const updateComment = async (req, res) => {
 	const { id } = req.params;
 	try {
-		// const updatedComment = await Comment.findByIdAndUpdate({_id,id}, req.body, {
-		// 	new: true,
-		// });
 		const updatedComment = await Comment.findOneAndUpdate(
 			{ _id: id },
 			req.body,
@@ -81,7 +77,6 @@ const updateComment = async (req, res) => {
 const deleteComment = async (req, res) => {
 	const { id } = req.params;
 	try {
-		// const deletedComment = await Comment.findByIdAndDelete({_id,id});
 		const deletedComment = await Comment.findOneAndDelete({ _id: id });
 		if (!deletedComment) {
 			res.status(404).json({ message: `Comment with id ${id} Not Found` });
