@@ -45,7 +45,7 @@ const UserSettings = () => {
 		<div className='flex justify-center items-center h-full mt-80'>
 			<form
 				onSubmit={handleSubmit}
-				className='bg-white bg-opacity-50 backdrop-blur-md rounded px-12 pt-8 pb-12'
+				className='bg-white bg-opacity-50 backdrop-blur-md rounded-lg px-12 pt-8 pb-12'
 			>
 				<div className='mb-4'>
 					<label

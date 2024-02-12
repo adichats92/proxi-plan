@@ -35,9 +35,10 @@ const Main = () => {
 							<Tooltip title='Open Sidebar'>
 								<label
 									htmlFor='my-drawer'
-									className='btn bg-emerald-400 hover:bg-blue-600 border-none drawer-button rounded-lg text-white fixed top-96 left-2'
+									className='btn text-lg font-light bg-emerald-400 hover:bg-blue-600 border-none drawer-button rounded-lg text-white fixed top-96 left-2'
 								>
-									<MenuOpenIcon />
+									{/* <MenuOpenIcon /> */}
+									Side
 								</label>
 							</Tooltip>
 						</div>

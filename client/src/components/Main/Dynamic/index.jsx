@@ -38,7 +38,7 @@ const Dynamic = () => {
 						{weeklyPosts.map((post, index) => (
 							<div
 								key={index}
-								className='min-h-80 bg-white bg-opacity-40 backdrop-blur-md flex w-full justify-center'
+								className='min-h-80 bg-white bg-opacity-40 backdrop-blur-md flex w-full'
 							>
 								<PostCard post={post} />
 							</div>

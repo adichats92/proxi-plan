@@ -6,8 +6,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import TaskAltRoundedIcon from '@mui/icons-material/TaskAltRounded';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import instance from '../../../../../axiosInstance';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { formatDistanceToNow, parseISO } from 'date-fns';
+import SendIcon from '@mui/icons-material/Send';
 
 // eslint-disable-next-line react/prop-types
 const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
@@ -110,9 +110,9 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 				className='bg-white dark:bg-gray-800 text-gray-800 dark:text-white rounded-md border-sm w-full flex my-3'
 				placeholder='Write a comment...'
 			></textarea>
-			<AddCircleOutlineIcon
+			<SendIcon
 				onClick={createComment}
-				className='text-emerald-400 dark:text-emerald-600 hover:cursor-pointer hover:text-emerald-500 dark:hover:text-emerald-700 absolute top-3 right-12'
+				className='text-emerald-400 dark:text-emerald-400 hover:cursor-pointer hover:text-blue-600 dark:hover:text-emerald-700 absolute top-24 right-8 pb-2'
 				fontSize='large'
 			/>
 
@@ -158,7 +158,7 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 					onClick={handleStopPropagation}
 					className='z-50 absolute top-0 flex items-center justify-center w-full bg-transparent'
 				>
-					<div className='modal-box flex w-full bg-white dark:bg-gray-800'>
+					<div className='modal-box flex w-full bg-white bg-opacity-30 backdrop-blur-md'>
 						<textarea
 							value={editCommentData.text}
 							name='text'
@@ -166,18 +166,19 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 								setEditCommentData({ ...editCommentData, text: e.target.value })
 							}
 							onClick={handleStopPropagation}
-							className='bg-white dark:text-white text-gray-800 dark:bg-gray-700 w-full m-3 rounded'
+							className='bg-white bg-opacity-70 backdrop-blur-lg text-gray-800 w-full m-3 mt-6 rounded'
 						></textarea>
 						<div className='modal-action'>
 							<TaskAltRoundedIcon
 								onClick={saveEdit}
-								className='text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-700
-                            dark:emerald-600 hover:cursor-pointer absolute mx-2 top-2 right-8'
+								fontSize='large'
+								className='text-emerald-400 hover:text-blue-600
+                            hover:cursor-pointer absolute mx-2 top-2 right-12'
 							/>
 							<ClearRoundedIcon
 								onClick={cancelEdit}
-								className='text-orange-400 hover:text-yellow-400 dark:hover:text-orange-700
-                            dark:text-orange hover:cursor-pointer absolute mx-2 top-2 right-2'
+								fontSize='large'
+								className='text-red-500 hover:text-orange-400 hover:cursor-pointer absolute mx-2 top-2 right-2'
 							/>
 						</div>
 					</div>

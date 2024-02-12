@@ -6,8 +6,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 import EditNoteRoundedIcon from '@mui/icons-material/EditNoteRounded';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
-import TaskAltRoundedIcon from '@mui/icons-material/TaskAltRounded';
-import PublishedWithChangesRoundedIcon from '@mui/icons-material/PublishedWithChangesRounded';
 import { TextareaAutosize, Tooltip } from '@mui/material';
 
 const Todos = () => {
@@ -242,13 +240,13 @@ const Todos = () => {
 			</div>
 
 			{isModalOpen && (
-				<div className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-50 h-full w-full flex items-center justify-center'>
-					<div className='relative bg-white backdrop-blur-md bg-opacity-50 flex justify-around items-center rounded-lg p-8'>
+				<div className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-md  z-50 h-full w-full flex items-center justify-center'>
+					<div className='relative left-24 bg-white backdrop-blur-lg bg-opacity-70 flex justify-around items-center rounded-lg p-8'>
 						<h3 className='text-md font-medium text-gray-900 dark:text-white absolute top-3 left-4'>
 							{editingTodo ? 'Editing Now...' : 'Add New Task'}
 						</h3>
 
-						<Tooltip title='Cancel'>
+						<Tooltip title='Close'>
 							<ClearRoundedIcon
 								onClick={toggleModal}
 								fontSize='large'
@@ -264,7 +262,7 @@ const Todos = () => {
 									type='text'
 									name='title'
 									placeholder='Title'
-									className='mt-2 w-full text-gray-800 rounded-lg bg-white bg-opacity-70 backdrop-blur-lg'
+									className='mt-2 w-full text-gray-800 rounded-lg bg-white border-none bg-opacity-70 backdrop-blur-lg'
 									value={newTodo.title}
 									onChange={handleInputChange}
 								/>
@@ -274,7 +272,7 @@ const Todos = () => {
 										name='priority'
 										value={newTodo.priority}
 										onChange={handlePriorityInputChange}
-										className='text-sm rounded-lg block w-full p-2.5 text-gray-800 rounded-lg bg-white bg-opacity-70 backdrop-blur-lg'
+										className='text-sm border-none rounded-lg block w-full p-2.5 text-gray-800 rounded-lg bg-white bg-opacity-70 backdrop-blur-lg'
 									>
 										<option
 											value='low'
@@ -292,7 +290,7 @@ const Todos = () => {
 								type='text'
 								name='text'
 								placeholder='Description'
-								className='text-sm rounded-lg block w-full p-2.5 text-gray-800 rounded-lg bg-white bg-opacity-70 backdrop-blur-lg'
+								className='text-sm rounded-lg border-none block w-full p-2.5 text-gray-800 rounded-lg bg-white bg-opacity-70 backdrop-blur-lg'
 								value={newTodo.text}
 								onChange={handleInputChange}
 							/>
@@ -343,31 +341,28 @@ const Todos = () => {
 								</div>
 
 								{editingTodo ? (
-									<Tooltip title='Update'>
-										<PublishedWithChangesRoundedIcon
-											onClick={addOrUpdateTodo}
-											fontSize='large'
-											className='text-emerald-400 hover:text-blue-600 hover:cursor-pointer mx-4'
-										/>
-									</Tooltip>
+									<button
+										onClick={addOrUpdateTodo}
+										className='text-white bg-emerald-400 hover:bg-blue-600 mx-4 py-2 px-3 rounded'
+									>
+										Save
+									</button>
 								) : (
-									<Tooltip title='Save'>
-										<TaskAltRoundedIcon
-											onClick={addOrUpdateTodo}
-											fontSize='large'
-											className='text-emerald-400 hover:text-blue-600 hover:cursor-pointer mx-4'
-										/>
-									</Tooltip>
+									<button
+										onClick={addOrUpdateTodo}
+										className='text-white bg-emerald-400 hover:bg-blue-600 mx-2 py-2 px-3 rounded'
+									>
+										Save
+									</button>
 								)}
 
 								{editingTodo && (
-									<Tooltip title='Cancel'>
-										<ClearRoundedIcon
-											onClick={cancelEditing}
-											fontSize='large'
-											className='text-red-500 hover:text-orange-400 hover:cursor-pointer'
-										/>
-									</Tooltip>
+									<button
+										onClick={cancelEditing}
+										className='text-white bg-red-400 hover:bg-blue-600 mx-2 py-2 px-3 rounded'
+									>
+										Cancel
+									</button>
 								)}
 							</div>
 						</div>

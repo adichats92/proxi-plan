@@ -9,7 +9,6 @@ import TaskAltRoundedIcon from '@mui/icons-material/TaskAltRounded';
 import ClearRoundedIcon from '@mui/icons-material/ClearRounded';
 import Comments from '../Comments/Comments';
 import CreatePost from './CreatePost';
-import PostAddIcon from '@mui/icons-material/PostAdd';
 import { formatDistanceToNow, parseISO } from 'date-fns';
 
 const PostsAll = () => {
@@ -104,7 +103,7 @@ const PostsAll = () => {
 	};
 
 	return (
-		<div className='bg-white bg-opacity-0 backdrop-blur-xs text-gray-800 p-6 mx-20 lg:mx-72 xl:mx-96'>
+		<div className='bg-white bg-opacity-0 backdrop-blur-xs text-gray-800 p-6 mx-4 md:mx-20 lg:mx-72 xl:mx-96'>
 			{sortedPosts.map((post) => (
 				<Card
 					key={post._id}
@@ -137,11 +136,13 @@ const PostsAll = () => {
 								<p className='my-3 text-left'>{post.text}</p>
 							</div>
 							{post.imageUrl && (
-								<img
-									src={post.imageUrl}
-									alt='image'
-									className='h-96 w-96 p-2 m-4'
-								/>
+								<div className='h-96 md:m-2 flex items-center justify-center overflow-hidden'>
+									<img
+										src={post.imageUrl}
+										alt='image'
+										className='object-contain max-w-full max-h-full w-full h-full'
+									/>
+								</div>
 							)}
 						</div>
 					</div>
@@ -213,7 +214,8 @@ const PostsAll = () => {
 					className=' bg-emerald-400 hover:bg-blue-600 border-none rounded-lg text-white fixed top-48 left-2 px-4 py-3'
 					onClick={() => setIsModalTwoOpen(true)}
 				>
-					<PostAddIcon fontSize='medium' />
+					{/* <PostAddIcon fontSize='medium' /> */}
+					New
 				</button>
 			</Tooltip>
 			{isModalTwoOpen && (
