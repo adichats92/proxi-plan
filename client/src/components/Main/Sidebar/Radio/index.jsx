@@ -7,6 +7,7 @@ import 'react-h5-audio-player/lib/styles.css';
 import defaultImage from '/logoS.png';
 import { Card } from 'flowbite-react';
 import instance from '../../../../axiosInstance';
+import { Tooltip } from '@mui/material';
 
 export default function Radio() {
 	const [stations, setStations] = useState([]);
@@ -82,17 +83,16 @@ export default function Radio() {
 	const currentStation = stations[currentStationIndex];
 
 	return (
-		<Card className='rounded-none justify-center text-center shadow-none border-none m-2 text-sky-400 bg-white bg-opacity-0 backdrop-blur-xs dark:text-gray-200'>
-			<div className='flex items-center gap-6 mb-4'>
-				<img
-					src={currentStation?.favicon || defaultImage}
-					alt='Station Logo'
-					className='w-12 h-12 rounded-full'
-					onError={setDefaultSrc}
-				/>
-				<h2 className='text-lg text-purple-100 font-semibold'>
-					{currentStation?.name || 'Select a Station'}
-				</h2>
+		<div className='flex flex-row justify-center items-center shadow-none border-none text-white bg-transparent px-1 rounded-lg'>
+			<div>
+				<Tooltip title={currentStation?.name}>
+					<img
+						src={currentStation?.favicon || defaultImage}
+						alt='Station Logo'
+						className='w-8 h-8 rounded-full me-3'
+						onError={setDefaultSrc}
+					/>
+				</Tooltip>
 			</div>
 			<AudioPlayer
 				src={currentStation?.url_resolved || ''}
@@ -105,8 +105,8 @@ export default function Radio() {
 				onClickNext={handleNext}
 				onPlay={handlePlay}
 				layout='stacked'
-				className='pb-4 me-6 mb-16 rounded-lg bg-opacity-10 backdrop-blur-xs bg-gradient-to-r from-red-100 to-blue-100 via-violet-100 border-non shadow-none flex'
+				className='flex ms-1 md:min-w-72 min-w-40 pt-1 flex-row items-center justify-center rounded-full bg-transparent border-none shadow-none'
 			/>
-		</Card>
+		</div>
 	);
 }

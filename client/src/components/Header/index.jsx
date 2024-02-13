@@ -5,6 +5,7 @@ import MeetingRoomRoundedIcon from '@mui/icons-material/MeetingRoomRounded';
 import { Tooltip } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PersonIcon from '@mui/icons-material/Person';
+import Radio from '../Main/Sidebar/Radio';
 
 function Header() {
 	const { user, logout } = useContext(AuthContext);
@@ -15,7 +16,7 @@ function Header() {
 	};
 
 	return (
-		<>
+		<div key={user ? user._id : 'no-user'}>
 			{user ? (
 				<>
 					<div className='navbar bg-black bg-opacity-60 backdrop-blur-lg px-6 fixed top-0 z-50'>
@@ -28,6 +29,7 @@ function Header() {
 								/>
 							</NavLink>
 						</div>
+						<Radio className='flex-1' />
 						<div className='mx-5'>
 							<ul
 								className='list-none md:flex md:flex-row justify-center items-center gap-4 text-white'
@@ -138,7 +140,7 @@ function Header() {
 					</NavLink>
 				</div>
 			)}
-		</>
+		</div>
 	);
 }
 
