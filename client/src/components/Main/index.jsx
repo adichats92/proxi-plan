@@ -58,7 +58,7 @@ const Main = () => {
 							<Tooltip title='Open Sidebar'>
 								<label
 									htmlFor='my-drawer'
-									className='btn text-lg font-light bg-emerald-400 hover:bg-blue-600 ps-6 hover:ps-20 border-none drawer-button rounded-none text-white fixed top-40 left-0 transition-all duration-900 ease-in-out'
+									className='btn text-lg font-light bg-emerald-400 hover:bg-blue-600 md:ps-12 md:hover:pb-2 md:hover:pt-2 hover:pb-20 md:hover:ps-24 ps-2 pe-2 pt-2 pb-2 border-none drawer-button rounded-none text-white fixed md:bottom-48 md:left-0 bottom-0 left-36 transition-all duration-900 ease-in-out md:z-0 z-50'
 								>
 									Tasks
 								</label>

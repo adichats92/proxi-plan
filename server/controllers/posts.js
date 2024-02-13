@@ -50,6 +50,7 @@ const createPost = async (req, res) => {
 const getAllPosts = async (req, res) => {
 	const longitude = parseFloat(req.query.longitude);
 	const latitude = parseFloat(req.query.latitude);
+	const { id } = req.params;
 
 	try {
 		const posts = await Post.find({
@@ -61,9 +62,15 @@ const getAllPosts = async (req, res) => {
 		})
 			.populate('comments')
 			.populate('userId', 'userName')
+			.populate('likes')
 			.exec();
 
-		res.json(posts);
+		const enhancedPosts = posts.map((post) => ({
+			...post._doc,
+			hasLiked: id ? post.likes.some((like) => like.equals(userId)) : false,
+		}));
+
+		res.json(enhancedPosts);
 	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}
@@ -76,16 +83,23 @@ const getPostById = async (req, res) => {
 			.populate('comments')
 			.populate('userId', 'userName')
 			.populate('location')
+			.populate('likes')
 			.exec();
 		if (post.length === 0) {
 			res.status(404).json({ message: `Post with id ${id} Not Found` });
 		} else {
-			res.json(post[0]);
+			const enhancedPost = {
+				...post._doc,
+				hasLiked: id ? post.likes.some((like) => like.equals(userId)) : false,
+			};
+
+			res.json(enhancedPost);
 		}
 	} catch (error) {
 		res.status(500).json({ message: error.message });
 	}
 };
+
 const updatePost = async (req, res) => {
 	const { id } = req.params;
 	try {
@@ -101,6 +115,7 @@ const updatePost = async (req, res) => {
 		res.status(500).json({ message: error.message });
 	}
 };
+
 const deletePost = async (req, res) => {
 	const { id } = req.params;
 	try {

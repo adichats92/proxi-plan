@@ -16,7 +16,12 @@ export const PostsProvider = ({ children }) => {
 				const response = await instance.get(
 					`/api/posts?longitude=${coordinates[0]}&latitude=${coordinates[1]}&maxDistance=${maxDistance}`
 				);
-				setPosts(response.data);
+				const fetchedPosts = response.data.map((post) => ({
+					...post,
+					totalLikes: post.likes.length,
+					hasLiked: post.hasLiked,
+				}));
+				setPosts(fetchedPosts);
 			} catch (err) {
 				console.log(err.response?.data || 'An error occurred');
 			}
