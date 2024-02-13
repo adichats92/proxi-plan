@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import instance from '../../../../axiosInstance';
 import { AuthContext } from '../../../../context/Auth';
 import { LocationContext } from '../../../../context/Location';
+import { Link } from 'react-router-dom';
 
 const News = () => {
 	const [articles, setArticles] = useState([]);
@@ -73,9 +74,11 @@ const News = () => {
 
 	return (
 		<div className='min-h-96 bg-white bg-opacity-0'>
-			<h1 className='text-center mb-12 text-2xl font-light dark:text-emerald-400 text-emerald-600'>
-				Top News
-			</h1>
+			<Link to='/home/news'>
+				<h1 className='text-center mb-12 text-2xl font-light dark:text-emerald-400 text-emerald-600'>
+					Top News
+				</h1>
+			</Link>
 			{currentArticle && (
 				<div
 					className={`transition-opacity duration-1000 ${
