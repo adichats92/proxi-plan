@@ -150,9 +150,9 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 				<dialog
 					open
 					onClick={handleStopPropagation}
-					className='z-50 absolute top-0 flex items-center justify-center w-full bg-transparent'
+					className='z-50 absolute top-0 flex items-center justify-center backdrop-blur-sm w-full bg-transparent'
 				>
-					<div className='modal-box flex w-full bg-white bg-opacity-30 backdrop-blur-md'>
+					<div className='modal-box flex w-full bg-white bg-opacity-70 '>
 						<textarea
 							value={editCommentData.text}
 							name='text'
@@ -160,7 +160,7 @@ const Comments = ({ postId, refresh, onRefreshRequested, currentUser }) => {
 								setEditCommentData({ ...editCommentData, text: e.target.value })
 							}
 							onClick={handleStopPropagation}
-							className='bg-white bg-opacity-70 backdrop-blur-lg text-gray-800 w-full m-3 mt-6 rounded'
+							className='bg-white bg-opacity-70 text-gray-800 w-full m-3 mt-6 rounded'
 						></textarea>
 						<div className='modal-action'>
 							<TaskAltRoundedIcon

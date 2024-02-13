@@ -240,9 +240,9 @@ const Todos = () => {
 			</div>
 
 			{isModalOpen && (
-				<div className='fixed inset-0 bg-black bg-opacity-30 backdrop-blur-md  z-50 h-full w-full flex items-center justify-center'>
-					<div className='relative left-24 bg-white backdrop-blur-lg bg-opacity-70 flex justify-around items-center rounded-lg p-8'>
-						<h3 className='text-md font-medium text-gray-900 dark:text-white absolute top-3 left-4'>
+				<div className='absolute inset-0 bg-black bg-opacity-30 backdrop-blur-md z-50 h-full w-full flex items-center justify-center'>
+					<div className='relative left-0 bg-white backdrop-blur-lg bg-opacity-70 flex justify-around items-center rounded-lg p-4'>
+						<h3 className='text-md font-medium text-gray-900 dark:text-white absolute top-3 left-6'>
 							{editingTodo ? 'Editing Now...' : 'Add New Task'}
 						</h3>
 
@@ -326,7 +326,7 @@ const Todos = () => {
 											onChange={(date) => handleDateTimeChange('end', date)}
 											showTimeSelect
 											dateFormat='Pp'
-											className='flex rounded text-gray-800 rounded-lg bg-white bg-opacity-70 backdrop-blur-lg p-0 ps-2 ms-1 text-xs max-w-20  border-none'
+											className='flex rounded text-gray-800 rounded-lg bg-white bg-opacity-70 backdrop-blur-lg p-0 ps-2 ms-1 text-xs max-w-20 border-none'
 										/>
 									</div>
 									<Tooltip title='All Day'>
@@ -335,7 +335,7 @@ const Todos = () => {
 											name='allDay'
 											checked={newTodo.allDay}
 											onChange={handleCheckboxChange}
-											className='px-2 mx-2 rounded-full'
+											className='px-2 mx-1 rounded-full'
 										/>
 									</Tooltip>
 								</div>
@@ -343,14 +343,14 @@ const Todos = () => {
 								{editingTodo ? (
 									<button
 										onClick={addOrUpdateTodo}
-										className='text-white bg-emerald-400 hover:bg-blue-600 mx-4 py-2 px-3 rounded'
+										className='text-white bg-emerald-400 hover:bg-blue-600 me-1 py-1 px-1 md:px-3 rounded'
 									>
 										Save
 									</button>
 								) : (
 									<button
 										onClick={addOrUpdateTodo}
-										className='text-white bg-emerald-400 hover:bg-blue-600 mx-2 py-2 px-3 rounded'
+										className='text-white bg-emerald-400 hover:bg-blue-600 mx-2 py-2 md:px-3 px-1 rounded'
 									>
 										Save
 									</button>
@@ -359,7 +359,7 @@ const Todos = () => {
 								{editingTodo && (
 									<button
 										onClick={cancelEditing}
-										className='text-white bg-red-400 hover:bg-blue-600 mx-2 py-2 px-3 rounded'
+										className='text-white bg-red-400 hover:bg-blue-600 py-1 md:px-3 px-1 rounded'
 									>
 										Cancel
 									</button>
