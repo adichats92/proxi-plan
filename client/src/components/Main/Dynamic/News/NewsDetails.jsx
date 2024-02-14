@@ -42,12 +42,12 @@ const NewsDetails = () => {
 	};
 
 	return (
-		<div className='mt-24 p-6 mx-20 lg:mx-72 xl:mx-96'>
+		<div className='mt-24 p-6 mx-0 md:mx-16 lg:mx-44 xl:mx-72'>
 			{news.length > 0 ? (
 				news.map((article, index) => (
 					<div
 						key={index}
-						className='article text-gray-800  m-8 p-6 bg-white bg-opacity-50 backdrop-blue-md rounded-lg'
+						className='article text-gray-800  mb-8 p-6 bg-white bg-opacity-50 backdrop-blue-md rounded-lg'
 					>
 						<h2 className='font-bold text-lg mb-4'>{article.title}</h2>
 						<p className='mb-4'>
@@ -66,7 +66,7 @@ const NewsDetails = () => {
 						</p>
 						<Tooltip title='Previous'>
 							<button
-								className=' bg-emerald-400 text-md font-light hover:bg-blue-600 md:p-2 md:ps-16 p-2 md:hover:ps-20 md:hover:pt-2 pt-3 md:hover:pb-2 pb-3 hover:pb-12 transition-all duration-900 ease-in-out border-none rounded-none text-white fixed md:bottom-36 md:left-0 bottom-0 left-60 md:z-0 z-50'
+								className=' bg-emerald-600 rounded-t-lg md:rounded-r-full text-lg font-light hover:bg-blue-600 md:p-2 md:pe-4 md:ps-16 p-2 md:hover:ps-24 md:hover:pt-2 pt-3 md:hover:pb-2 pb-3 hover:pb-12 transition-all duration-900 ease-in-out border-none rounded-none text-white fixed md:bottom-36 md:left-0 bottom-0 left-60 md:z-0 z-50'
 								onClick={handleGoBackClick}
 							>
 								{/* <ArrowBackRoundedIcon fontSize='medium' /> */}
@@ -82,7 +82,7 @@ const NewsDetails = () => {
 					</p>
 					<Tooltip title='Previous'>
 						<button
-							className=' bg-emerald-400 text-md font-light hover:bg-blue-600 md:p-2 md:ps-16 p-2 md:hover:ps-20 md:hover:pt-2 pt-3 md:hover:pb-2 pb-3 hover:pb-12 transition-all duration-900 ease-in-out border-none rounded-none text-white fixed md:bottom-36 md:left-0 bottom-0 left-60 md:z-0 z-50'
+							className=' bg-emerald-600 rounded-t-lg md:rounded-r-full text-lg font-light hover:bg-blue-600 md:p-2 md:ps-16 p-2 md:pe-6 md:hover:ps-24 md:hover:pt-2 pt-3 md:hover:pb-2 pb-3 hover:pb-12 transition-all duration-900 ease-in-out border-none rounded-none text-white fixed md:bottom-36 md:left-0 bottom-0 left-60 md:z-0 z-50'
 							onClick={handleGoBackClick}
 						>
 							Back

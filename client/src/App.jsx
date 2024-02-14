@@ -6,7 +6,7 @@ const App = () => {
 	return (
 		<div
 			className='flex flex-col min-h-screen bg-gradient-to-r 
-		from-emerald-300 
+		from-cyan-300 
 		to-purple-300 
 		via-blue-300 animate-gradient'
 		>

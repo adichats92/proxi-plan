@@ -244,7 +244,7 @@ const PostsAll = () => {
 			)}
 			<Tooltip title='Create Post'>
 				<button
-					className=' bg-emerald-400 text-md font-light hover:bg-blue-600 md:p-2 p-2 md:ps-16 md:hover:ps-20 md:hover:pt-2 pt-3 md:hover:pb-2 pb-3 hover:pb-12 transition-all duration-900 ease-in-out border-none rounded-none text-white fixed md:bottom-36 md:left-0 bottom-0 left-80 md:z-0 z-50'
+					className=' bg-emerald-600 rounded-t-lg md:rounded-r-full text-lg font-light hover:bg-blue-600 md:pe-5 md:p-2 p-2 md:ps-16 md:hover:ps-28 md:hover:pt-2 pt-3 md:hover:pb-2 pb-3 hover:pb-12 transition-all duration-900 ease-in-out border-none rounded-none text-white fixed md:bottom-36 md:left-0 bottom-0 left-80 md:z-0 z-50'
 					onClick={() => setIsModalTwoOpen(true)}
 				>
 					New

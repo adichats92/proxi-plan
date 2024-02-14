@@ -15,11 +15,6 @@ function AuthProvider({ children }) {
 		setLoading(loading);
 		setErrors(errors);
 	};
-	const [refresh, setRefresh] = useState(0);
-	const refreshHeader = () => {
-		setRefresh((prev) => prev + 1);
-	};
-
 	useEffect(() => {
 		instance
 			.get('/users/currentUser')
@@ -65,17 +60,7 @@ function AuthProvider({ children }) {
 
 	return (
 		<AuthContext.Provider
-			value={{
-				user,
-				setUser,
-				refreshHeader,
-				refresh,
-				errors,
-				loading,
-				register,
-				login,
-				logout,
-			}}
+			value={{ user, errors, loading, register, login, logout }}
 		>
 			{children}
 		</AuthContext.Provider>

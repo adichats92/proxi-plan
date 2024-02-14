@@ -48,7 +48,7 @@ const MapComponent = () => {
 	};
 
 	return (
-		<>
+		<div className='h-96 w-96'>
 			<GoogleMap
 				mapContainerStyle={mapContainerStyle}
 				center={location || defaultCenter}
@@ -76,7 +76,7 @@ const MapComponent = () => {
 			>
 				Reset
 			</button>
-		</>
+		</div>
 	);
 };
 

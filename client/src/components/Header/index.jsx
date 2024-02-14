@@ -16,10 +16,10 @@ function Header() {
 	};
 
 	return (
-		<div key={user ? user._id : 'no-user'}>
+		<>
 			{user ? (
 				<>
-					<div className='navbar bg-black bg-opacity-60 backdrop-blur-lg px-6 fixed top-0 z-50'>
+					<div className='navbar bg-black bg-opacity-80 backdrop-blur-xl px-6 fixed top-0 z-50'>
 						<div className='flex-1'>
 							<NavLink to={'/home'}>
 								<img
@@ -29,7 +29,8 @@ function Header() {
 								/>
 							</NavLink>
 						</div>
-						<Radio className='flex-1' />
+
+						<Radio />
 						<div className='mx-5'>
 							<ul
 								className='list-none md:flex md:flex-row justify-center items-center gap-4 text-white'
@@ -140,7 +141,7 @@ function Header() {
 					</NavLink>
 				</div>
 			)}
-		</div>
+		</>
 	);
 }
 

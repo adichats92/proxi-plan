@@ -3,8 +3,8 @@ import { AuthContext } from '../../../../context/Auth';
 import instance from '../../../../axiosInstance';
 
 const UserSettings = () => {
-	const { user, setUser, refreshHeader } = useContext(AuthContext);
-	const [username, setUsername] = useState(user.userName);
+	const { user } = useContext(AuthContext);
+	const [username, setUsername] = useState(user.username || '');
 	const [password, setPassword] = useState('');
 	const [image, setImage] = useState(null);
 
@@ -24,22 +24,15 @@ const UserSettings = () => {
 		e.preventDefault();
 
 		const formData = new FormData();
-		if (username) {
-			formData.append('userName', username);
-		}
-		if (password) {
-			formData.append('password', password);
-		}
+		formData.append('userName', username);
+		formData.append('password', password);
 		if (image) {
 			formData.append('image', image);
 		}
 
 		try {
-			const res = await instance.put('/users/updateUser', formData);
+			await instance.put('/users/updateUser', formData);
 			alert('Profile updated successfully!');
-			const updatedUser = res.data;
-			setUser(updatedUser);
-			refreshHeader();
 		} catch (error) {
 			console.error('Error updating profile:', error);
 			alert('Failed to update profile.');

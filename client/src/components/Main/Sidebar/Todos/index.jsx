@@ -163,16 +163,16 @@ const Todos = () => {
 	};
 
 	return (
-		<div className=' text-gray-800 mt-40 pt-2 pb-24 h-dvh overflow-auto z-50'>
+		<div className=' text-gray-800 mt-48 pt-2 pb-28 h-dvh overflow-auto z-50'>
 			<div className='mt-12 lg:mx-0 flex flex-col pb-96'>
 				<button
 					onClick={toggleModal}
-					className='bg-opacity-20 backdrop-blur-sm bg-emerald-400 transition-all duration-900 ease-in-out hover:bg-blue-300 border-none rounded-lg absolute top-12 rounded-none w-full text-white px-28 py-3'
+					className='bg-opacity-20 backdrop-blur-sm bg-emerald-400 transition-all duration-900 ease-in-out hover:bg-blue-300 border-none rounded-lg absolute top-16 rounded-none w-full text-white px-28 py-3'
 				>
 					Add New Task
 				</button>
 				{todos.length > 0 && (
-					<div className='bg-opacity-0 absolute top-24 md:left-36 border-none justify-center items-center rounded-lg rounded-none w-full py-3 mx-3'>
+					<div className='bg-opacity-0 absolute top-28 border-none justify-center items-center rounded-lg rounded-none w-full py-3 mx-3'>
 						<select
 							value={sortOrder}
 							onChange={(e) => setSortOrder(e.target.value)}
@@ -187,7 +187,7 @@ const Todos = () => {
 				{sortedTodos.map((todo) => (
 					<Card
 						key={todo._id}
-						className='mb-4 border-none shadow-none bg-black bg-opacity-20 backdrop-blur-md mx-2'
+						className='mb-2 border-none shadow-none bg-black bg-opacity-20 backdrop-blur-md mx-2'
 					>
 						<div className='flex flex-row w-full justify-between items-center bg-opacity-0'>
 							<div

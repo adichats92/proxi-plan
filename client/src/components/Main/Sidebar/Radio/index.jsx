@@ -20,7 +20,7 @@ export default function Radio() {
 
 	const [isAutoPlayEnabled, setIsAutoPlayEnabled] = useState(false);
 
-	// const [isPlaying, setIsPlaying] = useState(false);
+	const [isPlaying, setIsPlaying] = useState(false);
 
 	useEffect(() => {
 		instance
@@ -63,14 +63,13 @@ export default function Radio() {
 	const handlePlay = () => {
 		if (!isAutoPlayEnabled) {
 			setIsAutoPlayEnabled(true);
-			// setIsPlaying(true);
+			setIsPlaying(true);
 		}
 	};
-	// const handlePause = () => {
-	// 	setIsPlaying(false);
-	// 	setIsAutoPlayEnabled(false);
-	// 	setIsPlaying(false);
-	// };
+	const handlePause = () => {
+		setIsPlaying(false);
+		setIsAutoPlayEnabled(false);
+	};
 	const handleStationChange = (newIndex) => {
 		setCurrentStationIndex(newIndex);
 	};
@@ -97,7 +96,8 @@ export default function Radio() {
 					<img
 						src={currentStation?.favicon || defaultImage}
 						alt='Station Logo'
-						className='w-8 h-8 rounded-full me-3'
+						// className={`w-8 h-8 rounded-full me-3`}
+						className={`w-8 h-8 rounded-full me-3 ${isPlaying ? 'rotate' : ''}`}
 						onError={setDefaultSrc}
 					/>
 				</Tooltip>
@@ -112,7 +112,7 @@ export default function Radio() {
 				onClickPrevious={handlePrevious}
 				onClickNext={handleNext}
 				onPlay={handlePlay}
-				// onPause={handlePause}
+				onPause={handlePause}
 				layout='stacked'
 				className='flex ms-1 md:min-w-72 min-w-40 pt-1 flex-row items-center justify-center rounded-full bg-transparent border-none shadow-none'
 			/>

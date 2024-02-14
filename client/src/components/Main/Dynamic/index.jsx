@@ -8,6 +8,7 @@ import Map from './Map';
 import News from './News';
 import { Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { Card } from 'flowbite-react';
 
 const Dynamic = () => {
 	const { posts } = useContext(PostsContext);
@@ -52,21 +53,21 @@ const Dynamic = () => {
 					</p>
 				)}
 			</div>
-			<div className='flex flex flex-wrap justify-around items-center mt-12'>
-				<div className='md:ms-5 my-8 md:my-2'>
+			<div className='flex flex flex-wrap justify-center items-center mt-12'>
+				<Card className=' md:mx-4 mt-8 md:mt-4 bg-opacity-20 border-none bg-black'>
 					<Weather />
-				</div>
+				</Card>
 
-				<div className='rounded-none border-none h-96 w-96 shadow-none my-8 md:my-2 md:ms-8'>
+				<Card className=' md:mx-4 mt-8 md:mt-4 bg-opacity-20 border-none bg-black'>
 					<Map />
-				</div>
-				<div className='rounded-none shadow-none border-none w-96 h-96 my-8 md:m-6 p-4 bg-white bg-opacity-50 backdrop-blur-md'>
+				</Card>
+				<Card className=' md:mx-4 mt-8 md:mt-4 bg-opacity-20 border-none bg-black'>
 					<News />
-				</div>
+				</Card>
 				<Tooltip title='Local Posts'>
 					<Link
 						to='/home/community'
-						className=' bg-emerald-400 text-md font-light hover:bg-blue-600 md:p-2 p-2 ps-2 md:ps-2.5 md:hover:ps-16 md:hover:pt-2 pt-3 md:hover:pb-3 pb-3 md:pt-2 md:pb-3 hover:pb-12 transition-all duration-900 ease-in-out border-none rounded-none text-white fixed md:bottom-36 md:left-0 bottom-0 left-56 md:z-0 z-50'
+						className=' bg-emerald-600 text-lg rounded-t-lg md:rounded-r-full md:pe-6 font-light hover:bg-blue-600 md:p-2 p-2 ps-2 md:ps-2.5 md:hover:ps-12 md:hover:pt-2 pt-3 md:hover:pb-3 pb-3 md:pt-2 md:pb-3 hover:pb-12 transition-all duration-900 ease-in-out border-none rounded-none text-white fixed md:bottom-32 md:left-0 bottom-0 left-56 md:z-0 z-50'
 					>
 						Community
 					</Link>

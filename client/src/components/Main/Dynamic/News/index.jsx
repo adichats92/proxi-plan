@@ -73,7 +73,7 @@ const News = () => {
 	const currentArticle = articles[currentArticleIndex];
 
 	return (
-		<div className='min-h-96 bg-white bg-opacity-0'>
+		<div className='h-96 w-96 bg-white bg-opacity-100 p-3'>
 			<Link to='/home/news'>
 				<h1 className='text-center mb-12 text-2xl font-light dark:text-emerald-400 text-emerald-600'>
 					Top News
@@ -108,7 +108,7 @@ const News = () => {
 						{currentArticle.description}
 					</p>
 					<a
-						className='absolute bottom-6 inline-block bg-emerald-400 text-white py-2 px-4 rounded hover:bg-blue-600 transition-all duration-900 ease-in-out'
+						className='absolute bottom-10 inline-block bg-emerald-400 text-white py-2 px-4 rounded hover:bg-blue-600 transition-all duration-900 ease-in-out'
 						href={currentArticle.link}
 						target='_blank'
 						rel='noopener noreferrer'

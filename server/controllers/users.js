@@ -100,10 +100,6 @@ const updateUser = async (req, res) => {
 			delete updateData.password;
 		}
 
-		if (updateData.userName) {
-			req.user.userName = updateData.userName;
-		}
-
 		const updatedUser = await User.findByIdAndUpdate(_id, updateData, {
 			new: true,
 		}).select('-password');
