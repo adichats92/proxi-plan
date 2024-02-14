@@ -7,7 +7,6 @@ const openweather = process.env.OPENWEATHERMAP_API_KEY;
 const getStateFromCoordinates = async (req, res) => {
 	try {
 		const userId = req.user._id;
-		console.log(userId);
 
 		const location = await Location.findOne({ userId: userId });
 

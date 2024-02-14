@@ -163,8 +163,8 @@ const Todos = () => {
 	};
 
 	return (
-		<div className=' text-gray-800 mt-40 pt-2 pb-24 h-dvh overflow-auto'>
-			<div className='mt-6 lg:mx-0 flex flex-col pb-96'>
+		<div className=' text-gray-800 mt-40 pt-2 pb-24 h-dvh overflow-auto z-50'>
+			<div className='mt-12 lg:mx-0 flex flex-col pb-96'>
 				<button
 					onClick={toggleModal}
 					className='bg-opacity-20 backdrop-blur-sm bg-emerald-400 transition-all duration-900 ease-in-out hover:bg-blue-300 border-none rounded-lg absolute top-12 rounded-none w-full text-white px-28 py-3'
@@ -187,7 +187,7 @@ const Todos = () => {
 				{sortedTodos.map((todo) => (
 					<Card
 						key={todo._id}
-						className='mb-6 border-none shadow-none bg-emerald-200 bg-opacity-20 backdrop-blur-md mx-2'
+						className='mb-4 border-none shadow-none bg-black bg-opacity-20 backdrop-blur-md mx-2'
 					>
 						<div className='flex flex-row w-full justify-between items-center bg-opacity-0'>
 							<div
@@ -205,7 +205,7 @@ const Todos = () => {
 									</div>{' '}
 								</div>
 								<div className='collapse-content'>
-									<p className='text-xs font-light'>{todo.text}</p>
+									<p className='text-xs font-light max-w-80'>{todo.text}</p>
 								</div>
 							</div>
 						</div>

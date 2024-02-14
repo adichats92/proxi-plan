@@ -42,7 +42,7 @@ const Main = () => {
 						<input
 							id='my-drawer'
 							type='checkbox'
-							className='drawer-toggle'
+							className='drawer-toggle z-50'
 						/>
 						<div className='drawer-content'>
 							{apiKey && (

@@ -27,20 +27,20 @@ const Dynamic = () => {
 
 	return (
 		<div className='mt-2'>
-			<div className='flex-col justify-center flex-wrap items-center shadow-none rounded-none h-full'>
+			<div className='flex-col justify-center flex-wrap items-center shadow-none rounded-none h-full z-0'>
 				{!weeklyPosts ? (
-					<span className='loading loading-ring loading-lg h-60 mt-32'></span>
+					<span className='loading loading-ring loading-lg h-96 mt-32'></span>
 				) : weeklyPosts.length > 0 ? (
 					<Carousel
 						autoPlay
 						infiniteLoop
 						showThumbs={false}
-						className='h-80 mt-7'
+						className='h-80 mt-7 z-0'
 					>
 						{weeklyPosts.map((post, index) => (
 							<div
 								key={index}
-								className='min-h-80 bg-white bg-opacity-40 backdrop-blur-md flex w-full'
+								className='min-h-80 bg-white bg-opacity-40 backdrop-blur-md flex w-full z-0'
 							>
 								<PostCard post={post} />
 							</div>
