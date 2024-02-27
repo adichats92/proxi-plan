@@ -53,4 +53,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 - **Developer**: [Aadil Ahmad Chattha](https://www.linkedin.com/in/aadil-chattha/)
 - **Project Link**: https://github.com/adichats92/proxi-plan
+- **Deployment Link**: https://proxi-plan.onrender.com/
 
