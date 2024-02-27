@@ -26,7 +26,7 @@ ProxiPlan, a MERN stack-based application, streamlines task management and commu
 ### Installation
 
 1. Clone the repo:
-git clone https://github.com/YOUR_USERNAME/ProxiPlan.git
+git clone https://github.com/adichats92/proxi-plan
 
 2. Install dependencies:
 npm install
