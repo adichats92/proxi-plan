@@ -26,14 +26,14 @@ ProxiPlan, a MERN stack-based application, streamlines task management and commu
 ### Installation
 
 1. Clone the repo:
-git clone https://github.com/adichats92/proxi-plan
+   git clone https://github.com/adichats92/proxi-plan
 
 2. Install dependencies:
-npm install
+   npm install
 
 3. Setup environment variables in a `.env` file as guided by `.env.example`.
 4. Launch the server:
-npm start
+   npm start
 
 5. Access the app at `http://localhost:3000`.
 
@@ -54,4 +54,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - **Developer**: [Aadil Ahmad Chattha](https://www.linkedin.com/in/aadil-chattha/)
 - **Project Link**: https://github.com/adichats92/proxi-plan
 - **Deployment Link**: https://proxi-plan.onrender.com/
-
